@@ -1,2 +1,10 @@
 # chez-norbert
-Chez norbert
+
+# Installation
+
+```shell
+
+# Install composer dependencies
+composer install
+
+```
