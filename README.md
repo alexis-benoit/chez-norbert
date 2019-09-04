@@ -12,3 +12,12 @@ composer install
 ## Environment variables
 
 Use `.env.local` instead of `.env` to set environment variables in development mode.
+
+## Starting server
+
+```shell
+
+# Starts Symfony development server
+php bin/console server:run
+
+```
