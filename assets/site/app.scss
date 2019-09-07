@@ -1,3 +1,7 @@
+@import "./components/reset/index.scss";
+
+@include reset;
+
 body {
     background: lightblue;
 }
