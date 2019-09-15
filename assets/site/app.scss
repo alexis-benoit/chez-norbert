@@ -1,7 +1,13 @@
 @import "./components/reset/index.scss";
 @import "./components/typography/mixins";
+@import "./components/spacing/mixins";
 
 @include reset;
+
+.title {
+    @include margin-top(100);
+    @include margin-bottom(125);
+}
 
 .title-1 {
     @include title-1;
@@ -37,6 +43,7 @@
 
 p {
     @include body-1;
+    @include margin-y(200);
 }
 
 .body-2 {
