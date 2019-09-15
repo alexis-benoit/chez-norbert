@@ -1,6 +1,47 @@
 @import "./components/reset/index.scss";
+@import "./components/typography/mixins";
 
 @include reset;
+
+.title-1 {
+    @include title-1;
+}
+
+.title-2 {
+    @include title-2;
+}
+
+.title-3 {
+    @include title-3;
+}
+
+.title-4 {
+    @include title-4;
+}
+
+.title-5 {
+    @include title-5;
+}
+
+.title-6 {
+    @include title-6;
+}
+
+.subtitle-1 {
+    @include subtitle-1;
+}
+
+.subtitle-2 {
+    @include subtitle-2;
+}
+
+p {
+    @include body-1;
+}
+
+.body-2 {
+    @include body-2;
+}
 
 body {
     background: lightblue;
