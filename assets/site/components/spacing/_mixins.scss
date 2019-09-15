@@ -1,0 +1,25 @@
+@mixin margin-top ($increment) {
+  margin-top: #{$increment / 100}em;
+}
+
+@mixin margin-bottom ($increment) {
+  margin-bottom: #{$increment / 100}em;
+}
+
+@mixin margin-left ($increment) {
+  margin-left: #{$increment / 100}em;
+}
+
+@mixin margin-right ($increment) {
+  margin-right: #{$increment / 100}em;
+}
+
+@mixin margin-x ($increment) {
+  @include margin-left($increment);
+  @include margin-right($increment);
+}
+
+@mixin margin-y ($increment) {
+  @include margin-top($increment);
+  @include margin-bottom($increment);
+}
