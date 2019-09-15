@@ -33,6 +33,14 @@ class UserFixture extends Fixture
     }
 
 
+    /**
+     * Creates a user from an email, a password and roles
+     *
+     * @param string $email
+     * @param string $password
+     * @param array $roles
+     * @return User
+     */
     private function createUser($email, $password, array $roles): User
     {
         $user = new User();
