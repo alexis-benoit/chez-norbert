@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,11 @@ class RegistrationController extends AbstractController
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param UserRepository $repository
-     * 
+     * @param EntityManagerInterface $manager
+     *
      * @return Response
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository, EntityManagerInterface $manager): Response
     {
         if ($repository->getCount() > 0){
             //TODO Rediriger ves page login quand elle sera faite
@@ -35,27 +37,17 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-            
-            //First user register => ADMIN
-            $repository = $this->getDoctrine()->getRepository(User::class);
-            $users = $repository->findAll();
-            if (empty($users)){
-                $roles[] = 'ROLE_ADMIN';
-                $user = $user->setRoles( $roles );
-            }
+            $plainPassword = $form->get('plainPassword')->getData();
+            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $user
+                ->setPassword($encodedPassword)
+                ->setRoles([ 'ROLE_ADMIN' ]);
 
-            // do anything else you need here, like send an email
+            $manager->persist($user);
+            $manager->flush();
 
+            // TODO: When the user is created, redirect him to login page.
             return $this->redirectToRoute('home.index');
         }
 
