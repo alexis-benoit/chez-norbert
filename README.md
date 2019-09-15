@@ -28,3 +28,7 @@ npm run dev-server
 # or starts webpack file watcher
 npm run watch
 ```
+
+# Commit style
+
+[See COMMIT.md](COMMIT.md)
