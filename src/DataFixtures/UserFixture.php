@@ -20,7 +20,7 @@ class UserFixture extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    private function createUser(String $email, String $password, array $roles)
+    private function createUser($email, $password, array $roles): User
     {
         $user = new User();
         return $user
@@ -37,12 +37,10 @@ class UserFixture extends Fixture
     public function load(ObjectManager $manager)
     {
         // create 2 users! Fist will be an ADMIN_USER
-        $role_admin[] = 'ROLE_ADMIN';
-        $admin = $this->createUser('admin@norbert.com', 'test', $role_admin);
+        $admin = $this->createUser('admin@norbert.com', 'test', [ 'ROLE_ADMIN' ]);
         $manager->persist($admin);
 
-        $roles[] = 'ROLE_USER';
-        $user = $this->createUser('user@norbert.com', 'test', $roles);
+        $user = $this->createUser('user@norbert.com', 'test', [ 'ROLE_USER' ]);
         $manager->persist($user);
 
         $manager->flush();
