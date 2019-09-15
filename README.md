@@ -1,5 +1,7 @@
 # chez-norbert
 
+# Installation
+
 ## Environment variables
 
 Use `.env.local` instead of `.env` to set environment variables in development mode.
@@ -8,7 +10,7 @@ Use `.env.local` instead of `.env` to set environment variables in development m
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
 ```
 
-# Installation
+## Initialize dependencies
 
 ```shell
 # Create the database, skip if it already exists
