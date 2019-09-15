@@ -84,3 +84,7 @@
   font-family: $body-font-family;
   color: $base-body-font-color;
 }
+
+@mixin bold {
+  font-weight: 700;
+}
