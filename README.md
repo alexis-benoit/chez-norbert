@@ -43,6 +43,13 @@ npm run dev-server
 npm run watch
 ```
 
+# Test
+
+````shell
+# Run test
+php bin/phpunit
+````
+
 # Commit style
 
 [See COMMIT.md](COMMIT.md)
