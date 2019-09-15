@@ -5,6 +5,11 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app-style') }}
+
+            <link rel="stylesheet" href="{{ asset('build/sm.css') }}" media="screen and (min-width: 600px)">
+            <link rel="stylesheet" href="{{ asset('build/md.css') }}" media="screen and (min-width: 900px)">
+            <link rel="stylesheet" href="{{ asset('build/lg.css') }}" media="screen and (min-width: 1200px)">
+            <link rel="stylesheet" href="{{ asset('build/xl.css') }}" media="screen and (min-width: 1500px)">
         {% endblock %}
     </head>
     <body>
