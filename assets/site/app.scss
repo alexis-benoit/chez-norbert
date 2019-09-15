@@ -41,6 +41,10 @@
     @include subtitle-2;
 }
 
+.bold {
+    @include bold;
+}
+
 p {
     @include body-1;
     @include margin-y(200);
