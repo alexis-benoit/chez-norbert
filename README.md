@@ -2,7 +2,25 @@
 
 # Installation
 
+## Environment variables
+
+Use `.env.local` instead of `.env` to set environment variables in development mode.
+
+```
+DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
+```
+
+## Initialize dependencies
+
 ```shell
+# Create the database, skip if it already exists
+php bin/console doctrine:database:create
+
+# Apply migrations
+php bin/console doctrine:migrations:migrate
+
+# Load fixtures
+php bin/console doctrine:fixtures:load
 
 # Install composer dependencies
 composer install
@@ -10,10 +28,6 @@ composer install
 # Install node modules dependecies
 npm install
 ```
-
-## Environment variables
-
-Use `.env.local` instead of `.env` to set environment variables in development mode.
 
 ## Starting server
 
