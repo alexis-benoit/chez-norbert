@@ -46,6 +46,15 @@ npm run watch
 # Test
 
 ````shell
+# Create env.test.local
+DATABASE_URL="mysql://root@127.0.0.1:3306/db_name_test"
+
+# Create the testing database, skip if it already exists
+php bin/console doctrine:database:create --env test
+
+# Apply migrations
+php bin/console doctrine:migrations:migrate --env test
+
 # Run test
 php bin/phpunit
 ````
