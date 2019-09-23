@@ -5,11 +5,15 @@ namespace App\Tests\Controller;
 
 
 use App\Entity\User;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RegistrationControllerTest extends WebTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $entityManager;
+
     public function testGetRegister () {
         $client = static::createClient();
 
@@ -65,11 +69,44 @@ class RegistrationControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isRedirect('/'));
 
 
-        //A user is already created so uri is automatically redirect
+        //A user is already created so uri is automatically redirect to home page
         $client->request('GET', '/register');
 
         $this->assertTrue($client->getResponse()->isRedirect('/'));
 
         //TODO : tester que le user est créé ainsi que son rôle
+        $kernel = self::bootKernel();
+        $this->entityManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $repo = $this->entityManager
+            ->getRepository(User::class)
+        ;
+
+        //1 user created so 1 expected
+        $tot = $repo
+            ->getCount();
+        $this->assertEquals(1, $tot);
+
+        $all = $repo->findAll();
+        $user = array_pop($all);
+        //fwrite(STDERR, print_r($user, TRUE));
+
+        //Test his mail
+        $mail = $user->getEmail();
+        $this->assertEquals('test@unit.test', $mail);
+
+
+        //Test it has role ROLE_ADMIN
+
+        $roles = $user->getRoles();
+        //fwrite(STDERR, print_r($roles, TRUE));
+        $this->assertTrue(in_array('ROLE_ADMIN', $roles));
+
+        //TODO : Test if the password is hashed
+
+        $this->entityManager->close();
+        $this->entityManager = null;
     }
 }
