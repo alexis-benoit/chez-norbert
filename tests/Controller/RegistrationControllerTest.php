@@ -74,7 +74,6 @@ class RegistrationControllerTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isRedirect('/'));
 
-        //TODO : tester que le user est créé ainsi que son rôle
         $kernel = self::bootKernel();
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
