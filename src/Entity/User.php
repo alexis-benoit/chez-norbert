@@ -29,7 +29,7 @@ class User implements UserInterface
      * @Assert\Length(
      *     min = 5,
      *     max = 180,
-     *     minMessage = "Your email must be at least {{ limit }} characters long",
+     *     minMessage = "user.constraint.email.length.min",
      *     maxMessage = "Your email cannot be longer than {{ limit }} characters"
      * )
      */
