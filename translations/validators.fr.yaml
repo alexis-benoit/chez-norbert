@@ -1,0 +1,1 @@
+user.constraint.email.length.min: L'email doit faire au moins {{ limit }} caractères.
