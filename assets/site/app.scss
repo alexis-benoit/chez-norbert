@@ -1,6 +1,7 @@
 @import "./components/reset/index.scss";
 @import "./components/typography/mixins";
 @import "./components/spacing/mixins";
+@import "./components/header/mixins";
 
 @include reset;
 
@@ -56,4 +57,17 @@ p {
 
 body {
     background: lightblue;
+}
+
+.header {
+    @include header;
+
+    &-brand {
+        @include brand;
+        @include title-5;
+    }
+
+    &-hamburger {
+        @include hamburger;
+    }
 }

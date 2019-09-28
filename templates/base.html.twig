@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app-style') }}
@@ -13,6 +15,24 @@
         {% endblock %}
     </head>
     <body>
+        <header class="header">
+            <a href="{{ path('home.index') }}" class="header-brand">Chez Norbert</a>
+
+            <button class="header-hamburger" type="button" title="menu" data-hamburger>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="header-nav" data-menu>
+                <ul class="nav-list">
+                    <li class="nav-list-item"><a href="#" class="nav-link">Hello</a></li>
+                    <li class="nav-list-item"><a href="#" class="nav-link">Hello</a></li>
+                    <li class="nav-list-item"><a href="#" class="nav-link">Hello</a></li>
+                </ul>
+            </nav>
+        </header>
+
         {% block body %}{% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags ('app') }}

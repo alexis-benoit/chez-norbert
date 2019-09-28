@@ -90,5 +90,5 @@
 }
 
 @mixin brand {
-  font-family: $brand-font-family;
+  font-family: $brand-font-family !important;
 }
