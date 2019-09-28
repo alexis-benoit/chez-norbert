@@ -88,3 +88,7 @@
 @mixin bold {
   font-weight: 700;
 }
+
+@mixin brand {
+  font-family: $brand-font-family;
+}
