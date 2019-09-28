@@ -1,3 +1,4 @@
-import './components/test/index'
+import initializeModules from './components/modules-handler'
+import typography from './components/typography'
 
-console.log('hello world')
+initializeModules({ document }, [ typography ])
