@@ -5,7 +5,10 @@ const initializeMenuAdapter = ({ document }) => {
     const menu = document.querySelector('[data-menu]')
     const button = document.querySelector('[data-hamburger]')
 
-    initializeMenu(button, menu)
+    const getAttribute = () => menu.getAttribute('data-menu')
+    const setAttribute = state => menu.setAttribute('data-menu', state)
+
+    initializeMenu(button, getAttribute, setAttribute)
 }
 
 export default initializeMenuAdapter

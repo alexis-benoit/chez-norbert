@@ -3,14 +3,16 @@ import handleMenuState from './handle-menu-state'
 /**
  *
  * @param {HTMLButtonElement|HTMLLinkElement} button
- * @param {HTMLElement} menu
+ * @param {Function} getAttribute
+ * @param {Function} setAttribute
  */
-const initializeMenu = (button, menu) => {
+const initializeMenu = (button, getAttribute, setAttribute) => {
 
-    console.log(menu)
+    // console.log(menu)
     button.addEventListener('click', () => {
         console.log('helolo')
-        menu.style.display = handleMenuState(menu)
+        const currentState = ('true' === getAttribute())
+        setAttribute (handleMenuState(currentState))
     })
 }
 

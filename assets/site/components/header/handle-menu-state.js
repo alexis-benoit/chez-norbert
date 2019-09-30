@@ -1,5 +1,5 @@
-const handleMenuState = menu => {
-    return !!menu.style.display ? null : 'none'
+const handleMenuState = state => {
+    return !state
 }
 
 export default handleMenuState
