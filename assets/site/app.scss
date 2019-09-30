@@ -55,10 +55,6 @@ p {
     @include body-2;
 }
 
-body {
-    background: lightblue;
-}
-
 .header {
     @include header;
     @include header-compact;
