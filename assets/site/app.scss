@@ -5,6 +5,11 @@
 
 @include reset;
 
+/*
+==================================================
+    /Typography rules
+==================================================
+*/
 .title {
     @include margin-top(100);
     @include margin-bottom(125);
@@ -55,6 +60,11 @@ p {
     @include body-2;
 }
 
+/*
+==================================================
+    /Header component
+==================================================
+*/
 .header {
     @include header;
     @include header-compact;
