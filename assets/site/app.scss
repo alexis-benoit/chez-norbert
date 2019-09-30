@@ -2,6 +2,7 @@
 @import "./components/typography/mixins";
 @import "./components/spacing/mixins";
 @import "./components/header/mixins";
+@import "./components/text-fields/mixins";
 
 @import "./components/sass-librairies";
 
@@ -114,4 +115,36 @@ p {
     }
 }
 
+.contact-form-wrapper {
+    @include title-fz-5;
+    @include margin-y(200);
+
+    & > form {
+        font-size: 1rem;
+    }
+}
+
+/*
+==================================================
+    /Inputs
+==================================================
+*/
+.form-field {
+    @include form-field;
+}
+
+.form-control {
+    @include form-control ('.form-label', '.form-strip');
+}
+
+.form-label {
+    @include form-label;
+}
+
+.form-strip {
+    @include form-strip;
+}
+
+.form-error {
+    @include form-error;
 }

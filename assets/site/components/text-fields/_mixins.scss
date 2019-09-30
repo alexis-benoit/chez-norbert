@@ -1,0 +1,84 @@
+@import "variables";
+@import "../spacing/functions";
+@import "../typography/mixins";
+
+@mixin form-field {
+  position: relative;
+
+  margin-bottom: get-spacing(50);
+}
+
+@mixin form-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  margin-left: get-spacing($input-padding-left-increment);
+  margin-top: get-spacing($input-padding-y-increment);
+
+  @include body-1;
+  text-transform: uppercase;
+
+  transition: $transition-duration;
+}
+
+@mixin form-label-active {
+  transform: translateY(calc(#{get-spacing($input-padding-y-increment)} * -1 + #{get-spacing(25)}));
+
+  font-size: .8rem;
+  font-weight: 500;
+  color: $input-strip-valid-color;
+}
+
+@mixin form-strip-active {
+  transform: scaleY(2);
+  background: $input-strip-valid-color;
+}
+
+@mixin form-control ($form-label-class, $form-strip-class) {
+  background: $input-background-color;
+
+  padding-left: get-spacing($input-padding-left-increment);
+  padding-bottom: get-spacing($input-padding-y-increment);
+  padding-top: get-spacing($input-padding-y-increment);
+  box-sizing: border-box;
+  width: 100%;
+
+  transition: background $transition-duration;
+
+  @include body-1;
+
+
+  &:focus {
+    background: opacify($input-background-color, .05);
+  }
+
+  &:focus ~ #{$form-label-class} {
+    @include form-label-active;
+  }
+
+  &:focus ~ #{$form-strip-class} {
+    @include form-strip-active;
+  }
+}
+
+@mixin form-strip {
+  content: " ";
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: block;
+  height: 1px;
+
+  background: $input-strip-blank-color;
+
+  transform-origin: bottom;
+  transition: transform $transition-duration, color $transition-duration;
+}
+
+@mixin form-error {
+  @include body-2;
+}
