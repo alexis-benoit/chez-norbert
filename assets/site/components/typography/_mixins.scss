@@ -1,10 +1,34 @@
 @import "./variables.scss";
 
+@mixin title-fz-1 {
+  font-size: 6rem;
+}
+
+@mixin title-fz-2 {
+  font-size: 3.75rem;
+}
+
+@mixin title-fz-3 {
+  font-size: 3rem;
+}
+
+@mixin title-fz-4 {
+  font-size: 2.125rem;
+}
+
+@mixin title-fz-5 {
+  font-size: 1.5rem;
+}
+
+@mixin title-fz-6 {
+  font-size: 1.25rem;
+}
+
 /**
   Make rules for level 1 title
  */
 @mixin title-1 {
-  font-size: 6rem;
+  @include title-fz-1;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
@@ -13,7 +37,7 @@
   Make rules for level 2 title
  */
 @mixin title-2 {
-  font-size: 3.75rem;
+  @include title-fz-2;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
@@ -22,7 +46,7 @@
   Make rules for level 3 title
  */
 @mixin title-3 {
-  font-size: 3rem;
+  @include title-fz-3;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
@@ -31,7 +55,7 @@
   Make rules for level 4 title
  */
 @mixin title-4 {
-  font-size: 2.125rem;
+  @include title-fz-4;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
@@ -40,7 +64,7 @@
   Make rules for level 5 title
  */
 @mixin title-5 {
-  font-size: 1.5rem;
+  @include title-fz-5;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
@@ -50,7 +74,7 @@
   Make rules for level 6 title
  */
 @mixin title-6 {
-  font-size: 1.25rem;
+  @include title-fz-6;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
@@ -104,6 +128,7 @@
   font-family: $body-font-family;
   font-weight: 500;
   font-size: .875rem;
+  text-transform: uppercase;
 }
 
 /**
