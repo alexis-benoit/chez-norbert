@@ -61,6 +61,7 @@ body {
 
 .header {
     @include header;
+    @include header-compact;
 
     &-brand {
         @include brand;

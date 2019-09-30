@@ -1,5 +1,9 @@
 @mixin header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 36px;
 }
 
 @mixin hamburger {
@@ -16,6 +20,27 @@
 
     &:nth-of-type(2) {
       margin: 8px 0;
+    }
+  }
+}
+
+@mixin header-compact {
+  position: relative;
+
+  & > .header-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    transition: transform .2s;
+
+    &[data-menu="false"] {
+      transform: translate(0);
+    }
+
+    &[data-menu="false"] {
+      transform: translate(-100%);
     }
   }
 }
