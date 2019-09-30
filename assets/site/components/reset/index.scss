@@ -40,4 +40,10 @@
         padding: 0;
         margin: 0;
     }
+
+    input[type="text"], textarea {
+        border: none;
+        background: none;
+        outline: none;
+    }
 }
