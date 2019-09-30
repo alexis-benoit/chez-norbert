@@ -12,6 +12,10 @@
     /Typography rules
 ==================================================
 */
+body {
+    @include body-1;
+}
+
 .title {
     @include margin-top(100);
     @include margin-bottom(125);
@@ -79,4 +83,35 @@ p {
     &-hamburger {
         @include hamburger;
     }
+}
+
+/*
+==================================================
+    /Contact page
+==================================================
+*/
+.contact-title {
+    @include title-5;
+    @include margin-top(200);
+    @include margin-bottom(125);
+}
+
+.contact-information-item {
+    @include button;
+    color: #000;
+
+    &:nth-of-type(2) {
+        @include margin-y(100);
+    }
+}
+
+.contact-information-link {
+    display: inline-flex;
+    align-items: center;
+
+    & > .material-icons {
+        @include margin-right(125);
+    }
+}
+
 }
