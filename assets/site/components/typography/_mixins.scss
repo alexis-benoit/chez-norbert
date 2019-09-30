@@ -1,41 +1,64 @@
 @import "./variables.scss";
 
+/**
+  Make rules for level 1 title
+ */
 @mixin title-1 {
   font-size: 6rem;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
 
+/**
+  Make rules for level 2 title
+ */
 @mixin title-2 {
   font-size: 3.75rem;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
 
+/**
+  Make rules for level 3 title
+ */
 @mixin title-3 {
   font-size: 3rem;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
 
+/**
+  Make rules for level 4 title
+ */
 @mixin title-4 {
   font-size: 2.125rem;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
 
+/**
+  Make rules for level 5 title
+ */
 @mixin title-5 {
   font-size: 1.5rem;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
 
+
+/**
+  Make rules for level 6 title
+ */
 @mixin title-6 {
   font-size: 1.25rem;
   color: $base-title-font-color;
   font-family: $title-font-family;
 }
 
+
+/**
+  Make rules for level 1 subtitle
+ */
 @mixin subtitle-1 {
   font-family: $body-font-family;
   font-size: 1rem;
@@ -43,6 +66,9 @@
   color: $base-body-font-color;
 }
 
+/**
+  Make rules for level 2 subtitle
+ */
 @mixin subtitle-2 {
   font-family: $body-font-family;
   font-size: .875rem;
@@ -51,6 +77,9 @@
   color: $base-body-font-color;
 }
 
+/**
+  Make rules for level 1 body
+ */
 @mixin body-1 {
   font-family: $body-font-family;
   font-size: 1rem;
@@ -58,6 +87,9 @@
   color: $base-body-font-color;
 }
 
+/**
+  Make rules for level 1 body
+ */
 @mixin body-2 {
   font-family: $body-font-family;
   font-size: .875rem;
@@ -65,12 +97,18 @@
   color: $base-body-font-color;
 }
 
+/**
+  Make rules for buttons
+ */
 @mixin button {
   font-family: $body-font-family;
   font-weight: 500;
   font-size: .875rem;
 }
 
+/**
+  Make rules for captions
+ */
 @mixin caption {
   font-size: .75rem;
   font-weight: 500;
@@ -78,6 +116,9 @@
   color: $base-body-font-color;
 }
 
+/**
+  Make rules for overlines
+ */
 @mixin overline {
   font-size: 0.625rem;
   font-weight: 500;
@@ -85,10 +126,16 @@
   color: $base-body-font-color;
 }
 
+/**
+  Make rules to make a text bold
+ */
 @mixin bold {
   font-weight: 700;
 }
 
+/**
+  Make rule to use brand typography
+ */
 @mixin brand {
   font-family: $brand-font-family !important;
 }
