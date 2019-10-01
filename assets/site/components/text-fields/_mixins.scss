@@ -39,7 +39,7 @@
   background: $input-background-color;
 
   padding-left: get-spacing($input-padding-left-increment);
-  padding-bottom: get-spacing($input-padding-y-increment);
+  padding-bottom: calc(#{get-spacing($input-padding-y-increment)} * .7);
   padding-top: get-spacing($input-padding-y-increment);
   box-sizing: border-box;
   width: 100%;
