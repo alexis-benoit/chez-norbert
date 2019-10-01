@@ -8,9 +8,7 @@ import handleMenuState from './handle-menu-state'
  */
 const initializeMenu = (subscribe, getAttribute, setAttribute) => {
 
-    // console.log(menu)
     subscribe(() => {
-        console.log('helolo')
         const currentState = ('true' === getAttribute())
         setAttribute (handleMenuState(currentState))
     })
