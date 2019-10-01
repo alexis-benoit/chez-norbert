@@ -1,5 +1,3 @@
-import handleMenuState from './handle-menu-state'
-
 /**
  * Initialize menu component
  *
@@ -10,7 +8,7 @@ import handleMenuState from './handle-menu-state'
 const initializeMenu = (subscribe, getAttribute, setAttribute) => {
     subscribe(() => {
         const currentState = ('true' === getAttribute())
-        setAttribute (handleMenuState(currentState))
+        setAttribute (!currentState)
     })
 }
 
