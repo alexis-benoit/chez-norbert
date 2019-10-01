@@ -6,7 +6,10 @@ import initializeTextField from './initialize-text-field'
  * @param document
  */
 const initializeTextFieldAdapter = ({ document }) => {
-    const textFields = document.querySelectorAll('.form-control[type="text"]')
+    const textFields = [
+        ...document.querySelectorAll('.form-control[type="text"]'),
+        ...document.querySelectorAll('.form-control[type="email"]')
+    ]
 
     textFields.forEach(textField => {
         const subscribe = callback => textField.addEventListener('blur', callback)
