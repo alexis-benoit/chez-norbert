@@ -49,15 +49,15 @@
   @include body-1;
 
 
-  &:focus {
+  &:focus, &[data-empty="false"] {
     background: opacify($input-background-color, .05);
   }
 
-  &:focus ~ #{$form-label-class} {
+  &:focus ~ #{$form-label-class}, &[data-empty="false"] ~ #{$form-label-class} {
     @include form-label-active;
   }
 
-  &:focus ~ #{$form-strip-class} {
+  &:focus ~ #{$form-strip-class}, &[data-empty="false"] ~ #{$form-strip-class} {
     @include form-strip-active;
   }
 }
