@@ -148,3 +148,8 @@ p {
 .form-error {
     @include form-error;
 }
+
+.form-group {
+    @include body-fz-1;
+    @include margin-bottom(100);
+}
