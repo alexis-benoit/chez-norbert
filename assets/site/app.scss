@@ -3,7 +3,7 @@
 @import "./components/spacing/mixins";
 @import "./components/header/mixins";
 @import "./components/text-fields/mixins";
-
+@import "./components/button/mixins";
 @import "./components/sass-librairies";
 
 @include reset;
@@ -152,4 +152,14 @@ p {
 .form-group {
     @include body-fz-1;
     @include margin-bottom(100);
+}
+
+/*
+==================================================
+    /Button
+==================================================
+*/
+.button {
+    @include button-widget;
+    @include button;
 }
