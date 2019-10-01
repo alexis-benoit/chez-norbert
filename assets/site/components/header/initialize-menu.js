@@ -2,14 +2,14 @@ import handleMenuState from './handle-menu-state'
 
 /**
  *
- * @param {HTMLButtonElement|HTMLLinkElement} button
+ * @param {Function} subscribe
  * @param {Function} getAttribute
  * @param {Function} setAttribute
  */
-const initializeMenu = (button, getAttribute, setAttribute) => {
+const initializeMenu = (subscribe, getAttribute, setAttribute) => {
 
     // console.log(menu)
-    button.addEventListener('click', () => {
+    subscribe(() => {
         console.log('helolo')
         const currentState = ('true' === getAttribute())
         setAttribute (handleMenuState(currentState))
