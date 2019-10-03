@@ -9,3 +9,14 @@
   padding: 1.1em 4em;
   width: 100%;
 }
+
+@mixin button-outline-widget {
+  @include button-widget;
+
+  background: none;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+
+  display: inline-block;
+  width: auto;
+}
