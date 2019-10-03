@@ -5,6 +5,7 @@
 @import "./components/text-fields/mixins";
 @import "./components/button/mixins";
 @import "./components/sass-librairies";
+@import "./components/header-nav/mixins";
 
 @include reset;
 
@@ -84,6 +85,28 @@ p {
     &-hamburger {
         @include hamburger;
     }
+}
+
+/*
+==================================================
+    /Header nav component
+==================================================
+*/
+.header-nav {
+    @include header-nav;
+}
+
+.nav-list {
+    @include nav-list;
+}
+
+.nav-link {
+    @include nav-link;
+}
+
+.nav-list-item-spaced {
+    @include body-fz-2;
+    margin-top: get-spacing(200);
 }
 
 /*
