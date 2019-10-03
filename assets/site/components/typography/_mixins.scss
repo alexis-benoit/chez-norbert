@@ -101,8 +101,6 @@
   color: $base-body-font-color;
 }
 
-
-
 @mixin body-fz-1 {
   font-size: 1rem;
 }
@@ -116,12 +114,16 @@
   color: $base-body-font-color;
 }
 
+@mixin body-fz-2 {
+  font-size: .875rem;
+}
+
 /**
   Make rules for level 1 body
  */
 @mixin body-2 {
   font-family: $body-font-family;
-  font-size: .875rem;
+  @include body-fz-2;
 
   color: $base-body-font-color;
 }
