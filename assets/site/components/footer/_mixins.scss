@@ -1,0 +1,52 @@
+@import "../typography/mixins";
+@import "../spacing/functions";
+@import "../button/mixins";
+
+@mixin footer {
+  background: rgba(0,0,0, .03);
+
+  @include title-fz-5;
+  padding-top: get-spacing(200);
+  padding-bottom: get-spacing(200);
+}
+
+@mixin footer-brand-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+@mixin footer-slogan {
+  @include body-2;
+  line-height: 2em;
+}
+
+@mixin footer-brand {
+  display: inline-block;
+
+  & > img {
+    height: 70px;
+    display: block;
+    width: auto;
+  }
+}
+
+@mixin footer-nav {
+  text-align: center;
+}
+
+@mixin footer-link {
+  @include button;
+}
+
+@mixin footer-nav-list {
+  @include body-fz-1;
+}
+
+@mixin footer-nav-item {
+  &:not(:first-child):not(:last-child) {
+    margin: get-spacing(125) 0;
+  }
+}
