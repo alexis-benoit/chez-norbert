@@ -1,0 +1,3 @@
+@function get-spacing ($increment) {
+  @return #{$increment / 100}em;
+}

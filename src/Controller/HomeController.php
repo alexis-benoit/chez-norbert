@@ -18,6 +18,7 @@ class HomeController extends AbstractController
     }
 
 
+
     /**
      * @Route({
      * "fr": "/a-propos",
@@ -28,6 +29,14 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            ]);
+    }
+    /**
+     * @Route("/contact", name="home.index")
+     */
+    public function contact ()
+    {
+        return $this->render ('home/contact.html.twig', [
         ]);
     }
 }

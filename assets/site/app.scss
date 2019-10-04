@@ -1,8 +1,22 @@
 @import "./components/reset/index.scss";
 @import "./components/typography/mixins";
 @import "./components/spacing/mixins";
+@import "./components/header/mixins";
+@import "./components/text-fields/mixins";
+@import "./components/button/mixins";
+@import "./components/sass-librairies";
+@import "./components/header-nav/mixins";
 
 @include reset;
+
+/*
+==================================================
+    /Typography rules
+==================================================
+*/
+body {
+    @include body-1;
+}
 
 .title {
     @include margin-top(100);
@@ -54,6 +68,126 @@ p {
     @include body-2;
 }
 
-body {
-    background: lightblue;
+/*
+==================================================
+    /Header component
+==================================================
+*/
+.header {
+    @include header;
+    @include header-compact;
+
+    &-brand {
+        @include brand;
+        @include title-5;
+    }
+
+    &-hamburger {
+        @include hamburger;
+    }
+}
+
+/*
+==================================================
+    /Header nav component
+==================================================
+*/
+.header-nav {
+    @include header-nav;
+}
+
+.nav-list {
+    @include nav-list;
+}
+
+.nav-link {
+    @include nav-link;
+}
+
+.nav-list-item-spaced {
+    @include body-fz-2;
+    margin-top: get-spacing(200);
+}
+
+/*
+==================================================
+    /Contact page
+==================================================
+*/
+.contact-title {
+    @include title-5;
+    @include margin-top(200);
+    @include margin-bottom(125);
+}
+
+.contact-information-item {
+    @include button;
+    color: #000;
+
+    &:nth-of-type(2) {
+        @include margin-y(100);
+    }
+}
+
+.contact-information-link {
+    display: inline-flex;
+    align-items: center;
+
+    & > .material-icons {
+        @include margin-right(125);
+    }
+}
+
+.contact-form-wrapper {
+    @include title-fz-5;
+    @include margin-y(200);
+
+    & > form {
+        font-size: 1rem;
+    }
+}
+
+/*
+==================================================
+    /Inputs
+==================================================
+*/
+.form-field {
+    @include form-field;
+}
+
+.form-control {
+    @include form-control ('.form-label', '.form-strip');
+}
+
+.form-label {
+    @include form-label;
+}
+
+.form-strip {
+    @include form-strip;
+}
+
+.form-error {
+    @include form-error;
+}
+
+.form-group {
+    @include body-fz-1;
+    @include margin-bottom(100);
+}
+
+/*
+==================================================
+    /Button
+==================================================
+*/
+.button {
+    @include button-widget;
+    @include button;
+}
+
+.button-outline {
+    @include button-outline-widget;
+    @include button;
 }

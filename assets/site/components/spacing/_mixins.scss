@@ -1,24 +1,42 @@
+/**
+  Make margin-top rule using increment
+ */
 @mixin margin-top ($increment) {
   margin-top: #{$increment / 100}em;
 }
 
+/**
+  Make margin-bottom rule using increment
+ */
 @mixin margin-bottom ($increment) {
   margin-bottom: #{$increment / 100}em;
 }
-
+/**
+  Make margin-left rule using increment
+ */
 @mixin margin-left ($increment) {
   margin-left: #{$increment / 100}em;
 }
-
+/**
+  Make margin-right rule using increment
+ */
 @mixin margin-right ($increment) {
   margin-right: #{$increment / 100}em;
 }
 
+/**
+  Make margin-x rule using increment
+  It override margin left and right individually
+ */
 @mixin margin-x ($increment) {
   @include margin-left($increment);
   @include margin-right($increment);
 }
 
+/**
+  Make margin-y rule using increment
+  It override margin top and bottom individually
+ */
 @mixin margin-y ($increment) {
   @include margin-top($increment);
   @include margin-bottom($increment);
