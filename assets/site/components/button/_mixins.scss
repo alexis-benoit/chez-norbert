@@ -20,3 +20,7 @@
   display: inline-block;
   width: auto;
 }
+
+@mixin button-widget-sm {
+  width: auto;
+}

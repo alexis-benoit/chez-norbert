@@ -1,4 +1,15 @@
 @import "./components/spacing/functions";
+@import "./components/typography/mixins";
+@import "./components/button/mixins";
+
+/*
+==================================================
+    /Contact page
+==================================================
+*/
+.contact-title {
+  @include title-4;
+}
 
 /*
 ==================================================
@@ -8,4 +19,13 @@
 .contained {
   padding-left: get-contained-side-spacing('sm');
   padding-right: get-contained-side-spacing('sm');
+}
+
+/*
+==================================================
+    /Button
+==================================================
+*/
+.button {
+  @include button-widget-sm;
 }
