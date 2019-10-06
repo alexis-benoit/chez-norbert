@@ -50,3 +50,20 @@
     margin: get-spacing(125) 0;
   }
 }
+
+@mixin footer-sm {
+  display: flex;
+}
+
+@mixin footer-brand-container-sm {
+  display: block;
+  text-align: left;
+  width: 50%;
+  padding-right: 16px;
+  margin-right: 12.5%;
+  box-sizing: border-box;
+}
+
+@mixin footer-nav-sm {
+  text-align: left;
+}

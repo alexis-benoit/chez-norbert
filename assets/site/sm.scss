@@ -1,6 +1,7 @@
 @import "./components/spacing/functions";
 @import "./components/typography/mixins";
 @import "./components/button/mixins";
+@import "./components/footer/mixins";
 
 /*
 ==================================================
@@ -28,4 +29,21 @@
 */
 .button {
   @include button-widget-sm;
+}
+
+/*
+==================================================
+    /Footer
+==================================================
+*/
+.footer {
+  @include footer-sm;
+}
+
+.footer-brand-container {
+  @include footer-brand-container-sm;
+}
+
+.footer-nav {
+  @include footer-nav-sm;
 }
