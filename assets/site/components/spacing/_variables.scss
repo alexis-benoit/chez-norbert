@@ -1,1 +1,7 @@
-$contained-side-spacing: 36px;
+$contained-side-spacing-map: (
+  "xs": 36px,
+  "sm": 80px,
+  "md": 80px,
+  "lg": 96px,
+  "xl": 98px
+);

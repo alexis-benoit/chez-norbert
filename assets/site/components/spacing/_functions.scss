@@ -4,6 +4,6 @@
   @return #{$increment / 100}em;
 }
 
-@function get-contained-side-spacing () {
-  @return $contained-side-spacing;
+@function get-contained-side-spacing ($breakpoint: 'xs') {
+  @return map_get($contained-side-spacing-map, $breakpoint);
 }
