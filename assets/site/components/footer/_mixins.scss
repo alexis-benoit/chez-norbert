@@ -74,3 +74,14 @@
 @mixin footer-nav-sm {
   text-align: left;
 }
+
+
+/*
+==================================================
+    /Medium screens
+==================================================
+*/
+@mixin footer-brand-container-md {
+  margin-left: calc(100% / 8 + 16px);
+  width: calc(100% / 8 * 3);
+}
