@@ -7,6 +7,7 @@
 @import "./components/sass-librairies";
 @import "./components/header-nav/mixins";
 @import "./components/footer/mixins";
+@import "./components/spacing/functions";
 
 @include reset;
 
@@ -228,4 +229,14 @@ p {
 
 .footer-nav-item {
     @include footer-nav-item;
+}
+
+/*
+==================================================
+    /Layout
+==================================================
+*/
+.contained {
+    padding-left: get-contained-side-spacing();
+    padding-right: get-contained-side-spacing();
 }
