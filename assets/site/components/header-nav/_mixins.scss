@@ -30,3 +30,27 @@
     right: 0;
   }
 }
+
+/*
+==================================================
+    /Large screens
+==================================================
+*/
+@mixin nav-list-lg {
+  padding: 0;
+  display: flex;
+}
+
+@mixin nav-link-lg {
+  padding-left: 25px;
+  padding-right: 25px;
+
+  &::after {
+    display: none;
+  }
+}
+
+@mixin nav-list-item-spaced-lg {
+  margin-top: 0;
+  margin-left: 25px;
+}
