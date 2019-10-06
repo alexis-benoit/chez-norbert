@@ -1,0 +1,12 @@
+@import "./components/spacing/functions";
+@import "./components/footer/mixins";
+
+/*
+==================================================
+    /Layout
+==================================================
+*/
+.contained {
+  padding-left: get-contained-side-spacing('md');
+  padding-right: get-contained-side-spacing('md');
+}
