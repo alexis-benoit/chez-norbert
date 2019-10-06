@@ -59,6 +59,7 @@
 
 @mixin footer-sm {
   display: flex;
+  @include title-fz-4;
 }
 
 @mixin footer-brand-container-sm {

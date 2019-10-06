@@ -12,6 +12,15 @@
   @include title-4;
 }
 
+.contact-form-wrapper {
+   @include title-fz-4;
+   @include margin-y(200);
+
+   & > form {
+     font-size: 1rem;
+   }
+ }
+
 /*
 ==================================================
     /Layout
