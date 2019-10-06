@@ -1,0 +1,11 @@
+@import "./components/spacing/functions";
+
+/*
+==================================================
+    /Layout
+==================================================
+*/
+.contained {
+  padding-left: get-contained-side-spacing('sm');
+  padding-right: get-contained-side-spacing('sm');
+}
