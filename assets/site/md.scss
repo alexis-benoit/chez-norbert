@@ -10,3 +10,8 @@
   padding-left: get-contained-side-spacing('md');
   padding-right: get-contained-side-spacing('md');
 }
+
+.hidden-md {
+  display: none;
+}
+
