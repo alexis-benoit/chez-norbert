@@ -8,7 +8,8 @@ import initializeTextField from './initialize-text-field'
 const initializeTextFieldAdapter = ({ document }) => {
     const textFields = [
         ...document.querySelectorAll('.form-control[type="text"]'),
-        ...document.querySelectorAll('.form-control[type="email"]')
+        ...document.querySelectorAll('.form-control[type="email"]'),
+        ...document.querySelectorAll('textarea')
     ]
 
     textFields.forEach(textField => {
