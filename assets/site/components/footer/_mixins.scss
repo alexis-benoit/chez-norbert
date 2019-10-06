@@ -85,3 +85,23 @@
   margin-left: calc(100% / 8 + 16px);
   width: calc(100% / 8 * 3);
 }
+
+/*
+==================================================
+    /Large screens
+==================================================
+*/
+@mixin footer-brand-container-lg {
+  margin-left: calc(100% / 12 * 3);
+  width: calc(100% / 12 * 3);
+  margin-right: 0;
+  padding-right: 8px;
+}
+
+@mixin footer-lg {
+  @include title-fz-3;
+}
+
+@mixin footer-nav-lg {
+  padding-left: 8px;
+}

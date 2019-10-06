@@ -1,0 +1,47 @@
+@import "./components/spacing/functions";
+@import "./components/typography/mixins";
+@import "./components/footer/mixins";
+
+/*
+==================================================
+    /Layout
+==================================================
+*/
+.contained {
+  padding-left: get-contained-side-spacing('lg');
+  padding-right: get-contained-side-spacing('lg');
+}
+
+/*
+==================================================
+    /Contact page
+==================================================
+*/
+.contact-form {
+  width: calc(100% / 12 * 10);
+}
+
+.contact-form-wrapper {
+  @include title-fz-3;
+}
+
+.contact-title {
+  @include title-3;
+}
+
+/*
+==================================================
+    /Footer
+==================================================
+*/
+.footer {
+  @include footer-lg;
+}
+
+.footer-brand-container {
+  @include footer-brand-container-lg;
+}
+
+.footer-nav {
+  @include footer-nav-lg;
+}
