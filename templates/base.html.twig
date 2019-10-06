@@ -15,7 +15,7 @@
         {% endblock %}
     </head>
     <body>
-        <header class="header">
+        <header class="header contained">
             <a href="{{ path('home.index') }}" class="header-brand">Chez Norbert</a>
 
             <button class="header-hamburger" type="button" title="menu" data-hamburger>
@@ -25,7 +25,7 @@
             </button>
 
             <nav class="header-nav" data-menu="false">
-                <ul class="nav-list">
+                <ul class="nav-list contained">
                     <li class="nav-list-item">
                         <a href="#" class="nav-link">Nos gîtes</a>
                     </li>
@@ -45,7 +45,7 @@
 
         {% block body %}{% endblock %}
 
-        <footer class="footer" style="padding-left: 36px; padding-right: 36px;">
+        <footer class="footer contained">
             <div class="footer-brand-container">
                 <a href="{{ path('home.index') }}" title="Chez Norbert" class="footer-brand">
                     <img src="{{ asset('build/images/chez-norbert-logo.svg') }}" alt="Logo Chez Norbert">

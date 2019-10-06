@@ -8,7 +8,7 @@
 
 @mixin nav-list {
   @include body-fz-2;
-  padding: get-spacing(200) 36px;
+  padding: get-spacing(200) 0;
 }
 
 @mixin nav-link {
