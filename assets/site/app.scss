@@ -6,6 +6,8 @@
 @import "./components/button/mixins";
 @import "./components/sass-librairies";
 @import "./components/header-nav/mixins";
+@import "./components/footer/mixins";
+@import "./components/spacing/functions";
 
 @include reset;
 
@@ -190,4 +192,51 @@ p {
 .button-outline {
     @include button-outline-widget;
     @include button;
+}
+
+/*
+==================================================
+    /Footer
+==================================================
+*/
+.footer {
+    @include footer;
+}
+
+.footer-brand {
+    @include footer-brand;
+}
+
+.footer-brand-container {
+    @include footer-brand-container;
+}
+
+.footer-slogan {
+    @include footer-slogan;
+}
+
+.footer-nav {
+    @include footer-nav;
+}
+
+.footer-link {
+    @include footer-link;
+}
+
+.footer-nav-list {
+    @include body-fz-1;
+}
+
+.footer-nav-item {
+    @include footer-nav-item;
+}
+
+/*
+==================================================
+    /Layout
+==================================================
+*/
+.contained {
+    padding-left: get-contained-side-spacing();
+    padding-right: get-contained-side-spacing();
 }

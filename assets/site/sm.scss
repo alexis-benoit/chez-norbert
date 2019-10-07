@@ -1,0 +1,58 @@
+@import "./components/spacing/functions";
+@import "./components/typography/mixins";
+@import "./components/button/mixins";
+@import "./components/footer/mixins";
+
+/*
+==================================================
+    /Contact page
+==================================================
+*/
+.contact-title {
+  @include title-4;
+}
+
+.contact-form-wrapper {
+   @include title-fz-4;
+   @include margin-y(200);
+
+   & > form {
+     font-size: 1rem;
+   }
+ }
+
+/*
+==================================================
+    /Layout
+==================================================
+*/
+.contained {
+  padding-left: get-contained-side-spacing('sm');
+  padding-right: get-contained-side-spacing('sm');
+}
+
+/*
+==================================================
+    /Button
+==================================================
+*/
+.button {
+  @include button-widget-sm;
+}
+
+/*
+==================================================
+    /Footer
+==================================================
+*/
+.footer {
+  @include footer-sm;
+}
+
+.footer-brand-container {
+  @include footer-brand-container-sm;
+}
+
+.footer-nav {
+  @include footer-nav-sm;
+}

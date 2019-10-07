@@ -20,3 +20,11 @@
   display: inline-block;
   width: auto;
 }
+/*
+==================================================
+    /Small screens
+==================================================
+*/
+@mixin button-widget-sm {
+  width: auto;
+}
