@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Contact;
+use App\Form\ContactFormType;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,45 +11,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class RegistrationController extends AbstractController
+class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="app_contact")
-     *
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     *
-     * @return Response
+     * //TODO utiliser cette route pour contacts
+     * @Route("/contact2", name="app_contact")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository, EntityManagerInterface $manager): Response
+    public function new(Request $request)
     {
-        if ($repository->getCount() > 0){
-            //TODO Rediriger ves page login quand elle sera faite
-            return $this->redirectToRoute('home.index');
-        }
+        $contact = new Contact();
 
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(ContactFormType::class, $contact);
+
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $plainPassword = $form->get('plainPassword')->getData();
-            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+            $task = $form->getData();
 
-            $user
-                ->setPassword($encodedPassword)
-                ->setRoles([ 'ROLE_ADMIN' ]);
-
-            $manager->persist($user);
-            $manager->flush();
-
-            // TODO: When the user is created, redirect him to login page.
             return $this->redirectToRoute('home.index');
         }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+        //TODO: use contact view instead of test view
+        return $this->render('test/contact.html.twig', [
+            'form' => $form->createView(),
         ]);
+
     }
 }
