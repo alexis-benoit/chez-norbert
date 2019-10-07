@@ -20,7 +20,7 @@ class ContactFormType extends AbstractType
             ->add('Email', TextType::class)
             ->add('Tel', TextType::class)
             ->add('Message', TextType::class)
-            ->add('save', SubmitType::class)
+            ->add('Send', SubmitType::class)
     ;
     }
 
