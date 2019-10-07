@@ -15,7 +15,10 @@ class ContactController extends AbstractController
 {
     /**
      * //TODO utiliser cette route pour contacts
-     * @Route("/contact2", name="app_contact")
+     * @Route({
+     * "fr": "/contact2",
+     * "en": "/contact2"
+     * }, name="app_contact")
      */
     public function new(Request $request)
     {
