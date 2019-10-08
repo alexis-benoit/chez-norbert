@@ -4,6 +4,8 @@
 @mixin header-nav {
   background: #fff;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, .1);
+
+  z-index: 10000;
 }
 
 @mixin nav-list {
