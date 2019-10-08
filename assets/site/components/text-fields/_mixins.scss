@@ -38,6 +38,8 @@
 @mixin form-control ($form-label-class, $form-strip-class) {
   background: $input-background-color;
 
+  border: none;
+  outline: none;
   padding-left: get-spacing($input-padding-left-increment);
   padding-bottom: calc(#{get-spacing($input-padding-y-increment)} * .7);
   padding-top: get-spacing($input-padding-y-increment);

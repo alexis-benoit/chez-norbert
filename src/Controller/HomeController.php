@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Contact;
+use App\Form\ContactFormType;
 
 class HomeController extends AbstractController
 {
@@ -34,9 +37,19 @@ class HomeController extends AbstractController
     /**
      * @Route("/contact", name="home.index")
      */
-    public function contact ()
+    public function contact (Request $request)
     {
+        $contact = new Contact ();
+        $form = $this->createForm(ContactFormType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($contact);
+        }
+
         return $this->render ('home/contact.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }
