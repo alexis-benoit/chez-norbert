@@ -1,1 +1,13 @@
 user.constraint.email.length.min: L'email doit faire au moins {{ limit }} caractères.
+
+contact.constraints.lastName.notBlank: Le nom ne doit pas être vide.
+contact.constraints.lastName.length.max: Le nom ne peut pas faire plus de {{ limit }} caractères de long.
+contact.constraints.firstName.notBlank: Le prénom ne doit pas être vide.
+contact.constrains.email.notBlank: L'email ne doit pas être vide.
+contact.constrains.email.email: L'email "{{ value }} n'est pas un email valide."
+contact.constrains.email.length.max: L'email ne doit pas faire plus de {{ limit }} caractères de long.
+contact.constrains.tel.notBlank: Le numéro de téléphone ne doit pas être vide.
+contact.constrains.tel.length.max: Le numéro de téléphone ne doit pas faire plus de {{ limit }} caractères de long.
+contact.constrains.message.notBlank: Le message ne peut pas être vide.
+contract.constrains.message.length.max: Le message ne doit pas faire plus de {{ limit }} caractères de long.
+ 
