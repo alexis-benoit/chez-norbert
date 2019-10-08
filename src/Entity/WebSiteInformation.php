@@ -3,12 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WebSiteInformationRepository")
- * @UniqueEntity(fields={"name"}, message="There is already an account with this name")
  */
 class WebSiteInformation
 {
@@ -20,151 +17,109 @@ class WebSiteInformation
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $siteName;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $tel;
+    private $phoneNumber;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $address;
 
-
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSiteName()
+    public function getSiteName(): ?string
     {
         return $this->siteName;
     }
 
-    /**
-     * @param mixed $siteName
-     * @return WebSiteInformation
-     */
-    public function setSiteName($siteName)
+    public function setSiteName(string $siteName): self
     {
         $this->siteName = $siteName;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    /**
-     * @param mixed $lastName
-     * @return WebSiteInformation
-     */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    /**
-     * @param mixed $firstName
-     * @return WebSiteInformation
-     */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTel()
+    public function getPhoneNumber(): ?string
     {
-        return $this->tel;
+        return $this->phoneNumber;
     }
 
-    /**
-     * @param mixed $tel
-     * @return WebSiteInformation
-     */
-    public function setTel($tel)
+    public function setPhoneNumber(string $phoneNumber): self
     {
-        $this->tel = $tel;
+        $this->phoneNumber = $phoneNumber;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param mixed $email
-     * @return WebSiteInformation
-     */
-    public function setEmail($email)
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAddress()
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    /**
-     * @param mixed $address
-     * @return WebSiteInformation
-     */
-    public function setAddress($address)
+    public function setAddress(string $address): self
     {
         $this->address = $address;
+
         return $this;
     }
-
-
 }
