@@ -30,59 +30,7 @@
             </div>
 
             <div class="contact-form-wrapper contained">
-                <form action="#" method="post" class="contact-form">
-                    <div class="form-group">
-                        <div class="form-field">
-                            <input type="text" class="form-control" id="name">
-                            <label for="name" class="form-label">Nom</label>
-                            <div class="form-strip"></div>
-                        </div>
-
-                        <span class="form-error">Hello i'm an error</span>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-field">
-                            <input type="text" class="form-control" id="first_name">
-                            <label for="first_name" class="form-label">Prénom</label>
-                            <div class="form-strip"></div>
-                        </div>
-
-                        <span class="form-error">Hello i'm an error</span>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-field">
-                            <input type="text" class="form-control" id="email">
-                            <label for="email" class="form-label">Email</label>
-                            <div class="form-strip"></div>
-                        </div>
-
-                        <span class="form-error">Hello i'm an error</span>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-field">
-                            <input type="text" class="form-control" id="phone">
-                            <label for="phone" class="form-label">Téléphone</label>
-                            <div class="form-strip"></div>
-                        </div>
-
-                        <span class="form-error">Hello i'm an error</span>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-field">
-                            <textarea name="content" id="content" class="form-control"></textarea>
-                            <label for="content" class="form-label">Contenu</label>
-                            <div class="form-strip"></div>
-                        </div>
-
-                        <span class="form-error">Hello i'm an error</span>
-                    </div>
-
-                    <button class="button" type="submit">Envoyer</button>
-                </form>
+                {{ form(form, { attr: { class: 'contact-form' } }) }}
             </div>
         </div>
 
