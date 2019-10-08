@@ -2,16 +2,72 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class Contact
 {
+    /**
+     * @Assert\NotBlank(
+     *  message = "contact.constraints.lastName.notBlank"
+     * )
+     * 
+     * @Assert\Length(
+     *  max = 80,
+     *  maxMessage = "contact.constraints.lastName.length.max"
+     * )
+     */
     private $lastName;
 
+    /**
+     * @Assert\NotBlank(
+     *  message = "contact.constraints.firstName.notBlank"
+     * )
+     * 
+     * @Assert\Length(
+     *  max = 80,
+     *  maxMessage = "contact.constrains.firstName.length.max"
+     * )
+     */
     private $firstName;
 
+    /**
+     * @Assert\NotBlank(
+     *  message = "contact.constrains.email.notBlank"
+     * )
+     * 
+     * @Assert\Email(
+     *  message = "contact.constrains.email.email"
+     * )
+     * 
+     * @Assert\Length(
+     *  max = 200,
+     *  maxMessage = "contact.constrains.email.length.max"
+     * )
+     */
     private $email;
 
+    /**
+     * @Assert\NotBlank(
+     *  message = "contact.constrains.tel.notBlank"
+     * )
+     * 
+     * @Assert\Length(
+     *  max = 14,
+     *  maxMessage = "contact.constrains.tel.length.max"
+     * )
+     */
     private $tel;
 
+    /**
+     * @Assert\NotBlank(
+     *  message = "contact.constrains.message.notBlank"
+     * )
+     * 
+     * @Assert\Length(
+     *  max = 400,
+     *  maxMessage = "contract.constrains.message.length.max"
+     * )
+     */
     private $message;
 
     public function getEmail()
