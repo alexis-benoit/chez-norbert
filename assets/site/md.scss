@@ -36,8 +36,8 @@
     width: 50%;
     box-sizing: border-box;
 
-    &:last-of-type {
-      width: 100%;
+    &:nth-of-type(5) {
+      width: 100% !important;
     }
   }
 }
