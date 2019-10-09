@@ -18,12 +18,12 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('LastName', TextType::class)
-            ->add('FirstName', TextType::class)
-            ->add('Email', EmailType::class)
-            ->add('Tel', TelType::class)
-            ->add('Message', TextareaType::class)
-            ->add('Send', SubmitType::class)
+            ->add('lastName', TextType::class)
+            ->add('firstName', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('tel', TelType::class)
+            ->add('message', TextareaType::class)
+            ->add('send', SubmitType::class)
     ;
     }
 

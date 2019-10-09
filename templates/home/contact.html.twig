@@ -33,23 +33,12 @@
 {#                {{ form(form, { attr: { class: 'contact-form' } }) }}#}
 
                 {{ form_start(form, { attr: { class: 'contact-form' } }) }}
-                    {{ form_row(form.FirstName) }}
-                    {{ form_row(form.LastName) }}
-
-                    <div class="form-group">
-                        <div class="form-field">
-                            {{ form_widget(form.Email) }}
-                            {{ form_label(form.Email) }}
-                            <div class="form-strip"></div>
-                        </div>
-                        {{ form_errors(form.Email) }}
-                    </div>
-
-                    {{ form_row(form.Tel) }}
-                    {{ form_row(form.Message) }}
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.tel) }}
+                    {{ form_row(form.message) }}
                 {{ form_end(form) }}
-
-
             </div>
         </div>
 
