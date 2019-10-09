@@ -21,7 +21,11 @@
             {{ form_label(form) }}
             <div class="form-strip"></div>
         </div>
+        {% block form_label_errors %}
+            {{ form_errors(form) }}
+        {% endblock form_label_errors %}
     </div>
+
 {% endblock %}
 
 {% block form_widget_simple %}
