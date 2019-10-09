@@ -13,7 +13,10 @@ const initializeTextFieldAdapter = ({ document }) => {
 
     textFields.forEach(textField => {
         const subscribe = callback => textField.addEventListener('blur', callback)
-        const setAttribute = newAttributeValue => textField.setAttribute('data-empty', newAttributeValue)
+        const setAttribute = newAttributeValue => {
+            textField.setAttribute('data-empty', newAttributeValue)
+            textField.setAttribute('data-touched', 'true')
+        }
         const getTextLength = () => textField.value.length
 
         initializeTextField(subscribe, setAttribute, getTextLength)

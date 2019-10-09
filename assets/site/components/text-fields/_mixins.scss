@@ -62,12 +62,16 @@
     @include form-strip-active;
   }
 
-  &:invalid, &:invalid ~ #{$form-label-class} {
+  &:invalid[data-touched="true"] {
     color: $input-strip-invalid-color;
-  }
 
-  &:invalid ~ #{$form-strip-class} {
-    background: $input-strip-invalid-color;
+    & ~ #{$form-label-class} {
+      color: $input-strip-invalid-color;
+    }
+
+    & ~ #{$form-strip-class} {
+      background: $input-strip-invalid-color;
+    }
   }
 }
 
