@@ -1,5 +1,13 @@
 {% use 'form_div_layout.html.twig' %}
 
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        <div class="form-error">
+            {{ errors[0].message }}
+        </div>
+    {% endif %}
+{% endblock %}
+
 {% block form_row %}
     {% set widget_attr = {} %}
 
@@ -13,8 +21,6 @@
             {{ form_label(form) }}
             <div class="form-strip"></div>
         </div>
-
-        {{ form_errors(form) }}
     </div>
 {% endblock %}
 
@@ -38,5 +44,6 @@
 
 {% block textarea_widget %}
     {% set attr = attr|merge({ class: (attr.class|default('form-control'))|trim }) %}
+    {% set attr = attr|merge({ 'data-empty': value|length == 0 ? 'true' : 'false' }) %}
     {{ parent() }}
 {% endblock %}
