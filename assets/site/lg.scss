@@ -72,3 +72,7 @@
 .nav-list-item-spaced {
   @include nav-list-item-spaced-lg;
 }
+
+.header-nav {
+  @include header-nav-lg;
+}
