@@ -2,14 +2,38 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
-{% block body %}
-    <h1 class="title title-1">{%  trans  %}Title 1{%  endtrans  %}</h1>
-    <h2 class="title title-2">Title 2</h2>
-    <h3 class="title title-3">Title 3</h3>
-    <h4 class="title title-4">Title 4</h4>
-    <h5 class="title title-5 bold">Title 5</h5>
-    <h6 class="title title-6">Title 6</h6>
+{% block stylesheets %}
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias at aut, autem, delectus doloremque dolores ea ex fugiat iusto mollitia, odio quos vitae. Atque commodi consequuntur ipsam nobis tempora vel?</p>
-    <p class="body-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda beatae doloribus ea facere fugit ipsum labore laborum, maiores minima modi nobis odio perferendis perspiciatis, possimus quas qui unde velit?</p>
+    {{ parent() }}
+    <style>
+        .header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 100px;
+            background: linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,0));
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="landing">
+        <img src="{{ asset('build/images/cour.jpg') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
+
+        <div class="landing-container">
+            <h1 class="landing-title">Un lieu paisible au cœur du vignoble, une maison de charme alsacienne.</h1>
+            <a href="#" class="button landing-button">Découvrez Chez Norbert</a>
+        </div>
+    </div>
 {% endblock %}
