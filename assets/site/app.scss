@@ -305,3 +305,39 @@ p {
         margin-bottom: get-spacing(200);
     }
 }
+
+.discover-map {
+    height: 30vh;
+}
+
+.discover {
+    position: relative;
+    padding-top: 20vh;
+    @include title-fz-4;
+    margin-bottom: get-spacing(200);
+}
+
+.map-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: -1;
+}
+
+.discover-card {
+    margin-right: get-contained-side-spacing('xs');
+    margin-left: get-contained-side-spacing('xs');
+    text-align: center;
+
+    @include title-4;
+    padding: get-spacing(125) 20px;
+
+    background: #fff;
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.04);
+}
+
+.discover-title {
+    @include title-4;
+}
