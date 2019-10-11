@@ -288,13 +288,13 @@ p {
 }
 
 .alsace {
-    padding: 0 get-contained-side-spacing('xs');
+    padding: get-spacing(200) get-contained-side-spacing('xs');
+    @include title-4;
+
 }
 
 .alsace-title {
     @include title-4;
-    margin-top: get-spacing(200);
-    margin-bottom: get-spacing(150);
 }
 
 .alsace-button {
