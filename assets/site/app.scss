@@ -255,10 +255,6 @@ p {
     z-index: -1;
 }
 
-.landing-container {
-    padding: 0 get-contained-side-spacing('xs');
-}
-
 .landing-title {
     @include title-5;
     margin-bottom: get-spacing(125);
@@ -266,7 +262,7 @@ p {
     align-items: center;
     color: #fff;
     text-align: center;
-    text-shadow: rgba(0,0,0,.1) 0 0 20px;
+    text-shadow: rgba(0,0,0,.8) 0 0 10px;
 }
 
 .landing-button {
@@ -279,10 +275,12 @@ p {
     /Home page/Alsace
 ==================================================
 */
-.alsace {
-    padding: get-spacing(200) get-contained-side-spacing('xs');
+.alsace {;
     @include title-4;
+}
 
+.alsace-title {
+    margin-bottom: get-spacing(125);
 }
 
 .alsace-button {
@@ -339,7 +337,7 @@ p {
     text-align: center;
 
     @include title-4;
-    margin: 0 get-contained-side-spacing('xs') get-spacing(200);
+    margin-bottom:get-spacing(200);
 }
 
 .houses-title {

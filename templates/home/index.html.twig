@@ -14,6 +14,14 @@
             z-index: 1000;
         }
 
+        .header-brand {
+            color: white;
+        }
+
+        .header-hamburger span {
+            background: white;
+        }
+
         .header::after {
             content: " ";
             display: block;
@@ -21,6 +29,7 @@
             top: 0;
             right: 0;
             left: 0;
+            z-index: -1;
             height: 100px;
             background: linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,0));
         }
@@ -31,14 +40,14 @@
     <section class="landing">
         <img src="{{ asset('build/images/cour.jpg') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
 
-        <div class="landing-container">
+        <div class="contained landing-container">
             <h1 class="landing-title">Un lieu paisible au cœur du vignoble, une maison de charme alsacienne.</h1>
             <a href="#" class="button landing-button">Découvrez Chez Norbert</a>
         </div>
     </section>
 
-    <section class="alsace">
-        <h2 class="title-1">Au cœur de l'Alsace</h2>
+    <section class="alsace contained-y contained">
+        <h2 class="title-1 alsace-title">Au cœur de l'Alsace</h2>
 
         <div>
             <p>Au gré de la route des vins, non loin de Colmar, tout près de Ribeauvillé, le petit village de Bergheim abrite une ancienne demeure viticole de charme qui saura vous ravir.</p>
@@ -46,7 +55,7 @@
             <p>Commencez bien votre matinée dans le salle petit-déjeuner avec des produits locaux et terminez la journée autour d'un verre sur la terrasse.</p>
         </div>
 
-        <div>
+        <div class="alsace-button-container">
             <a href="#" class="button button-outline alsace-button">Nos gîtes</a>
             <a href="#" class="button button-outline alsace-button">Nos chambres d'hôtes</a>
         </div>
@@ -60,13 +69,13 @@
         <div class="discover-card">
             <h2 class="title-1">Tant de choses à découvrir</h2>
             <p>Entre le culture de l'esprit et la culture du bien-vivre. Du château du Haut-Koenigsbourg en passant par la Bibliothèque Humaniste de Sélestat sans oublier le musée Unterlinden de Colmar et les vignerons passionnés, vous tomberez à coup sûr amoureux de l'Alsace.</p>
-            <a href="#" class="button">Ouvrir la carte</a>
+            <a href="#" class="button discover-button">Ouvrir la carte</a>
         </div>
 
     </section>
 
     <section class="houses contained-y">
-        <header class="houses-header">
+        <header class="houses-header contained">
             <h2 class="title-1 houses-title">Des gîtes accueillants</h2>
             <p>Un séjour accueillant pour des moments de partage et des chambres avec salles de bains privatives pour des moments d'intimités.</p>
         </header>
@@ -82,7 +91,7 @@
                     <h3 class="card-title">Gîte "Le Grasberg"</h3>
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
                     <p>4 - 6 personnes - Salle de bain privative - Duplex</p>
-                    <a href="#" class="button">En savoir plus</a>
+                    <a href="#" class="button card-button">En savoir plus</a>
                 </div>
             </article>
 
@@ -94,7 +103,7 @@
                     <h3 class="card-title">Gîte "Le Riesling"</h3>
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
                     <p>4 personnes - Salle de bain privative</p>
-                    <a href="#" class="button">En savoir plus</a>
+                    <a href="#" class="button card-button">En savoir plus</a>
                 </div>
             </article>
         </section>
@@ -102,8 +111,8 @@
     </section>
 
     <section class="houses contained-y">
-        <header class="houses-header">
-            <h2 class="title-1 houses-title">Des gîtes accueillants</h2>
+        <header class="houses-header contained">
+            <h2 class="title-1 houses-title">Des chambres d'hôtes spacieuses</h2>
             <p>Un séjour accueillant pour des moments de partage et des chambres avec salles de bains privatives pour des moments d'intimités.</p>
         </header>
         <div class="card-container contained">
@@ -116,7 +125,7 @@
                     <h3 class="card-title">Chambre d'hôte "Vendanges tardives"</h3>
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
                     <p>4 personnes - Salle de bain privative</p>
-                    <a href="#" class="button">En savoir plus</a>
+                    <a href="#" class="button card-button">En savoir plus</a>
                 </div>
             </article>
 
@@ -128,7 +137,7 @@
                     <h3 class="card-title">Chambre d'hôte "Grand cru"</h3>
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
                     <p>4 personnes - Salle de bain privative</p>
-                    <a href="#" class="button">En savoir plus</a>
+                    <a href="#" class="button card-button">En savoir plus</a>
                 </div>
             </article>
 
@@ -140,7 +149,7 @@
                     <h3 class="card-title">Chambre d'hôte "Grand cru Alsace"</h3>
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
                     <p>4 personnes - Salle de bain privative</p>
-                    <a href="#" class="button">En savoir plus</a>
+                    <a href="#" class="button card-button">En savoir plus</a>
                 </div>
             </article>
         </div>
@@ -148,13 +157,14 @@
     </section>
 
     <section class="contact-us contained contained-y">
-        <h2 class="contact-us-title">Une question ? Contactez-nous !</h2>
+        <h2 class="title-1 contact-us-title">Une question ?<br> Contactez-nous !</h2>
         <a href="#" class="contact-information-item contact-information-link">
             <i class="material-icons">thumb_up</i>
             Notre Facebook
         </a>
-
-        <a href="{{ path('home.contact') }}" class="button contact-us-button">Contactez-nous</a>
+        <div>
+            <a href="{{ path('home.contact') }}" class="button contact-us-button">Contactez-nous</a>
+        </div>
     </section>
 
 {% endblock %}

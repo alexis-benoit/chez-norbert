@@ -5,6 +5,15 @@
 
 /*
 ==================================================
+    /Typography rules
+==================================================
+*/
+.title-1 {
+  @include title-3;
+}
+
+/*
+==================================================
     /Contact page
 ==================================================
 */
@@ -29,6 +38,10 @@
 .contained {
   padding-left: get-contained-side-spacing('sm');
   padding-right: get-contained-side-spacing('sm');
+}
+
+.contained-y {
+  @include title-fz-3;
 }
 
 /*
@@ -56,3 +69,113 @@
 .footer-nav {
   @include footer-nav-sm;
 }
+
+/*
+==================================================
+    /Home page
+==================================================
+*/
+.landing-button {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.landing-container {
+  text-align: center;
+}
+
+/*
+==================================================
+    /Home page/Alsace
+==================================================
+*/
+.alsace-button-container {
+  display: flex;
+}
+
+.alsace-button {
+  width: calc(50% - 8px);
+  margin-bottom: 0;
+  margin-right: 8px;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  &:last-of-type {
+    margin-bottom: 0;
+    margin-left: 8px;
+    margin-right: 0;
+  }
+}
+
+/*
+==================================================
+    /Home page/Discover
+==================================================
+*/
+.discover-card {
+  margin-right: get-contained-side-spacing('sm');
+  margin-left: get-contained-side-spacing('sm');
+
+  @include title-fz-3;
+  padding: get-spacing(200);
+}
+
+.discover-button {
+  display: inline-block;
+}
+
+/*
+==================================================
+    /Home page/Contact us
+==================================================
+*/
+.contact-us-title {
+  margin-bottom: get-spacing(50);
+}
+
+.contact-us-button {
+  display: inline-block;
+}
+
+/*
+==================================================
+    /Home page/Houses
+==================================================
+*/
+.card-container {
+  & > .card:not(:last-of-type) {
+    @include title-3;
+    margin-bottom: get-spacing(150);
+  }
+}
+
+.houses-header {
+  & > p {
+    width: calc(6 / 8 * 100%);
+    margin: 0 auto;
+  }
+}
+
+.card-title {
+  @include title-fz-4;
+}
+
+.card {
+  width: calc(6 / 8 * 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-button {
+  display: inline-block;
+}
+
+/*
+==================================================
+    /Home page/Houses
+==================================================
+*/
+.landing-title {
+  @include title-fz-4;
+}
+
