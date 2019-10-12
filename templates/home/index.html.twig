@@ -28,17 +28,17 @@
 {% endblock %}
 
 {% block body %}
-    <div class="landing">
+    <section class="landing">
         <img src="{{ asset('build/images/cour.jpg') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
 
         <div class="landing-container">
             <h1 class="landing-title">Un lieu paisible au cœur du vignoble, une maison de charme alsacienne.</h1>
             <a href="#" class="button landing-button">Découvrez Chez Norbert</a>
         </div>
-    </div>
+    </section>
 
-    <div class="alsace">
-        <h1 class="title-1">Au cœur de l'Alsace</h1>
+    <section class="alsace">
+        <h2 class="title-1">Au cœur de l'Alsace</h2>
 
         <div>
             <p>Au gré de la route des vins, non loin de Colmar, tout près de Ribeauvillé, le petit village de Bergheim abrite une ancienne demeure viticole de charme qui saura vous ravir.</p>
@@ -50,9 +50,9 @@
             <a href="#" class="button button-outline alsace-button">Nos gîtes</a>
             <a href="#" class="button button-outline alsace-button">Nos chambres d'hôtes</a>
         </div>
-    </div>
+    </section>
 
-    <div class="discover">
+    <section class="discover">
         <div class="map-wrapper">
             <div data-map id="map" class="discover-map" data-center="[48.2050849, 7.3633694]" data-zoom="100"></div>
         </div>
@@ -63,18 +63,18 @@
             <a href="#" class="button">Ouvrir la carte</a>
         </div>
 
-    </div>
+    </section>
 
-    <div class="houses contained-y">
-        <div class="houses-header">
+    <section class="houses contained-y">
+        <header class="houses-header">
             <h2 class="title-1 houses-title">Des gîtes accueillants</h2>
             <p>Un séjour accueillant pour des moments de partage et des chambres avec salles de bains privatives pour des moments d'intimités.</p>
-        </div>
+        </header>
 
 
-        <div class="card-container contained">
+        <section class="card-container contained">
 
-            <div class="card">
+            <article class="card">
                 <div class="card-img-wrapper">
                     <img src="{{ asset('build/images/gite-example.jpg') }}" class="card-img">
                 </div>
@@ -84,9 +84,9 @@
                     <p>4 - 6 personnes - Salle de bain privative - Duplex</p>
                     <a href="#" class="button">En savoir plus</a>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
+            <article class="card">
                 <div class="card-img-wrapper">
                     <img src="{{ asset('build/images/riesling.jpg') }}" class="card-img">
                 </div>
@@ -96,19 +96,19 @@
                     <p>4 personnes - Salle de bain privative</p>
                     <a href="#" class="button">En savoir plus</a>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
 
-    </div>
+    </section>
 
-    <div class="houses contained-y">
-        <div class="houses-header">
+    <section class="houses contained-y">
+        <header class="houses-header">
             <h2 class="title-1 houses-title">Des gîtes accueillants</h2>
             <p>Un séjour accueillant pour des moments de partage et des chambres avec salles de bains privatives pour des moments d'intimités.</p>
-        </div>
+        </header>
         <div class="card-container contained">
 
-            <div class="card">
+            <article class="card">
                 <div class="card-img-wrapper">
                     <img src="{{ asset('build/images/vendanges-tardives.jpg') }}" class="card-img">
                 </div>
@@ -118,9 +118,9 @@
                     <p>4 personnes - Salle de bain privative</p>
                     <a href="#" class="button">En savoir plus</a>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
+            <article class="card">
                 <div class="card-img-wrapper">
                     <img src="{{ asset('build/images/grand-cru.jpg') }}" class="card-img">
                 </div>
@@ -130,9 +130,9 @@
                     <p>4 personnes - Salle de bain privative</p>
                     <a href="#" class="button">En savoir plus</a>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
+            <article class="card">
                 <div class="card-img-wrapper">
                     <img src="{{ asset('build/images/grand-cru-alsace.jpg') }}" class="card-img">
                 </div>
@@ -142,12 +142,12 @@
                     <p>4 personnes - Salle de bain privative</p>
                     <a href="#" class="button">En savoir plus</a>
                 </div>
-            </div>
+            </article>
         </div>
 
-    </div>
+    </section>
 
-    <div class="contact-us contained contained-y">
+    <section class="contact-us contained contained-y">
         <h2 class="contact-us-title">Une question ? Contactez-nous !</h2>
         <a href="#" class="contact-information-item contact-information-link">
             <i class="material-icons">thumb_up</i>
@@ -155,6 +155,6 @@
         </a>
 
         <a href="{{ path('home.contact') }}" class="button contact-us-button">Contactez-nous</a>
-    </div>
+    </section>
 
 {% endblock %}
