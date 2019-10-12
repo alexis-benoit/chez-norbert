@@ -50,3 +50,54 @@
 .footer-brand-container {
   @include footer-brand-container-md;
 }
+
+/*
+==================================================
+    /Home page/Landing
+==================================================
+*/
+.landing-container {
+  width: calc(4 / 8 * 100%);
+  margin: 0 auto;
+}
+
+/*
+==================================================
+    /Home page/Alsace
+==================================================
+*/
+.alsace {
+  width: calc(6 / 8 * 100%);
+  margin: 0 auto;
+}
+
+/*
+==================================================
+    /Home page/Alsace
+==================================================
+*/
+.discover-card {
+  margin: 0 auto;
+  width: calc(3 / 8 * 100%);
+}
+
+/*
+==================================================
+    /Home page/Houses
+==================================================
+*/
+.card {
+  width: calc(4.5 / 8 * 100%);
+}
+
+.houses-header {
+  & > .houses-title {
+    width: calc(4 / 8 * 100%);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  & > p {
+    width: calc(4.5 / 8 * 100%);
+  }
+}
