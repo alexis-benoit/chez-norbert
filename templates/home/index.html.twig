@@ -38,7 +38,7 @@
     </div>
 
     <div class="alsace">
-        <h1 class="alsace-title">Au cœur de l'Alsace</h1>
+        <h1 class="title-1">Au cœur de l'Alsace</h1>
 
         <div>
             <p>Au gré de la route des vins, non loin de Colmar, tout près de Ribeauvillé, le petit village de Bergheim abrite une ancienne demeure viticole de charme qui saura vous ravir.</p>
@@ -58,16 +58,16 @@
         </div>
 
         <div class="discover-card">
-            <h2 class="discover-title">Tant de choses à découvrir</h2>
+            <h2 class="title-1">Tant de choses à découvrir</h2>
             <p>Entre le culture de l'esprit et la culture du bien-vivre. Du château du Haut-Koenigsbourg en passant par la Bibliothèque Humaniste de Sélestat sans oublier le musée Unterlinden de Colmar et les vignerons passionnés, vous tomberez à coup sûr amoureux de l'Alsace.</p>
             <a href="#" class="button">Ouvrir la carte</a>
         </div>
 
     </div>
 
-    <div class="houses">
+    <div class="houses contained-y">
         <div class="houses-header">
-            <h2 class="houses-title">Des gîtes accueillants</h2>
+            <h2 class="title-1 houses-title">Des gîtes accueillants</h2>
             <p>Un séjour accueillant pour des moments de partage et des chambres avec salles de bains privatives pour des moments d'intimités.</p>
         </div>
 
@@ -101,13 +101,11 @@
 
     </div>
 
-    <div class="guestrooms">
+    <div class="houses contained-y">
         <div class="houses-header">
-            <h2 class="houses-title">Des gîtes accueillants</h2>
+            <h2 class="title-1 houses-title">Des gîtes accueillants</h2>
             <p>Un séjour accueillant pour des moments de partage et des chambres avec salles de bains privatives pour des moments d'intimités.</p>
         </div>
-
-
         <div class="card-container contained">
 
             <div class="card">
@@ -147,6 +145,16 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="contact-us contained contained-y">
+        <h2 class="contact-us-title">Une question ? Contactez-nous !</h2>
+        <a href="#" class="contact-information-item contact-information-link">
+            <i class="material-icons">thumb_up</i>
+            Notre Facebook
+        </a>
+
+        <a href="{{ path('home.contact') }}" class="button contact-us-button">Contactez-nous</a>
     </div>
 
 {% endblock %}

@@ -27,27 +27,7 @@ body {
 }
 
 .title-1 {
-    @include title-1;
-}
-
-.title-2 {
-    @include title-2;
-}
-
-.title-3 {
-    @include title-3;
-}
-
-.title-4 {
     @include title-4;
-}
-
-.title-5 {
-    @include title-5;
-}
-
-.title-6 {
-    @include title-6;
 }
 
 .subtitle-1 {
@@ -243,6 +223,11 @@ p {
     padding-right: get-contained-side-spacing();
 }
 
+.contained-y {
+    @include title-fz-4;
+    padding-top: get-spacing(200);
+    padding-bottom: get-spacing(200);
+}
 
 /*
 ==================================================
@@ -289,14 +274,15 @@ p {
     padding-right: 1.3em;
 }
 
+/*
+==================================================
+    /Home page/Alsace
+==================================================
+*/
 .alsace {
     padding: get-spacing(200) get-contained-side-spacing('xs');
     @include title-4;
 
-}
-
-.alsace-title {
-    @include title-4;
 }
 
 .alsace-button {
@@ -340,26 +326,23 @@ p {
     box-shadow: 0 3px 10px 0 rgba(0,0,0,.04);
 }
 
-.discover-title {
-    @include title-4;
-}
-
+/*
+==================================================
+    /Home page/Houses
+==================================================
+*/
 .houses {
-    @include title-4;
-    padding: get-spacing(200) 0;
     background: $background-light;
 }
 
 .houses-header {
-    margin: 0 get-contained-side-spacing('xs');
     text-align: center;
 
     @include title-4;
-    margin-bottom: get-spacing(200);
+    margin: 0 get-contained-side-spacing('xs') get-spacing(200);
 }
 
 .houses-title {
-    @include title-4;
     margin-bottom: get-spacing(50);
 }
 
@@ -403,7 +386,21 @@ p {
     padding-bottom: 100%;
 }
 
-.guestrooms {
+/*
+==================================================
+    /Home page/Contact us
+==================================================
+*/
+.contact-us {
+    background: $background-light;
+    text-align: center;
+}
+
+.contact-us-title {
     @include title-4;
-    padding: get-spacing(200) 0;
+    margin-bottom: get-spacing(125);
+}
+
+.contact-us-button {
+    margin-top: get-spacing(200);
 }
