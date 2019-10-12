@@ -14,6 +14,10 @@
   padding-right: get-contained-side-spacing('lg');
 }
 
+.contained-y {
+  @include title-fz-2;
+}
+
 /*
 ==================================================
     /Contact page
@@ -75,4 +79,67 @@
 
 .header-nav {
   @include header-nav-lg;
+}
+
+/*
+==================================================
+    /Typography
+==================================================
+*/
+.title-1 {
+  @include title-fz-2;
+}
+
+/*
+==================================================
+    /Home page/Alsace
+==================================================
+*/
+.alsace-text-container {
+  display: flex;
+
+  & > p {
+    flex: 1;
+    margin-left: 16px;
+    margin-right: 16px;
+    text-align: justify;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.alsace-button {
+  width: calc(3 / 12 * 100%);
+}
+
+/*
+==================================================
+    /Home page/Houses
+==================================================
+*/
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 40%;
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/*
+==================================================
+    /Home page/Discover
+==================================================
+*/
+.discover-card {
+  width: calc(4 / 12 * 100%);
 }

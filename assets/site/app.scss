@@ -283,6 +283,10 @@ p {
     margin-bottom: get-spacing(125);
 }
 
+.alsace-text-container > p {
+    margin-top: 0;
+}
+
 .alsace-button {
     width: 100%;
     margin-bottom: get-spacing(100);
