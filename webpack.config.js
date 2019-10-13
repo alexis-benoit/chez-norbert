@@ -29,6 +29,7 @@ Encore
     .addStyleEntry('md', './assets/site/md.scss')
     .addStyleEntry('lg', './assets/site/lg.scss')
     .addStyleEntry('xl', './assets/site/xl.scss')
+    .addStyleEntry('hover', './assets/site/hover.scss')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 

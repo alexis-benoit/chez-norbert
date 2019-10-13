@@ -378,6 +378,11 @@ p {
   left: 0;
   bottom: 0;
     clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    transition: .3s;
+}
+
+.card-img-expand {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .card-img-wrapper {
