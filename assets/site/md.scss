@@ -87,17 +87,13 @@
 ==================================================
 */
 .card {
-  width: calc(4.5 / 8 * 100%);
+}
+
+
+.houses {
+  width: calc(4 / 8 * 100%);
+  margin: 0 auto;
 }
 
 .houses-header {
-  & > .houses-title {
-    width: calc(4 / 8 * 100%);
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  & > p {
-    width: calc(4.5 / 8 * 100%);
-  }
 }

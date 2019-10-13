@@ -317,8 +317,6 @@ p {
 }
 
 .discover-card {
-    margin-right: get-contained-side-spacing('xs');
-    margin-left: get-contained-side-spacing('xs');
     text-align: center;
 
     @include title-4;

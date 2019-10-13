@@ -136,9 +136,19 @@
     /Home page/Houses
 ==================================================
 */
+.houses {
+  width: calc(10 / 12 * 100%);
+}
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+.houses-header {
+  width: calc(6 / 12 * 100%);
+  @include title-fz-2;
+  margin: 0 auto get-spacing(200);
 }
 
 .card {
