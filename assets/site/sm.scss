@@ -113,9 +113,6 @@
 ==================================================
 */
 .discover-card {
-  margin-right: get-contained-side-spacing('sm');
-  margin-left: get-contained-side-spacing('sm');
-
   @include title-fz-3;
   padding: get-spacing(200);
 }
@@ -149,11 +146,9 @@
   }
 }
 
-.houses-header {
-  & > p {
-    width: calc(6 / 8 * 100%);
-    margin: 0 auto;
-  }
+.houses {
+  width: calc(6 / 8 * 100%);
+  margin: 0 auto;
 }
 
 .card-title {
@@ -161,7 +156,6 @@
 }
 
 .card {
-  width: calc(6 / 8 * 100%);
   margin-left: auto;
   margin-right: auto;
 }
