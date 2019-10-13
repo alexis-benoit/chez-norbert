@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HousesController!{% endblock %}
+
+{% block body %}
+    <header class="contained house-header">
+        <span class="overline">Gîte</span>
+        <h1 class="title-1 house-title">Le "Grasberg"</h1>
+    </header>
+    
+    <div>
+        <section class="carousel-container">
+            <div class="carousel-holder">
+                <div class="carousel-element">
+                    <img src="{{ asset('/build/images/gite-example.jpg') }}" class="carousel-img">
+                </div>
+            </div>
+        </section>
+
+        <div class="contained detail-contained">
+            <section class="details">
+                <h2 class="details-title">Détails</h2>
+                <ul class="details-list">
+                    <li class="details-element">4 - 6 personnes</li>
+                    <li class="details-element">Sain de balle privative</li>
+                    <li class="details-element">Duplex</li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem</p>
+
+                <div>
+                    <a href="#" class="button">Réservez maintenant</a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="contained contained-y background-light">
+        <h2 class="title-1 other-houses-title">Autres gîtes</h2>
+
+        <picture>
+            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+            <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-houses-img">
+        </picture>
+    </div>
+{% endblock %}
