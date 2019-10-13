@@ -2,3 +2,20 @@
 liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
+
+    filter_sets:
+        xs_max_down_scale_filter:
+            filters:
+                relative_resize: { widen: 600 }
+        sm_max_down_scale_filter:
+            filters:
+                relative_resize: { widen: 900 }
+        md_max_down_scale_filter:
+            filters:
+                relative_resize: { widen: 1200 }
+        lg_max_down_scale_filter:
+            filters:
+                relative_resize: { widen: 1500 }
+        xl_max_down_scale_filter:
+            filters:
+                relative_resize: { widen: 2500 }
