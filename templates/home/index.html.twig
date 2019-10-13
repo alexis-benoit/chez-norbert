@@ -44,7 +44,13 @@
 
 {% block body %}
     <section class="landing">
-        <img src="{{ asset('build/images/cour.jpg') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
+        <picture>
+            <source srcset="{{ asset('build/images/cour.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+            <source srcset="{{ asset('build/images/cour.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+            <source srcset="{{ asset('build/images/cour.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+            <source srcset="{{ asset('build/images/cour.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+            <img src="{{ asset('build/images/cour.jpg') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
+        </picture>
 
         <div class="contained">
             <div class="landing-container">
@@ -99,7 +105,13 @@
 
                 <article class="card">
                     <div class="card-img-wrapper">
-                        <img src="{{ asset('build/images/gite-example.jpg') }}" class="card-img">
+                        <picture>
+                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                            <img src="{{ asset('build/images/gite-example.jpg') }}" class="card-img">
+                        </picture>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">Gîte "Le Grasberg"</h3>
@@ -111,7 +123,13 @@
 
                 <article class="card">
                     <div class="card-img-wrapper">
-                        <img src="{{ asset('build/images/riesling.jpg') }}" class="card-img">
+                        <picture>
+                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                            <img src="{{ asset('build/images/riesling.jpg') }}" class="card-img">
+                        </picture>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">Gîte "Le Riesling"</h3>
@@ -135,7 +153,13 @@
 
                 <article class="card">
                     <div class="card-img-wrapper">
-                        <img src="{{ asset('build/images/vendanges-tardives.jpg') }}" class="card-img">
+                        <picture>
+                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                            <img src="{{ asset('build/images/vendanges-tardives.jpg') }}" class="card-img">
+                        </picture>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">Chambre d'hôte <br> "Vendanges tardives"</h3>
@@ -147,7 +171,13 @@
 
                 <article class="card">
                     <div class="card-img-wrapper">
-                        <img src="{{ asset('build/images/grand-cru.jpg') }}" class="card-img">
+                        <picture>
+                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                            <img src="{{ asset('build/images/grand-cru.jpg') }}" class="card-img">
+                        </picture>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">Chambre d'hôte <br> "Grand cru"</h3>
@@ -159,7 +189,13 @@
 
                 <article class="card">
                     <div class="card-img-wrapper">
-                        <img src="{{ asset('build/images/grand-cru-alsace.jpg') }}" class="card-img">
+                        <picture>
+                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                            <img src="{{ asset('build/images/grand-cru-alsace.jpg') }}" class="card-img">
+                        </picture>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">Chambre d'hôte <br> "Grand cru Alsace"</h3>
