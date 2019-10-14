@@ -174,3 +174,31 @@
 .discover {
   padding-top: 20vh;
 }
+/*
+==================================================
+    /House/Details
+==================================================
+*/
+.details {
+  width: calc(8 / 12 * 100%);
+}
+
+.other-house {
+  display: flex;
+  align-items: center;
+}
+
+.other-houses-header, .other-houses-body {
+  width: 100%;
+}
+
+.other-house-img {
+  width: 50%;
+}
+
+.other-house-body {
+  width: 50%;
+  box-sizing: border-box;
+  padding-left: calc(.5 / 6 * 100%);
+  margin-top: 0;
+}
