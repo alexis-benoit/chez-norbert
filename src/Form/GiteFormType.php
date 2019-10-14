@@ -32,12 +32,10 @@ class GiteFormType extends AbstractType
             ])
             ->add('peopleNumber', IntegerType::class, ['required' => true,])
             ->add('description', TextareaType::class, ['required' => true,])
-            /*->add('advantage',CollectionType::class, [
+            ->add('advantage',CollectionType::class, [
                 // each entry in the array will be an "email" field
                 'entry_type' => TextType::class]
             )
-            */
-            ->add('advantage',TextType::class)
             ->add('send', SubmitType::class)
         ;
     }
