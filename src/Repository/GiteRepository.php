@@ -38,6 +38,22 @@ class GiteRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
             ;
     }
+
+    /**
+    * @return Gite[] Returns an array of Gite objects
+    */
+
+    public function findByType($value)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.type = :val')
+            ->setParameter('val', $value)
+            ->orderBy('g.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Gite[] Returns an array of Gite objects
     //  */
