@@ -27,8 +27,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository, EntityManagerInterface $manager): Response
     {
         if ($repository->getCount() > 0){
-            //TODO Rediriger ves page login quand elle sera faite
-            return $this->redirectToRoute('home.index');
+            return $this->redirectToRoute('app_login');
         }
 
         $user = new User();
@@ -47,8 +46,7 @@ class RegistrationController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            // TODO: When the user is created, redirect him to login page.
-            return $this->redirectToRoute('home.index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
