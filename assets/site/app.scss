@@ -445,14 +445,25 @@ p {
     /House/Carousel
 ==================================================
 */
+.carousel-img-wrapper {
+    position: relative;
+    padding-bottom: 63%;
+}
+
 .carousel-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     display: block;
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-.carousel-container {
-    height: 36vh;
+.glide__bullets {
+    display: none;
 }
 
 /*
