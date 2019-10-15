@@ -15,8 +15,8 @@ class HouseController extends AbstractController
 {
     /**
      * @Route({
-     * "fr": "/creerGite",
-     * "en": "/createGite"
+     * "fr": "/creerHouse",
+     * "en": "/createHouse"
      * }, name="gite")
      * @param Request $request
      * @param HouseRepository $repository
