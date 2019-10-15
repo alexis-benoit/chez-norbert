@@ -33,6 +33,8 @@ class HouseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
 
+            $manager->persist($gites);
+            $manager->flush();
             return $this->redirectToRoute('home.index');
         }
 
