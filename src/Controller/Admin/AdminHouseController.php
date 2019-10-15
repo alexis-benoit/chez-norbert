@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HouseController extends AbstractController
+class AdminHouseController extends AbstractController
 {
     /**
      * @Route({
-     * "fr": "/creerHouse",
-     * "en": "/createHouse"
-     * }, name="gite")
+     * "fr": "/house/creation",
+     * "en": "/house/create"
+     * }, name="house.create")
      * @param Request $request
      * @param HouseRepository $repository
      * @param EntityManagerInterface $manager
