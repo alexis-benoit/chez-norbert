@@ -2,16 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Gite;
-use App\Form\GiteFormType;
-use App\Repository\GiteRepository;
+use App\Entity\House;
+use App\Form\HouseFormType;
+use App\Repository\HouseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GiteController extends AbstractController
+class HouseController extends AbstractController
 {
     /**
      * @Route({
@@ -19,15 +19,15 @@ class GiteController extends AbstractController
      * "en": "/createGite"
      * }, name="gite")
      * @param Request $request
-     * @param GiteRepository $repository
+     * @param HouseRepository $repository
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function create(Request $request, GiteRepository $repository, EntityManagerInterface $manager)
+    public function create(Request $request, HouseRepository $repository, EntityManagerInterface $manager)
     {
-        $gites = new Gite();
+        $gites = new House();
 
-        $form = $this->createForm(GiteFormType::class, $gites);
+        $form = $this->createForm(HouseFormType::class, $gites);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

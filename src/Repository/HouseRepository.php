@@ -2,24 +2,24 @@
 
 namespace App\Repository;
 
-use App\Entity\Gite;
+use App\Entity\House;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Gite|null find($id, $lockMode = null, $lockVersion = null)
- * @method Gite|null findOneBy(array $criteria, array $orderBy = null)
- * @method Gite[]    findAll()
- * @method Gite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method House|null find($id, $lockMode = null, $lockVersion = null)
+ * @method House|null findOneBy(array $criteria, array $orderBy = null)
+ * @method House[]    findAll()
+ * @method House[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GiteRepository extends ServiceEntityRepository
+class HouseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Gite::class);
+        parent::__construct($registry, House::class);
     }
 
-    public function findOneById($value): ?Gite
+    public function findOneById($value): ?House
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.id = :val')
@@ -29,7 +29,7 @@ class GiteRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findOneByName($value): ?Gite
+    public function findOneByName($value): ?House
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.name = :val')
@@ -40,7 +40,7 @@ class GiteRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return Gite[] Returns an array of Gite objects
+    * @return House[] Returns an array of Gite objects
     */
 
     public function findByType($value)
