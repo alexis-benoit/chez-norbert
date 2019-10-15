@@ -105,3 +105,17 @@
 
 .houses-header {
 }
+
+/*
+==================================================
+    /House/Other houses
+==================================================
+*/
+.other-houses-body, .other-houses-header {
+  width: calc(6 / 8 * 100%);
+  margin: 0 auto;
+}
+
+.carousel-container {
+  height: 65vh;
+}

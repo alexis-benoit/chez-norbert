@@ -1,4 +1,5 @@
 @import "./components/typography/mixins";
+@import "./components/spacing/functions";
 
 /*
 ==================================================
@@ -76,4 +77,31 @@
 
 .card {
   width: 35%;
+}
+
+
+/*
+==================================================
+    /House/Details
+==================================================
+*/
+.house-title {
+  @include title-fz-2;
+}
+
+.details-title {
+  @include title-fz-3;
+}
+
+.carousel-container {
+  margin-left: get-contained-side-spacing('xl');
+}
+
+.other-house-title {
+  @include title-fz-3;
+}
+
+.other-house-img {
+  height: 600px;
+  object-fit: cover;
 }
