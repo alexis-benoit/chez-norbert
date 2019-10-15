@@ -65,8 +65,7 @@ class RegistrationControllerTest extends WebTestCase
         // submit the form
         $client->submit($form);
 
-        //TODO Rediriger ves page login quand elle sera faite
-        $this->assertTrue($client->getResponse()->isRedirect('/'));
+        $this->assertTrue($client->getResponse()->isRedirect('/login'));
 
 
         //A user is already created so uri is automatically redirect to home page
