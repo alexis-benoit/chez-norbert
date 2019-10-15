@@ -71,7 +71,7 @@ class RegistrationControllerTest extends WebTestCase
         //A user is already created so uri is automatically redirect to home page
         $client->request('GET', '/register');
 
-        $this->assertTrue($client->getResponse()->isRedirect('/'));
+        $this->assertTrue($client->getResponse()->isRedirect('/login'));
 
         $kernel = self::bootKernel();
         $this->entityManager = $kernel->getContainer()
