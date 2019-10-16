@@ -19,7 +19,7 @@ class HouseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Name', TextType::class, ['required' => true,])
+            ->add('name', TextType::class)
             ->add('type', ChoiceType::class, [
                     'choices'  => [
                         'Gite' => 'Gite',
@@ -28,10 +28,9 @@ class HouseType extends AbstractType
                     'expanded' => true,
                     'multiple' => false,
                     'placeholder' => false,
-                    'required' => true,
             ])
-            ->add('peopleNumber', IntegerType::class, ['required' => true,])
-            ->add('description', TextareaType::class, ['required' => true,])
+            ->add('peopleNumber', IntegerType::class)
+            ->add('description', TextareaType::class)
             ->add('advantage',CollectionType::class, [
                 // each entry in the array will be an "email" field
                 'entry_type' => TextType::class]
