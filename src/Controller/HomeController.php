@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Contact;
-use App\Form\ContactFormType;
+use App\Form\ContactType;
 
 class HomeController extends AbstractController
 {
@@ -41,7 +41,7 @@ class HomeController extends AbstractController
     public function contact (Request $request)
     {
         $contact = new Contact ();
-        $form = $this->createForm(ContactFormType::class, $contact);
+        $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
 

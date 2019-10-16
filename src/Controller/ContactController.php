@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
-use App\Form\ContactFormType;
+use App\Form\ContactType;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class ContactController extends AbstractController
     {
         $contact = new Contact();
 
-        $form = $this->createForm(ContactFormType::class, $contact);
+        $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

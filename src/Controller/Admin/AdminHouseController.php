@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\House;
-use App\Form\HouseFormType;
+use App\Form\HouseType;
 use App\Repository\HouseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +27,7 @@ class AdminHouseController extends AbstractController
     {
         $gites = new House();
 
-        $form = $this->createForm(HouseFormType::class, $gites);
+        $form = $this->createForm(HouseType::class, $gites);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
