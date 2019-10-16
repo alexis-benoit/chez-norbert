@@ -10,4 +10,8 @@ contact.constrains.tel.notBlank: Le numéro de téléphone ne doit pas être vid
 contact.constrains.tel.length.max: Le numéro de téléphone ne doit pas faire plus de {{ limit }} caractères de long.
 contact.constrains.message.notBlank: Le message ne peut pas être vide.
 contract.constrains.message.length.max: Le message ne doit pas faire plus de {{ limit }} caractères de long.
- 
+
+media.constraints.name.blank: Le nom de l'image ne peut pas être vide.
+media.constraints.name.length.max: Le nom ne doit pas faire plus de {{ limit }} caractères de long.
+media.constraints.alt.blank: Le texte alternatif ne peut pas être vide.
+media.constraints.alt.length.max: Le texte alternatif ne doit pas faire de plus {{ limit }} caractères de long.
