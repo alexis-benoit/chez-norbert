@@ -1,0 +1,37 @@
+{% extends "base_admin.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Gestion des médias</h1>
+            </div>
+
+            <div class="col-12">
+                <a href="{{ path('admin.media.create') }}" class="btn btn-primary">Ajouter un média</a>
+            </div>
+
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tbody>
+                        {% for media in medias %}
+                            <tr class="d-flex">
+                                <td>{{ media.name }}</td>
+                                <td>{{ media.alt }}</td>
+                                <td>
+                                    <a href="{{ path('admin.media.update', { id: media.id }) }}" class="btn btn-primary">Mettre à jour</a>
+                                    <form action="{{ path('admin.media.delete', { id: media.id }) }}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ media.id) }}">
+
+                                        <button class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

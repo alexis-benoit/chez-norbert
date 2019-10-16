@@ -1,0 +1,36 @@
+{% extends "base_admin.html.twig" %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4 mb-2">
+                <h1>
+                    {% if creation == true %}
+                        Ajout d'un média
+                    {% else %}
+                        Édition de l'image "{{ media.name }}"
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                {{ form_start(form) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.alt) }}
+                    {{ form_row(form.imageFile) }}
+
+                    <button class="btn btn-{{ creation ? 'success' : 'primary' }}">
+                        {% if creation == true %}
+                            Créer
+                        {% else %}
+                            Mettre à jour
+                        {% endif %}
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
