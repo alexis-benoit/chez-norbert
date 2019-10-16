@@ -1,6 +1,8 @@
 import Glide from '@glidejs/glide'
 
-const initializeCarousel = () => {
+const initializeCarousel = ({ document }) => {
+    if (!document.querySelector('.glide')) return
+
     new Glide('.glide').mount()
 }
 
