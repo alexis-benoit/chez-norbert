@@ -35,14 +35,19 @@ class AdminMediaController extends AbstractController
 
     /**
      * @Route("/admin/media/create", name="admin.media.create")
+     * @Route("/admin/media/{id}", name="admin.media.update", methods="GET|POST")
+     *
      * @param Request $request
      * @param EntityManagerInterface $manager
+     * @param Media|null $media
      * @return RedirectResponse|Response
      *
-     * @throws Exception
      */
-    public function form (Request $request, EntityManagerInterface $manager) {
-        $media = new Media();
+    public function form (Request $request, EntityManagerInterface $manager, Media $media = null) {
+
+        $creation = $media === null;
+
+        if ($media === null) $media = new Media();
 
         $mediaForm = $this->createForm(MediaType::class, $media);
         $mediaForm->handleRequest($request);
@@ -52,12 +57,14 @@ class AdminMediaController extends AbstractController
             $manager->persist($media);
             $manager->flush();
 
-            $this->addFlash('success', 'admin.media.created');
+            $this->addFlash('success', $creation ? 'admin.media.created' : 'admin.media.updated');
             return $this->redirectToRoute('admin.media.index');
         }
 
         return $this->render('admin/media/form.html.twig', [
-           'form' => $mediaForm->createView(),
+            'form' => $mediaForm->createView(),
+            'creation' => $creation,
+            'media' => $media
         ]);
     }
 

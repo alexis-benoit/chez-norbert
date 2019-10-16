@@ -19,6 +19,7 @@
                                 <td>{{ media.name }}</td>
                                 <td>{{ media.alt }}</td>
                                 <td>
+                                    <a href="{{ path('admin.media.update', { id: media.id }) }}" class="btn btn-primary">Mettre à jour</a>
                                     <form action="{{ path('admin.media.delete', { id: media.id }) }}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ media.id) }}">
