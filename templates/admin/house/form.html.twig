@@ -23,11 +23,36 @@
                     {{ form_row(form.peopleNumber) }}
                     {{ form_row(form.description) }}
                     <ul class="advantage" data-prototype="{{ form_widget(form.advantage.vars.prototype)|e('html_attr') }}">
-                            {{ form_row(form.advantage) }}
+                        {% for advantage in form.advantage %}
+                            <li>{{ form_row(advantage) }}</li>
+                        {% endfor %}
                     </ul>
 
                 <script src="http://code.jquery.com/jquery.js"></script>
 
+                <script>
+                    function addTagFormDeleteLink($tagFormLi) {
+                        var $removeFormButton = $('<button type="button">Delete this advantage</button>');
+                        $tagFormLi.append($removeFormButton);
+
+                        $removeFormButton.on('click', function(e) {
+                            // remove the li for the tag form
+                            $tagFormLi.remove();
+                        });
+                    }
+
+                    jQuery(document).ready(function() {
+                        // Get the ul that holds the collection of tags
+                        $collectionHolder = $('ul.advantage');
+
+                        // add a delete link to all of the existing tag form li elements
+                        $collectionHolder.find('li').each(function() {
+                            addTagFormDeleteLink($(this));
+                        });
+                    });
+                </script>
+
+                {# button add #}
                 <script>
                     function addTagForm($collectionHolder, $newLinkLi) {
                         // Get the data-prototype explained earlier
