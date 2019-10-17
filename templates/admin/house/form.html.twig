@@ -1,0 +1,37 @@
+{% extends "base_admin.html.twig" %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4 mb-2">
+                <h1>
+                    {% if house.id is null %}
+                        Ajout d'un gîte/chambre d'hôte
+                    {% else %}
+                        Édition {{ house.type == "Chambre d'hote" ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                {{ form_start(form) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.type) }}
+                    {{ form_row(form.peopleNumber) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.advantage) }}
+                    <button class="btn btn-{{ house.id is null ? 'success' : 'primary' }}">
+                        {% if house.id is null %}
+                            Créer
+                        {% else %}
+                            Mettre à jour
+                        {% endif %}
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
