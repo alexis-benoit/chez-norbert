@@ -38,14 +38,6 @@ class HouseType extends AbstractType
                 'entry_type' => TextType::class]
             )
         ;
-
-        if ($options['edit']) {
-            $builder
-                ->add('update', SubmitType::class);
-        } else {
-            $builder
-                ->add('create', SubmitType::class);
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

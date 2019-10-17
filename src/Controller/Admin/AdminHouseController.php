@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdminHouseController extends AbstractController
 {
     /**
+     * @Route("/admin/house", name="admin.house.index")
      * @param HouseRepository $repository
      * @return Response
      */
