@@ -4,8 +4,8 @@
 
 {% block body %}
     <header class="contained house-header">
-        <span class="overline">Gîte</span>
-        <h1 class="title-1 house-title">Le "Grasberg"</h1>
+        <span class="overline">{{ house.type }}</span>
+        <h1 class="title-1 house-title">Le "{{ house.name }}"</h1>
     </header>
 
     <div class="house-content-wrapper">
@@ -42,11 +42,16 @@
             <section class="details">
                 <h2 class="details-title">Détails</h2>
                 <ul class="details-list">
-                    <li class="details-element">4 - 6 personnes</li>
-                    <li class="details-element">Sain de balle privative</li>
-                    <li class="details-element">Duplex</li>
+                    {% for advantage in house.advantage %}
+                        <li class="details-element">{{ advantage }}</li>
+                    {% endfor %}
+{#                    <li class="details-element">4 - 6 personnes</li>#}
+{#                    <li class="details-element">Sain de balle privative</li>#}
+{#                    <li class="details-element">Duplex</li>#}
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem</p>
+                <p>
+                    {{ house.description }}
+                </p>
 
                 <div>
                     <a href="#" class="button details-button">Réservez maintenant</a>
@@ -57,7 +62,14 @@
 
     <div class="contained contained-y background-light">
         <header class="other-houses-header">
-            <h2 class="title-1 other-houses-title">Autres gîtes</h2>
+            <h2 class="title-1 other-houses-title">
+                Autre
+                {% if house.type == "Chambre d'hote" %}
+                    gîte
+                {% else %}
+                    chambre d'hôte
+                {% endif %}
+            </h2>
         </header>
 
         <section class="other-houses-body">
@@ -68,8 +80,8 @@
 
                 <div class="other-house-body">
                     <span class="overline">Gîte suivant</span>
-                    <h3 class="other-house-title">Le riesling</h3>
-                    <p class="other-house-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi deserunt eligendi eos, eum ipsum magni maiores molestiae obcaecati perspiciatis. Aliquid autem eaque eligendi nulla pariatur quae qui quibusdam reprehenderit?</p>
+                    <h3 class="other-house-title">Le "{{ anotherHouse.name }}"</h3>
+                    <p class="other-house-text">{{ anotherHouse.description }}</p>
 
                     <a href="#" class="other-house-button">En savoir plus</a>
                 </div>
@@ -80,50 +92,31 @@
 
     <div class="contained contained-y">
         <header class="other-houses-header">
-            <h2 class="title-1 other-houses-title">Les chambres d'hôte</h2>
+            <h2 class="title-1 other-houses-title">
+                Les
+                {% if house.type == "Chambre d'hote" %}
+                    gîtes
+                {% else %}
+                    chambres d'hôte
+                {% endif %}
+            </h2>
         </header>
 
         <section class="other-houses-body">
-            <article class="other-house">
+            {% for house in oppositeTypeHouses %}
+                <article class="other-house">
 
-                <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
+                    <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
 
-                <div class="other-house-body">
-                    <h3 class="other-house-title">Chambre "Vendange tardive"</h3>
-                    <p class="other-house-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi deserunt eligendi eos, eum ipsum magni maiores molestiae obcaecati perspiciatis. Aliquid autem eaque eligendi nulla pariatur quae qui quibusdam reprehenderit?</p>
-                    <p>2-3 personnes - Coin salon</p>
+                    <div class="other-house-body">
+                        <h3 class="other-house-title">{{ house.type }} "{{ house.name }}"</h3>
+                        <p class="other-house-text">{{ house.description }}</p>
+                        <p>{{ house.advantage | join (' - ') }}</p>
 
-                    <a href="#" class="other-house-button">En savoir plus</a>
-                </div>
-            </article>
-
-            <article class="other-house">
-
-
-                <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
-
-                <div class="other-house-body">
-                    <h3 class="other-house-title">Chambre "Vendange tardive"</h3>
-                    <p class="other-house-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi deserunt eligendi eos, eum ipsum magni maiores molestiae obcaecati perspiciatis. Aliquid autem eaque eligendi nulla pariatur quae qui quibusdam reprehenderit?</p>
-                    <p class="other-house-text">2-3 personnes - Coin salon</p>
-
-                    <a href="#" class="other-house-button">En savoir plus</a>
-                </div>
-            </article>
-
-            <article class="other-house">
-
-
-                <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
-
-                <div class="other-house-body">
-                    <h3 class="other-house-title">Chambre "Vendange tardive"</h3>
-                    <p class="other-house-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi deserunt eligendi eos, eum ipsum magni maiores molestiae obcaecati perspiciatis. Aliquid autem eaque eligendi nulla pariatur quae qui quibusdam reprehenderit?</p>
-                    <p>2-3 personnes - Coin salon</p>
-
-                    <a href="#" class="other-house-button">En savoir plus</a>
-                </div>
-            </article>
+                        <a href="#" class="other-house-button">En savoir plus</a>
+                    </div>
+                </article>
+            {% endfor %}
         </section>
     </div>
 {% endblock %}
