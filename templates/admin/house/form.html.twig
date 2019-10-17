@@ -6,30 +6,25 @@
         <div class="row">
             <div class="col-12 mt-4 mb-2">
                 <h1>
-                    {% if creation == true %}
-                        Ajout d'un média
+                    {% if house.id is null %}
+                        Ajout d'un gîte/chambre d'hôte
                     {% else %}
-                        Édition de l'image "{{ media.name }}"
+                        Édition {{ house.type == "Chambre d'hote" ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
                     {% endif %}
                 </h1>
             </div>
         </div>
         <div class="row">
-            {% if creation != true %}
-                <div class="col-4">
-                    <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid">
-                </div>
-            {% endif %}
-
-            <div class="col-{{ creation == true ? '12' : '8' }}">
+            <div class="col-12">
 
                 {{ form_start(form) }}
                     {{ form_row(form.name) }}
-                    {{ form_row(form.alt) }}
-                    {{ form_row(form.imageFile) }}
-
-                    <button class="btn btn-{{ creation ? 'success' : 'primary' }}">
-                        {% if creation == true %}
+                    {{ form_row(form.type) }}
+                    {{ form_row(form.peopleNumber) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.advantage) }}
+                    <button class="btn btn-{{ house.id is null ? 'success' : 'primary' }}">
+                        {% if house.id is null %}
                             Créer
                         {% else %}
                             Mettre à jour

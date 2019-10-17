@@ -49,7 +49,7 @@ class AdminMediaController extends AbstractController
 
         if ($media === null) $media = new Media();
 
-        $mediaForm = $this->createForm(MediaType::class, $media);
+        $mediaForm = $this->createForm(MediaType::class, $media, [ 'create' => $creation ]);
         $mediaForm->handleRequest($request);
 
         if ($mediaForm->isSubmitted() && $mediaForm->isValid()) {
