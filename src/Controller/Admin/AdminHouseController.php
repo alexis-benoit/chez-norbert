@@ -7,6 +7,7 @@ use App\Form\HouseType;
 use App\Repository\HouseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,33 +19,75 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdminHouseController extends AbstractController
 {
     /**
-     * @Route({
-     * "fr": "admin/house/creation",
-     * "en": "admin/house/create"
-     * }, name="house.create")
-     * @param Request $request
+     * @Route("/admin/house", name="admin.house.index")
+     *
      * @param HouseRepository $repository
-     * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function create(Request $request, HouseRepository $repository, EntityManagerInterface $manager)
-    {
-        $gites = new House();
+    public function index (HouseRepository $repository) {
+        $houses = $repository->findAll();
 
-        $form = $this->createForm(HouseType::class, $gites);
+        return $this->render('admin/house/index.html.twig', [
+            'houses' => $houses
+        ]);
+    }
+
+    /**
+     * @Route("/admin/house/create", name="admin.house.create")
+     * @Route("/admin/house/{id}", name="admin.house.update", methods="GET|POST")
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param House|null $house
+     * @return Response
+     */
+    public function form(Request $request, EntityManagerInterface $manager, House $house = null)
+    {
+        if (!$house) $house = new House();
+
+//        $gites = new House();
+
+        $form = $this->createForm(HouseType::class, $house);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $task = $form->getData();
+//            $task = $form->getData();
 
-            $manager->persist($gites);
+            $manager->persist($house);
             $manager->flush();
-            return $this->redirectToRoute('home.index');
+            return $this->redirectToRoute('admin.house.index');
         }
 
         //TODO: use gite view instead of test view
-        return $this->render('test/gites.html.twig', [
+        return $this->render('admin/house/form.html.twig', [
             'form' => $form->createView(),
+            'house' => $house
         ]);
+    }
+
+    /**
+     * @Route("/admin/house/{id}", name="admin.house.delete", methods="DELETE")
+     *
+     * @param House $house
+     * @param EntityManagerInterface $manager
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function delete (House $house, EntityManagerInterface $manager, Request $request) {
+        $isCsrfValid = $this->isCsrfTokenValid(
+            'delete' . $house->getId(),
+            $request->get('_token')
+        );
+
+        if (!$isCsrfValid) {
+            $this->addFlash('danger', "Le jeton CSRF n'est pas valide.");
+            return $this->redirectToRoute('admin.house.index');
+        }
+
+        $manager->remove($house);
+        $manager->flush();
+
+        $this->addFlash('success', 'Le ' . $house->getType() . ' a été supprimé.');
+        return $this->redirectToRoute('admin.house.index');
     }
 }
