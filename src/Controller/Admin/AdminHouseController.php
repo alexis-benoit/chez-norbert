@@ -20,7 +20,6 @@ class AdminHouseController extends AbstractController
 {
     /**
      * @Route("/admin/house", name="admin.house.index")
-     *
      * @param HouseRepository $repository
      * @return Response
      */
@@ -37,28 +36,29 @@ class AdminHouseController extends AbstractController
      * @Route("/admin/house/{id}", name="admin.house.update", methods="GET|POST")
      *
      * @param Request $request
+     * @param HouseRepository $repository
      * @param EntityManagerInterface $manager
      * @param House|null $house
      * @return Response
      */
-    public function form(Request $request, EntityManagerInterface $manager, House $house = null)
+    public function create(Request $request, HouseRepository $repository, EntityManagerInterface $manager, House $house = null)
     {
-        if (!$house) $house = new House();
+        if (!$house) {
+            $house = new House();
+        }
 
-//        $gites = new House();
-
-        $form = $this->createForm(HouseType::class, $house);
+        $form = $this->createForm(HouseType::class, $house, [
+            'edit' => !!$house->getId(),
+        ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-//            $task = $form->getData();
 
             $manager->persist($house);
             $manager->flush();
             return $this->redirectToRoute('admin.house.index');
         }
 
-        //TODO: use gite view instead of test view
         return $this->render('admin/house/form.html.twig', [
             'form' => $form->createView(),
             'house' => $house

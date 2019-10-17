@@ -18,12 +18,14 @@ class HouseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        dump($options['edit']);
+
         $builder
             ->add('name', TextType::class)
             ->add('type', ChoiceType::class, [
                     'choices'  => [
                         'Gite' => 'Gite',
-                        'Chambre d\'hote' => 'Chambre hote',
+                        'Chambre d\'hote' => 'Chambre d\'hote',
                     ],
                     'expanded' => true,
                     'multiple' => false,
@@ -42,7 +44,8 @@ class HouseType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => House::class,
-            'translation_domain' => 'forms'
+            'translation_domain' => 'forms',
+            'edit' => false,
         ]);
     }
 }
