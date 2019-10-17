@@ -10,13 +10,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class AdminHouseController extends AbstractController
 {
     /**
      * @Route({
-     * "fr": "/house/creation",
-     * "en": "/house/create"
+     * "fr": "admin/house/creation",
+     * "en": "admin/house/create"
      * }, name="house.create")
      * @param Request $request
      * @param HouseRepository $repository
