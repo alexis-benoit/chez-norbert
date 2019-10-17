@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\HouseRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Contact;
 use App\Form\ContactType;
@@ -15,10 +17,19 @@ class HomeController extends AbstractController
      *  "fr": "/",
      *  "en": "/"
      * }, name="home.index")
+     *
+     * @param HouseRepository $repository
+     * @return Response
      */
-    public function index()
+    public function index(HouseRepository $repository)
     {
-        return $this->render('home/index.html.twig');
+        $rooms = $repository->findAllByType("Chambre d'hote");
+        $houses = $repository->findAllByType('Gite');
+
+        return $this->render('home/index.html.twig', [
+            'rooms' => $rooms,
+            'houses' => $houses
+        ]);
     }
 
 

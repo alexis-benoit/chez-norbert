@@ -29,6 +29,15 @@ class HouseRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findAllByType ($type)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.type = :type')
+            ->setParameter('type', $type)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findAnotherHouse (House $house)
     {
         return $this->createQueryBuilder('g')

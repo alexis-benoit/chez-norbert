@@ -103,41 +103,25 @@
 
             <section class="card-container">
 
-                <article class="card">
-                    <div class="card-img-wrapper">
-                        <picture>
-                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                            <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                            <img src="{{ asset('build/images/gite-example.jpg') }}" class="card-img">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Gîte "Le Grasberg"</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
-                        <p>4 - 6 personnes - Salle de bain privative - Duplex</p>
-                        <a href="#" class="button card-button">En savoir plus</a>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-img-wrapper">
-                        <picture>
-                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                            <source srcset="{{ asset('build/images/riesling.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                            <img src="{{ asset('build/images/riesling.jpg') }}" class="card-img">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Gîte "Le Riesling"</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
-                        <p>4 personnes - Salle de bain privative</p>
-                        <a href="#" class="button card-button">En savoir plus</a>
-                    </div>
-                </article>
+                {% for house in houses %}
+                    <article class="card">
+                        <div class="card-img-wrapper">
+                            <picture>
+                                <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                                <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                                <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                                <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                                <img src="{{ asset('build/images/gite-example.jpg') }}" class="card-img">
+                            </picture>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ house.type }} "{{ house.name }}"</h3>
+                            <p>{{ house.description|length > 130 ? house.description | slice(0, 130) ~ '...' : house.description }}</p>
+                            <p>{{ house.advantage|slice(0, 2)|join(' - ') }}</p>
+                            <a href="{{ path('houses.get', { id: house.id }) }}" class="button card-button">En savoir plus</a>
+                        </div>
+                    </article>
+                {% endfor %}
             </section>
 
         </section>
@@ -151,59 +135,25 @@
             </header>
             <div class="card-container">
 
-                <article class="card">
-                    <div class="card-img-wrapper">
-                        <picture>
-                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                            <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                            <img src="{{ asset('build/images/vendanges-tardives.jpg') }}" class="card-img">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Chambre d'hôte <br> "Vendanges tardives"</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
-                        <p>4 personnes - Salle de bain privative</p>
-                        <a href="#" class="button card-button">En savoir plus</a>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-img-wrapper">
-                        <picture>
-                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                            <source srcset="{{ asset('build/images/grand-cru.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                            <img src="{{ asset('build/images/grand-cru.jpg') }}" class="card-img">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Chambre d'hôte <br> "Grand cru"</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
-                        <p>4 personnes - Salle de bain privative</p>
-                        <a href="#" class="button card-button">En savoir plus</a>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-img-wrapper">
-                        <picture>
-                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                            <source srcset="{{ asset('build/images/grand-cru-alsace.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                            <img src="{{ asset('build/images/grand-cru-alsace.jpg') }}" class="card-img">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Chambre d'hôte <br> "Grand cru Alsace"</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...</p>
-                        <p>4 personnes - Salle de bain privative</p>
-                        <a href="#" class="button card-button">En savoir plus</a>
-                    </div>
-                </article>
+                {% for room in rooms %}
+                    <article class="card">
+                        <div class="card-img-wrapper">
+                            <picture>
+                                <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                                <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                                <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                                <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                                <img src="{{ asset('build/images/vendanges-tardives.jpg') }}" class="card-img">
+                            </picture>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ room.type }} <br> "{{ room.name }}"</h3>
+                            <p>{{ room.description|length > 130 ? room.description | slice(0, 130) ~ '...' : room.description }}</p>
+                            <p>{{ room.advantage|slice(0, 2)|join(' - ') }}</p>
+                            <a href="{{ path('houses.get', { id: room.id }) }}" class="button card-button">En savoir plus</a>
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
 
         </section>
