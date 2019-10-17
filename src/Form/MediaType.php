@@ -13,10 +13,14 @@ class MediaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $create = $options['create'];
+
         $builder
             ->add('name', TextType::class)
             ->add('alt', TextType::class)
-            ->add('imageFile', FileType::class)
+            ->add('imageFile', FileType::class, [
+                'required' => $create
+            ])
         ;
     }
 
@@ -25,7 +29,7 @@ class MediaType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Media::class,
             'translation_domain' => 'forms',
-
+            'create' => true
         ]);
     }
 }

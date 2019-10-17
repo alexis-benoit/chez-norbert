@@ -15,7 +15,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            {% if creation != true %}
+                <div class="col-4">
+                    <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid">
+                </div>
+            {% endif %}
+
+            <div class="col-{{ creation == true ? '12' : '8' }}">
 
                 {{ form_start(form) }}
                     {{ form_row(form.name) }}
