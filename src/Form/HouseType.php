@@ -35,7 +35,6 @@ class HouseType extends AbstractType
                 // each entry in the array will be an "email" field
                 'entry_type' => TextType::class]
             )
-            ->add('send', SubmitType::class)
         ;
     }
 
