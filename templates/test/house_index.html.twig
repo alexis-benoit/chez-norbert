@@ -1,0 +1,49 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Gestion des habitations{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h3>Gestion des habitations</h3>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-12">
+                <a href="{{ path('house.create') }}" class="btn btn-success">Ajouter</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for house in houses %}
+                        <tr>
+                            <th scope="row">{{ house.name }}</th>
+                            <td>{{ house.type }}</td>
+                            <td class="d-flex">
+                                <a href="{{ path('house.edit', { id: house.id }) }}" class="btn btn-primary mr-2">Éditer</a>
+                                <form action="{{ path('house.delete', { id: house.id }) }}" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
