@@ -35,7 +35,9 @@ class HouseType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('advantage',CollectionType::class, [
                 // each entry in the array will be an "email" field
-                'entry_type' => TextType::class]
+                'entry_type' => TextType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,]
             )
         ;
     }
