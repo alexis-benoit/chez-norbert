@@ -22,16 +22,22 @@ class AdminHouseController extends AbstractController
      * "fr": "admin/house/creation",
      * "en": "admin/house/create"
      * }, name="house.create")
+     * @Route("/admin/house/{id}", name="house.edit", methods="GET|POST")
      * @param Request $request
      * @param HouseRepository $repository
      * @param EntityManagerInterface $manager
+     * @param House|null $gites
      * @return Response
      */
-    public function create(Request $request, HouseRepository $repository, EntityManagerInterface $manager)
+    public function create(Request $request, HouseRepository $repository, EntityManagerInterface $manager, House $gites = null)
     {
-        $gites = new House();
+        if (!$gites) {
+            $gites = new House();
+        }
 
-        $form = $this->createForm(HouseType::class, $gites);
+        $form = $this->createForm(HouseType::class, $gites, [
+            'edit' => !!$gites->getId(),
+        ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
