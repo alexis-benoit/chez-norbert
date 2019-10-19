@@ -1,0 +1,34 @@
+{% extends "base_admin.html.twig" %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4 mb-2">
+                <h1>
+                    {% if user.id is null %}
+                        Ajout d'un utilisateur
+                    {% else %}
+                        Édition de l'utilisateur "{{ user.email }}"
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                {{  form_start(form) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.roles) }}
+                    <button class="btn btn-{{ user.id is null ? 'success' : 'primary' }}">
+                        {% if user.id is null %}
+                            Créer
+                        {% else %}
+                            Mettre à jour
+                        {% endif %}
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
