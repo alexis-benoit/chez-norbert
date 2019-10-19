@@ -25,7 +25,7 @@
                         <a class="nav-link" href="{{ path('admin.house.index') }}">Gîtes / Chambres d'hôte</a>
                     </li>
                 </ul>
-                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                Connecté en tant que {{ app.user.username }}<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </div>
         </nav>
 
