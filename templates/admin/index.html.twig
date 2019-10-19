@@ -1,0 +1,38 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Panneau d'administration{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-4">Bienvenue dans le panneau d'administration</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Voir les gîtes et chambres d'hôtes</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ house_count }} habitations</h6>
+                        <p class="card-text">Modifier/Ajouter les habitations de l'application.</p>
+                        <a href="{{ path('admin.house.index') }}" class="card-link">Liste des habitations</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Voir les médias</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ media_count }} médias</h6>
+                        <p class="card-text">Modifier/ajouter les médias de l'application.</p>
+                        <a href="{{ path('admin.media.index') }}" class="card-link">Liste des médias</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
