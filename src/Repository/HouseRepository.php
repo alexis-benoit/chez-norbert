@@ -19,6 +19,14 @@ class HouseRepository extends ServiceEntityRepository
         parent::__construct($registry, House::class);
     }
 
+    public function getCount()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     public function findOneById($value): ?House
     {
         return $this->createQueryBuilder('g')
