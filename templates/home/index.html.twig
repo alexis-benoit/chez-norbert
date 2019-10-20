@@ -105,7 +105,7 @@
             <section class="card-container">
 
                 {% for house in houses %}
-                    <article class="card">
+                    <article class="card" data-link>
                         <div class="card-img-wrapper">
                             <picture>
                                 <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
@@ -137,7 +137,7 @@
             <div class="card-container">
 
                 {% for room in rooms %}
-                    <article class="card">
+                    <article class="card" data-link>
                         <div class="card-img-wrapper">
                             <picture>
                                 <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
