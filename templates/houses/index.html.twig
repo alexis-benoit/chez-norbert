@@ -83,7 +83,7 @@
                     <h3 class="other-house-title">{{ anotherHouse.name }}</h3>
                     <p class="other-house-text">{{ anotherHouse.description }}</p>
 
-                    <a href="#" class="other-house-button">En savoir plus</a>
+                    <a href="{{ path('houses.get', { slug: anotherHouse.slug }) }}" class="other-house-button">En savoir plus</a>
                 </div>
             </article>
         </section>
@@ -114,7 +114,7 @@
                         <p class="other-house-text">{{ house.description }}</p>
                         <p>{{ house.advantage | join (' - ') }}</p>
 
-                        <a href="#" class="other-house-button">En savoir plus</a>
+                        <a href="{{ path('houses.get', { slug: house.slug }) }}" class="other-house-button">En savoir plus</a>
                     </div>
                 </article>
             {% endfor %}

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HousesController extends AbstractController
 {
     /**
-     * @Route("/houses/{id}", name="houses.get")
+     * @Route("/houses/{slug}", name="houses.get")
      *
      * @param House $house
      * @param HouseRepository $repository
