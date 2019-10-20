@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HouseRepository")
+ * @UniqueEntity(
+ *  fields={"name", "slug"}
+ * )
  */
 class House
 {
@@ -17,7 +21,7 @@ class House
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
 
@@ -45,6 +49,11 @@ class House
         0 => 'House',
         1 => 'Guest room'
     ];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -113,5 +122,17 @@ class House
 
     public function getTypeName (): string {
         return self::$houseTypes[$this->getType()];
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

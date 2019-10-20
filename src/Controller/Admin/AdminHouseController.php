@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\House;
 use App\Form\HouseType;
 use App\Repository\HouseRepository;
+use Cocur\Slugify\SlugifyInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -36,12 +37,12 @@ class AdminHouseController extends AbstractController
      * @Route("/admin/house/{id}", name="admin.house.update", methods="GET|POST")
      *
      * @param Request $request
-     * @param HouseRepository $repository
+     * @param SlugifyInterface $slugifier
      * @param EntityManagerInterface $manager
      * @param House|null $house
      * @return Response
      */
-    public function create(Request $request, HouseRepository $repository, EntityManagerInterface $manager, House $house = null)
+    public function create(Request $request, SlugifyInterface $slugifier, EntityManagerInterface $manager, House $house = null)
     {
         if (!$house) {
             $house = new House();
@@ -53,6 +54,8 @@ class AdminHouseController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugifier->slugify($house->getName());
+            $house->setSlug($slug);
 
             $manager->persist($house);
             $manager->flush();
