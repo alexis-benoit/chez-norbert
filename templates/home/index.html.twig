@@ -116,7 +116,7 @@
                             </picture>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">{{ house.type }} "{{ house.name }}"</h3>
+                            <h3 class="card-title">{{ house.typeName|trans }} "{{ house.name }}"</h3>
                             <p>{{ house.description|length > 130 ? house.description | slice(0, 130) ~ '...' : house.description }}</p>
                             <p>{{ house.advantage|slice(0, 2)|join(' - ') }}</p>
                             <a href="{{ path('houses.get', { id: house.id }) }}" class="button card-button">En savoir plus</a>
@@ -148,7 +148,7 @@
                             </picture>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">{{ room.type }} <br> "{{ room.name }}"</h3>
+                            <h3 class="card-title">{{ room.typeName|trans }} <br> "{{ room.name }}"</h3>
                             <p>{{ room.description|length > 130 ? room.description | slice(0, 130) ~ '...' : room.description }}</p>
                             <p>{{ room.advantage|slice(0, 2)|join(' - ') }}</p>
                             <a href="{{ path('houses.get', { id: room.id }) }}" class="button card-button">En savoir plus</a>
