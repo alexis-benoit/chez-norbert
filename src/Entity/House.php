@@ -22,11 +22,6 @@ class House
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="smallint")
      */
     private $peopleNumber;
@@ -41,6 +36,16 @@ class House
      */
     private $advantage = [];
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $type;
+
+    public static $houseTypes = [
+        0 => 'House',
+        1 => 'Guest room'
+    ];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,18 +59,6 @@ class House
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -104,5 +97,21 @@ class House
         $this->advantage = $advantage;
 
         return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getTypeName (): string {
+        return self::$houseTypes[$this->getType()];
     }
 }

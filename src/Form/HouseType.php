@@ -23,10 +23,7 @@ class HouseType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('type', ChoiceType::class, [
-                    'choices'  => [
-                        'Gite' => 'Gite',
-                        'Chambre d\'hote' => 'Chambre d\'hote',
-                    ],
+                    'choices'  => $this->getChoices(),
                     'expanded' => true,
                     'multiple' => false,
                     'placeholder' => false,
@@ -50,5 +47,16 @@ class HouseType extends AbstractType
             'translation_domain' => 'forms',
             'edit' => false,
         ]);
+    }
+
+    private function getChoices () {
+        $choices = House::$houseTypes;
+        $output = [];
+
+        foreach ($choices as $k => $v) {
+            $output[$v] = $k;
+        }
+
+        return $output;
     }
 }

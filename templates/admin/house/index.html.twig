@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ house.id }}</td>
                             <td>{{ house.name }}</td>
-                            <td>{{ house.type }}</td>
+                            <td>{{ house.typeName }}</td>
                             <td class="d-flex">
                                 <a href="{{ path('admin.house.update', { id: house.id }) }}" class="btn btn-primary mr-1">Mettre à jour</a>
                                 <form action="{{ path('admin.house.delete', { id: house.id }) }}" method="POST">
