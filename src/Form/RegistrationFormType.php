@@ -17,8 +17,10 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $edit = $options['edit'];
+
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, array ('attr' => array ('readonly' => $edit)))
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -42,7 +44,8 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'translation_domain' => 'forms'
+            'translation_domain' => 'forms',
+            'edit' => false,
         ]);
     }
 }

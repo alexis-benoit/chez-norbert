@@ -50,12 +50,17 @@ class AdminUserController extends AbstractController
             $user = new User();
         }
 
-        $form = $this->createForm(UserType::class, $user, [
+        $form = $this->createForm(RegistrationFormType::class, $user, [
             'edit' => !!$user->getId(),
         ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('plainPassword')->getData();
+            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+
+            $user
+                ->setPassword($encodedPassword);
 
             $manager->persist($user);
             $manager->flush();

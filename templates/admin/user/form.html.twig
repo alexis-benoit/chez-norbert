@@ -19,7 +19,7 @@
 
                 {{  form_start(form) }}
                 {{ form_row(form.email) }}
-                {{ form_row(form.roles) }}
+                {{ form_row(form.plainPassword) }}
                     <button class="btn btn-{{ user.id is null ? 'success' : 'primary' }}">
                         {% if user.id is null %}
                             Créer
