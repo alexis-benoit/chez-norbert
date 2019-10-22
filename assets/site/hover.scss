@@ -5,3 +5,7 @@
 .card:hover .card-img {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
+
+[data-link] {
+  cursor: pointer;
+}

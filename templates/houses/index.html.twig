@@ -4,8 +4,8 @@
 
 {% block body %}
     <header class="contained house-header">
-        <span class="overline">{{ house.type }}</span>
-        <h1 class="title-1 house-title">Le "{{ house.name }}"</h1>
+        <span class="overline">{{ house.typeName|trans }}</span>
+        <h1 class="title-1 house-title">{{ house.name }}</h1>
     </header>
 
     <div class="house-content-wrapper">
@@ -64,7 +64,7 @@
         <header class="other-houses-header">
             <h2 class="title-1 other-houses-title">
                 Autre
-                {% if house.type == "Chambre d'hote" %}
+                {% if house.type == 0 %}
                     gîte
                 {% else %}
                     chambre d'hôte
@@ -80,10 +80,10 @@
 
                 <div class="other-house-body">
                     <span class="overline">Gîte suivant</span>
-                    <h3 class="other-house-title">Le "{{ anotherHouse.name }}"</h3>
+                    <h3 class="other-house-title">{{ anotherHouse.name }}</h3>
                     <p class="other-house-text">{{ anotherHouse.description }}</p>
 
-                    <a href="#" class="other-house-button">En savoir plus</a>
+                    <a href="{{ path('houses.get', { slug: anotherHouse.slug }) }}" class="other-house-button">En savoir plus</a>
                 </div>
             </article>
         </section>
@@ -94,10 +94,10 @@
         <header class="other-houses-header">
             <h2 class="title-1 other-houses-title">
                 Les
-                {% if house.type == "Chambre d'hote" %}
-                    gîtes
+                {% if house.type == 0 %}
+                    chambres d'hôtes
                 {% else %}
-                    chambres d'hôte
+                    gîtes
                 {% endif %}
             </h2>
         </header>
@@ -109,11 +109,12 @@
                     <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
 
                     <div class="other-house-body">
-                        <h3 class="other-house-title">{{ house.type }} "{{ house.name }}"</h3>
+                        <span class="overline">{{ house.typeName|trans }}</span>
+                        <h3 class="other-house-title">{{ house.name }}</h3>
                         <p class="other-house-text">{{ house.description }}</p>
                         <p>{{ house.advantage | join (' - ') }}</p>
 
-                        <a href="#" class="other-house-button">En savoir plus</a>
+                        <a href="{{ path('houses.get', { slug: house.slug }) }}" class="other-house-button">En savoir plus</a>
                     </div>
                 </article>
             {% endfor %}

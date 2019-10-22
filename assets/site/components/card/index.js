@@ -13,6 +13,14 @@ const initializeCardAdapter = ({ document }) => {
         .forEach(card => {
             intersectionObserver.observe(card)
         })
+
+    document.querySelectorAll('[data-link]')
+        .forEach(card => {
+            const link = card.querySelector('a').href
+            card.addEventListener('click', () => {
+                window.location = link
+            })
+        })
 }
 
 export default initializeCardAdapter

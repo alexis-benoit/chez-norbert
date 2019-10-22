@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HouseRepository")
+ * @UniqueEntity(
+ *  fields={"name", "slug"}
+ * )
  */
 class House
 {
@@ -17,14 +21,9 @@ class House
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
 
     /**
      * @ORM\Column(type="smallint")
@@ -41,6 +40,21 @@ class House
      */
     private $advantage = [];
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $type;
+
+    public static $houseTypes = [
+        0 => 'House',
+        1 => 'Guest room'
+    ];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,18 +68,6 @@ class House
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -102,6 +104,34 @@ class House
     public function setAdvantage(array $advantage): self
     {
         $this->advantage = $advantage;
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getTypeName (): string {
+        return self::$houseTypes[$this->getType()];
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

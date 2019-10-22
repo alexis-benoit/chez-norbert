@@ -105,7 +105,7 @@
             <section class="card-container">
 
                 {% for house in houses %}
-                    <article class="card">
+                    <article class="card" data-link>
                         <div class="card-img-wrapper">
                             <picture>
                                 <source srcset="{{ asset('build/images/gite-example.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
@@ -116,10 +116,10 @@
                             </picture>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">{{ house.type }} "{{ house.name }}"</h3>
+                            <h3 class="card-title">{{ house.typeName|trans }} "{{ house.name }}"</h3>
                             <p>{{ house.description|length > 130 ? house.description | slice(0, 130) ~ '...' : house.description }}</p>
                             <p>{{ house.advantage|slice(0, 2)|join(' - ') }}</p>
-                            <a href="{{ path('houses.get', { id: house.id }) }}" class="button card-button">En savoir plus</a>
+                            <a href="{{ path('houses.get', { slug: house.slug }) }}" class="button card-button">En savoir plus</a>
                         </div>
                     </article>
                 {% endfor %}
@@ -137,7 +137,7 @@
             <div class="card-container">
 
                 {% for room in rooms %}
-                    <article class="card">
+                    <article class="card" data-link>
                         <div class="card-img-wrapper">
                             <picture>
                                 <source srcset="{{ asset('build/images/vendanges-tardives.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
@@ -148,10 +148,10 @@
                             </picture>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">{{ room.type }} <br> "{{ room.name }}"</h3>
+                            <h3 class="card-title">{{ room.typeName|trans }} <br> "{{ room.name }}"</h3>
                             <p>{{ room.description|length > 130 ? room.description | slice(0, 130) ~ '...' : room.description }}</p>
                             <p>{{ room.advantage|slice(0, 2)|join(' - ') }}</p>
-                            <a href="{{ path('houses.get', { id: room.id }) }}" class="button card-button">En savoir plus</a>
+                            <a href="{{ path('houses.get', { slug: room.slug }) }}" class="button card-button">En savoir plus</a>
                         </div>
                     </article>
                 {% endfor %}

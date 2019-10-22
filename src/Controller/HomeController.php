@@ -23,8 +23,8 @@ class HomeController extends AbstractController
      */
     public function index(HouseRepository $repository)
     {
-        $rooms = $repository->findAllByType("Chambre d'hote");
-        $houses = $repository->findAllByType('Gite');
+        $rooms = $repository->findAllByType(1);
+        $houses = $repository->findAllByType(0);
 
         return $this->render('home/index.html.twig', [
             'rooms' => $rooms,
