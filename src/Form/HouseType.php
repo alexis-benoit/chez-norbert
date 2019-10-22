@@ -18,7 +18,6 @@ class HouseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        dump($options['edit']);
 
         $builder
             ->add('name', TextType::class)
