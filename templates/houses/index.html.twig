@@ -73,19 +73,25 @@
         </header>
 
         <section class="other-houses-body">
-            <article class="other-house">
 
+            {% for house in anotherHouses %}
+                <article class="other-house">
 
-                <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
+                    <article class="other-house">
 
-                <div class="other-house-body">
-                    <span class="overline">Gîte suivant</span>
-                    <h3 class="other-house-title">{{ anotherHouse.name }}</h3>
-                    <p class="other-house-text">{{ anotherHouse.description }}</p>
+                        <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
 
-                    <a href="{{ path('houses.get', { slug: anotherHouse.slug }) }}" class="other-house-button">En savoir plus</a>
-                </div>
-            </article>
+                        <div class="other-house-body">
+{#                            <span class="overline">Gîte suivant</span>#}
+                            <h3 class="other-house-title">{{ house.name }}</h3>
+                            <p class="other-house-text">{{ house.description }}</p>
+                            <p>{{ house.advantage | join (' - ') }}</p>
+
+                            <a href="{{ path('houses.get', { slug: house.slug }) }}" class="other-house-button">En savoir plus</a>
+                        </div>
+                    </article>
+                </article>
+            {% endfor %}
         </section>
     </div>
 
@@ -103,21 +109,35 @@
         </header>
 
         <section class="other-houses-body">
-            {% for house in oppositeTypeHouses %}
-                <article class="other-house">
+{#            {% for house in oppositeTypeHouses %}#}
+{#                <article class="other-house">#}
 
-                    <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
+{#                    <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">#}
 
-                    <div class="other-house-body">
-                        <span class="overline">{{ house.typeName|trans }}</span>
-                        <h3 class="other-house-title">{{ house.name }}</h3>
-                        <p class="other-house-text">{{ house.description }}</p>
-                        <p>{{ house.advantage | join (' - ') }}</p>
+{#                    <div class="other-house-body">#}
+{#                        <span class="overline">{{ house.typeName|trans }}</span>#}
+{#                        <h3 class="other-house-title">{{ house.name }}</h3>#}
+{#                        <p class="other-house-text">{{ house.description }}</p>#}
+{#                        <p>{{ house.advantage | join (' - ') }}</p>#}
 
-                        <a href="{{ path('houses.get', { slug: house.slug }) }}" class="other-house-button">En savoir plus</a>
-                    </div>
-                </article>
-            {% endfor %}
+{#                        <a href="{{ path('houses.get', { slug: house.slug }) }}" class="other-house-button">En savoir plus</a>#}
+{#                    </div>#}
+{#                </article>#}
+{#            {% endfor %}#}
+            <article class="other-house">
+
+                <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
+
+                <div class="other-house-body">
+                    <h3 class="other-house-title">{{ oppositeTypeHouse.name }}</h3>
+                    <p class="other-house-text">{{ oppositeTypeHouse.description }}</p>
+                    <p>{{ oppositeTypeHouse.advantage | join (' - ') }}</p>
+
+                    <a href="{{ path('houses.get', { slug: oppositeTypeHouse.slug }) }}" class="other-house-button">En savoir plus</a>
+                </div>
+            </article>
+{#TODO: rediriger vers une page correcte#}
+            <p><a href="{{ path('home.index') }}#{{ house.typeName|trans }}" >Acceder à nos autres {{ house.typeName|trans }}</a></p>
         </section>
     </div>
 {% endblock %}

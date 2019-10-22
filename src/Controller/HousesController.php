@@ -19,13 +19,17 @@ class HousesController extends AbstractController
      */
     public function index(House $house, HouseRepository $repository)
     {
-        $anotherHouse = $repository->findAnotherHouse($house);
-        $oppositeTypeHouses = $repository->findOppositeTypeHouses ($house);
+        //$anotherHouse = $repository->findAnotherHouse($house);
+        $anotherHouses = $repository->findAnotherHouses($house);
+        //$oppositeTypeHouses = $repository->findOppositeTypeHouses ($house);
+        $oppositeTypeHouse = $repository->findOneOppositeTypeHouses ($house);
 
         return $this->render('houses/index.html.twig', [
             'house' => $house,
-            'anotherHouse' => $anotherHouse,
-            'oppositeTypeHouses' => $oppositeTypeHouses
+            //'anotherHouse' => $anotherHouse,
+            'anotherHouses' => $anotherHouses,
+            //'oppositeTypeHouses' => $oppositeTypeHouses
+            'oppositeTypeHouse' => $oppositeTypeHouse
         ]);
     }
 }

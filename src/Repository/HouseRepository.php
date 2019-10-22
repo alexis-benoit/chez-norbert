@@ -58,6 +58,27 @@ class HouseRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function findOneOppositeTypeHouses(House $house)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.type != :type')
+            ->setParameter('type', $house->getType())
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findAnotherHouses (House $house)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.id != :id')
+            ->andWhere('g.type = :type')
+            ->setParameter('id', $house->getId())
+            ->setParameter('type', $house->getType())
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findOppositeTypeHouses(House $house)
     {
         return $this->createQueryBuilder('g')
