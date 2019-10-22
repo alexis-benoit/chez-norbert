@@ -1,0 +1,19 @@
+user.constraint.email.length.min: Email must be at least {{ limit }} character.
+user.constraint.email.length.max: Email cannot be longer than {{ limit }} character.
+user.constraint.email.email: Email '{{ value }}' is not a valid email.
+
+contact.constraints.lastName.notBlank: Name cannot be blank.
+contact.constraints.lastName.length.max: Name cannot be longer than {{ limit }} character.
+contact.constraints.firstName.notBlank: FirstName cannot be blank.
+contact.constrains.email.notBlank: Email cannot be blank.
+contact.constrains.email.email: Email '{{ value }}' is not a valid email.
+contact.constrains.email.length.max: Email cannot be longer than {{ limit }} character.
+contact.constrains.tel.notBlank: Phone number cannot be blank.
+contact.constrains.tel.length.max: Phone number cannot be longer than {{ limit }} character.
+contact.constrains.message.notBlank: Message cannot be blank.
+contract.constrains.message.length.max: Message cannot be longer than {{ limit }} character.
+
+media.constraints.name.blank: Image name cannot be blank.
+media.constraints.name.length.max: Image name cannot be longer than {{ limit }} character.
+media.constraints.alt.blank: Alt text cannot be blank.
+media.constraints.alt.length.max: Alt text cannot be longer than {{ limit }} character.

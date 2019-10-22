@@ -1,4 +1,6 @@
 user.constraint.email.length.min: L'email doit faire au moins {{ limit }} caractères.
+user.constraint.email.length.max: L'email ne peut être plus long que {{ limit }} caractères.
+user.constraint.email.email: L' email '{{ value }}' n'est pas un email valide.
 
 contact.constraints.lastName.notBlank: Le nom ne doit pas être vide.
 contact.constraints.lastName.length.max: Le nom ne peut pas faire plus de {{ limit }} caractères de long.

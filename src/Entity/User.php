@@ -24,13 +24,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email."
+     *     message = "user.constraint.email.email"
      * )
      * @Assert\Length(
      *     min = 5,
      *     max = 180,
      *     minMessage = "user.constraint.email.length.min",
-     *     maxMessage = "Your email cannot be longer than {{ limit }} characters"
+     *     maxMessage = "user.constraint.email.length.max"
      * )
      */
     private $email;
