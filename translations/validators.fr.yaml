@@ -17,3 +17,18 @@ media.constraints.name.blank: Le nom de l'image ne peut pas être vide.
 media.constraints.name.length.max: Le nom ne doit pas faire plus de {{ limit }} caractères de long.
 media.constraints.alt.blank: Le texte alternatif ne peut pas être vide.
 media.constraints.alt.length.max: Le texte alternatif ne doit pas faire de plus {{ limit }} caractères de long.
+
+house:
+  constraints:
+    name:
+      notBlank: Le nom ne doit pas être vide.
+      length:
+        max: Le nom ne doit pas faire plus de {{ limit }} caractères de long.
+    peopleNumber:
+      positive: Le nombre de personne doit être supérieur à 0.
+    description:
+      notBlank: Un description doit être renseignée
+      length:
+        max: La description ne doit pas faire plus de {{ limit }} caractères de long.
+    type:
+      choice: La valeur selectionnée est incorrecte

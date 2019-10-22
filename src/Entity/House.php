@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HouseRepository")
@@ -22,16 +23,33 @@ class House
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(
+     *     message = "house.constraints.name.notBlank"
+     * )
+     * @Assert\Length(
+     *     max = 255,
+     *     maxMessage = "house.constraint.name.length.max"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Positive(
+     *     message = "house.constraints.peopleNumber.positive"
+     * )
      */
     private $peopleNumber;
 
     /**
      * @ORM\Column(type="string", length=2000)
+     * @Assert\NotBlank(
+     *     message = "house.constraints.description.notBlank"
+     * )
+     * @Assert\Length(
+     *     max = 255,
+     *     maxMessage = "house.constraint.description.length.max"
+     * )
      */
     private $description;
 
@@ -42,6 +60,10 @@ class House
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Choice(
+     *     callback={"App\Entity\House", "getTypes"},
+     *     message="house.constraint.type.choice"
+     * )
      */
     private $type;
 
@@ -134,5 +156,9 @@ class House
         $this->slug = $slug;
 
         return $this;
+    }
+
+    public function getTypes (): array {
+        return self::$houseTypes;
     }
 }

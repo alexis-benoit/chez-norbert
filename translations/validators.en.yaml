@@ -17,3 +17,18 @@ media.constraints.name.blank: Image name cannot be blank.
 media.constraints.name.length.max: Image name cannot be longer than {{ limit }} character.
 media.constraints.alt.blank: Alt text cannot be blank.
 media.constraints.alt.length.max: Alt text cannot be longer than {{ limit }} character.
+
+house:
+  constraints:
+    name:
+      notBlank: Name cannot be blank
+      length:
+        max: Name cannot be longer than {{ limit }} character.
+    peopleNumber:
+      positive: Number of people must be > 0
+    description:
+      notBlank: Description cannot be Blank
+      length:
+        max: Description cannot be longer than {{ limit }} character.
+    type:
+      choice: Invalid value selected
