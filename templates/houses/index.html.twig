@@ -13,21 +13,19 @@
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
-                        <li class="glide__slide">
-                            <div class="carousel-img-wrapper">
-                                <img src="{{ asset('build/images/gite-example.jpg') }}" class="carousel-img">
-                            </div>
-                        </li>
-                        <li class="glide__slide">
-                            <div class="carousel-img-wrapper">
-                                <img src="{{ asset('build/images/gite-example.jpg') }}" class="carousel-img">
-                            </div>
-                        </li>
-                        <li class="glide__slide">
-                            <div class="carousel-img-wrapper">
-                                <img src="{{ asset('build/images/gite-example.jpg') }}" class="carousel-img">
-                            </div>
-                        </li>
+                        {% for media in house.images %}
+                            <li class="glide__slide">
+                                <div class="carousel-img-wrapper">
+                                    <picture>
+                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                                        <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="Portail d'entrée de Chez Norbert" class="carousel-img">
+                                    </picture>
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
 
@@ -75,9 +73,9 @@
         <section class="other-houses-body">
             <article class="other-house">
 
-
-                <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
-
+                {% if (anotherHouse.images[0]) %}
+                    <img src="{{ vich_uploader_asset(anotherHouse.images[0], 'imageFile') }}" alt="{{ anotherHouse.images[0].alt }}" class="other-house-img">
+                {% endif %}
                 <div class="other-house-body">
                     <span class="overline">Gîte suivant</span>
                     <h3 class="other-house-title">{{ anotherHouse.name }}</h3>
@@ -106,7 +104,9 @@
             {% for house in oppositeTypeHouses %}
                 <article class="other-house">
 
-                    <img src="{{ asset('build/images/gite-example.jpg') }}" class="other-house-img">
+                    {% if house.images[0] %}
+                        <img src="{{ vich_uploader_asset(house.images[0], 'imageFile') }}" class="other-house-img" alt="{{ house.images[0] }}">
+                    {% endif %}
 
                     <div class="other-house-body">
                         <span class="overline">{{ house.typeName|trans }}</span>
