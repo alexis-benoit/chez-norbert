@@ -57,6 +57,8 @@ class AdminHouseController extends AbstractController
             $slug = $slugifier->slugify($house->getName());
             $house->setSlug($slug);
 
+            dump($house);
+
             $manager->persist($house);
             $manager->flush();
             return $this->redirectToRoute('admin.house.index');

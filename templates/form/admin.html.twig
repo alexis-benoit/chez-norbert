@@ -1,0 +1,94 @@
+{% use 'bootstrap_4_layout.html.twig' %}
+
+{%- block media_entity_widget -%}
+    {% if expanded %}
+        {{- block('choice_widget_expanded') -}}
+    {% else %}
+        {{- block('media_entity_widget_collapsed') -}}
+    {% endif %}
+{%- endblock -%}
+
+{%- block media_entity_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+{#
+    <div class="d-flex">
+        {% for group_label, choice in choices %}
+            <div class="card m-1" style="width: 50%; box-sizing: border-box" data-select="{{ form.vars.id }}" data-option="{{ choice.data.id }}">
+                <img class="card-img-top" src="{{ vich_uploader_asset(choice.data, 'imageFile') }}" alt="{{ choice.data.alt }}">
+
+                <div class="card-body">
+                    <p class="card-title">{{ choice.data.name }}</p>
+                    <p class="card-subtitle">{{ choice.data.alt }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>#}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mediaModal">
+        Ouvrir le sélécteur d'image
+    </button>
+
+
+
+    <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediaModalLabel">Choisissez les images</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ dump(choices) }}
+                    <div class="row">
+                        {% for group_label, choice in choices %}
+                            <div class="col-md-4" data-select="{{ form.vars.id }}" data-option="{{ choice.data.id }}">
+                                <img src="{{ vich_uploader_asset(choice.data, 'imageFile') }}" alt="{{ choice.data.alt }}" class="img-fluid">
+                                <p>{{ choice.data.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %} {#style="position: fixed; z-index: -1; top: 0; left: 0; width: 0; height: 0;"#}>
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+{%- endblock -%}
+
+{#
+{%- block media_entity_widget_options -%}
+    {% for group_label, choice in options %}
+        {%- if choice is iterable -%}
+            <optgroup label="{{ choice_translation_domain is same as(false) ? group_label : group_label|trans({}, choice_translation_domain) }}">
+                {% set options = choice %}
+                {{- block('choice_widget_options') -}}
+            </optgroup>
+        {%- else -%}
+            <option
+                    value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if choice is selectedchoice(value) %}
+                    selected="selected"{% endif %}>
+                {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
+            </option>
+        {%- endif -%}
+    {% endfor %}
+{%- endblock media_entity_widget_options -%}
+#}

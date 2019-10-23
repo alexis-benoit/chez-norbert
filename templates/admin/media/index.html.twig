@@ -18,6 +18,7 @@
                         <tr>
                             <th scope="col">Id</th>
                             <th>Nom de l'image</th>
+                            <th>Image</th>
                             <th>Texte alternatif</th>
                             <th>Actions</th>
                         </tr>
@@ -28,6 +29,7 @@
                             <tr>
                                 <td>{{ media.id }}</td>
                                 <td>{{ media.name }}</td>
+                                <td><img src="{{ vich_uploader_asset(media, 'imageFile') }}" style="width: 200px; height: 200px; object-fit: cover"></td>
                                 <td>{{ media.alt }}</td>
                                 <td class="d-flex">
                                     <a href="{{ path('admin.media.update', { id: media.id }) }}" class="btn btn-primary mr-1">Mettre à jour</a>

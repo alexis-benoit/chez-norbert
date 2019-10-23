@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\House;
+use App\Entity\Media;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -36,6 +38,10 @@ class HouseType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,]
             )
+            ->add('images', EntityType::class, [
+                'class' => Media::class,
+                'multiple' => true,
+            ])
         ;
     }
 

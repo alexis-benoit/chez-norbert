@@ -1,5 +1,14 @@
 {% extends "base_admin.html.twig" %}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% form_theme form 'form/admin.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .active {
+            background: lightblue;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -22,6 +31,7 @@
                     {{ form_row(form.type) }}
                     {{ form_row(form.peopleNumber) }}
                     {{ form_row(form.description) }}
+                    {{ form_row(form.images) }}
                     <ul class="advantage" data-prototype="{{ form_widget(form.advantage.vars.prototype)|e('html_attr') }}">
                         {% for advantage in form.advantage %}
                             <li>{{ form_row(advantage) }}</li>
@@ -113,4 +123,30 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.querySelectorAll('[data-select]')
+            .forEach(selectWrapper => {
+                selectWrapper.addEventListener('click', () => {
+                    const optionId = selectWrapper.dataset.option
+                    const option = document.querySelector(`option[value="${optionId}"]`)
+
+                    option.selected = !option.selected
+
+                    if (option.selected) selectWrapper.classList.add('active')
+                    else selectWrapper.classList.remove('active')
+                    //const select = document.querySelector(`select#${selectId}`)
+                    //const selected = Array.isArray(select.value) ? select.value : [ select.value ]
+
+                    //const isAlreadySelected = selected.find (v => v === optionId)
+
+                    //select.value = isAlreadySelected ? selected.filter (v => v !== select.value) : [ ...selected, optionId ]
+
+
+                })
+            })
+    </script>
 {% endblock %}
