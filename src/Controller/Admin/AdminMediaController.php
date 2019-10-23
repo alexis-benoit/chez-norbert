@@ -12,6 +12,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class AdminMediaController extends AbstractController
 {
-
     /**
      * @Route("/admin/media", name="admin.media.index")
      * @param MediaRepository $repository
@@ -35,6 +35,18 @@ class AdminMediaController extends AbstractController
         return $this->render('admin/media/index.html.twig', [
             'medias' => $medias
         ]);
+    }
+
+    /**
+     * @Route("/admin/media/api", name="admin.media.api")
+     *
+     * @param MediaRepository $repository
+     * @return JsonResponse
+     */
+    public function getJson (MediaRepository $repository) {
+        $medias = $repository->findAll();
+
+        return new JsonResponse($medias);
     }
 
     /**

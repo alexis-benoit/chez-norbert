@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use \DateTime;
@@ -65,6 +67,16 @@ class Media
      * )
      */
     private $alt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\House", mappedBy="images")
+     */
+    private $houses;
+
+    public function __construct()
+    {
+        $this->houses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -143,5 +155,36 @@ class Media
         return $this;
     }
 
+    /**
+     * @return Collection|House[]
+     */
+    public function getHouses(): Collection
+    {
+        return $this->houses;
+    }
 
+    public function addHouse(House $house): self
+    {
+        if (!$this->houses->contains($house)) {
+            $this->houses[] = $house;
+            $house->addImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHouse(House $house): self
+    {
+        if ($this->houses->contains($house)) {
+            $this->houses->removeElement($house);
+            $house->removeImage($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getFilename();
+    }
 }
