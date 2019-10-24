@@ -7,4 +7,4 @@ import map from './components/map'
 import card from './components/card'
 import carousel from './components/carousel'
 
-initializeModules({ document, settings }, [ typography, header, textFields, map, card, carousel ])
+initializeModules({ document, settings, window }, [ typography, header, textFields, map, card, carousel ])
