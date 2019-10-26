@@ -1,0 +1,35 @@
+@import "../spacing/functions";
+
+@mixin alert-container {
+  position: absolute;
+  margin-top: get-contained-side-spacing('xs');
+  margin-left: get-contained-side-spacing('xs');
+  margin-right: get-contained-side-spacing('xs');
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10001;
+}
+
+@mixin alert {
+  background: #fff;
+  padding: get-contained-side-spacing('xs') / 2;
+  box-shadow: 1px 1px 20px 0 rgba(0,0,0,.1);
+  position: relative;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    display: block;
+  }
+}
+
+@mixin success {
+  &::after {
+    background: green;
+  }
+}

@@ -58,6 +58,7 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             dump($contact);
+            $this->addFlash('success', 'Le message a bien été envoyé');
         }
 
         return $this->render ('home/contact.html.twig', [
