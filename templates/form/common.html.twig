@@ -51,3 +51,8 @@
     {% set attr = attr|merge({ 'data-empty': value|length == 0 ? 'true' : 'false' }) %}
     {{ parent() }}
 {% endblock %}
+
+{% block date_widget %}
+    {% set attr = attr|merge({ 'data-date': '' }) %}
+    {{ parent() }}
+{% endblock %}
