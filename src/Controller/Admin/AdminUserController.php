@@ -46,6 +46,8 @@ class AdminUserController extends AbstractController
      */
     public function create(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository, EntityManagerInterface $manager, User $user = null)
     {
+        $creation = !$user;
+
         if (!$user) {
             $user = new User();
         }
@@ -64,6 +66,7 @@ class AdminUserController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
+            $this->addFlash('success', $creation ? 'admin.user.created' : 'admin.user.updated');
             return $this->redirectToRoute('admin.user.index');
         }
 
@@ -88,14 +91,14 @@ class AdminUserController extends AbstractController
         );
 
         if (!$isCsrfValid) {
-            $this->addFlash('danger', "Le jeton CSRF n'est pas valide.");
+            $this->addFlash('danger', "admin.csrf.invalid");
             return $this->redirectToRoute('admin.user.index');
         }
 
         $manager->remove($user);
         $manager->flush();
 
-        $this->addFlash('success', 'Le ' . $user->getType() . ' a été supprimé.');
+        $this->addFlash('success', 'admin.user.deleted');
         return $this->redirectToRoute('admin.user.index');
     }
 }

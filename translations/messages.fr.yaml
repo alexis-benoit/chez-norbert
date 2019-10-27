@@ -14,3 +14,7 @@ admin:
     updated: 'Le média a été mise à jour.'
     created: 'Le média a été créée.'
     deleted: 'Le média a été supprimée.'
+  user:
+    updated: "L'utilisateur a été mise à jour."
+    created: "L'utilisateur a été créé."
+    deleted: "L'utilisateur a été supprimé."
