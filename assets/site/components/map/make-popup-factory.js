@@ -5,7 +5,7 @@
  * @returns {function(*=, {position?: *, content?: *}): *}
  */
 const makePopupFactory = L => (map, { position, content }) =>
-    L.popup()
+    L.popup({ autoClose: false })
         .setLatLng(position)
         .setContent(content)
         .openOn(map)
