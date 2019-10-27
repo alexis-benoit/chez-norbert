@@ -6,14 +6,14 @@
 
 Use `.env.local` instead of `.env` to set environment variables in development mode.
 
-```
+```dotenv
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
 MAILER_URL=smtp://localhost:1025
 ```
 
 ## Initialize dependencies
 
-```shell
+```shell script
 # Install composer dependencies
 composer install
 
@@ -40,7 +40,7 @@ npm i -g maildev
 
 ## Starting server
 
-```shell
+```shell script
 
 # Starts Symfony development server
 php bin/console server:run
@@ -57,7 +57,7 @@ maildev
 
 # Test
 
-````shell
+````shell script
 # Create env.test.local
 DATABASE_URL="mysql://root@127.0.0.1:3306/db_name_test"
 
