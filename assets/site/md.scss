@@ -115,3 +115,29 @@
   width: calc(6 / 8 * 100%);
   margin: 0 auto;
 }
+
+/*
+==================================================
+    /Booking form
+==================================================
+*/
+.booking-form {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  & > .form-group {
+    width: 50%;
+    box-sizing: border-box;
+
+
+    &:nth-of-type(odd) {
+      padding-right: 8px;
+    }
+
+    &:nth-of-type(even) {
+
+      padding-left: 8px;
+    }
+  }
+}
