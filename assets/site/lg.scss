@@ -3,6 +3,7 @@
 @import "./components/footer/mixins";
 @import "./components/header/mixins";
 @import "./components/header-nav/mixins";
+@import "./components/alert/mixins";
 
 /*
 ==================================================
@@ -270,6 +271,15 @@
     transform: translateY(-50%);
     margin-right: 32px;
   }
+}
+
+/*
+==================================================
+    /Alert
+==================================================
+*/
+.alert-container {
+  @include alert-container-lg;
 }
 
 //.other-house {

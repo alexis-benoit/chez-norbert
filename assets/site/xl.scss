@@ -1,5 +1,6 @@
 @import "./components/typography/mixins";
 @import "./components/spacing/functions";
+@import "./components/alert/mixins";
 
 /*
 ==================================================
@@ -104,4 +105,8 @@
 .other-house-img {
   height: 600px;
   object-fit: cover;
+}
+
+.alert-container {
+  @include alert-container-xl;
 }
