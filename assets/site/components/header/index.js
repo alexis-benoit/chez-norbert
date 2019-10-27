@@ -9,7 +9,10 @@ const initializeMenuAdapter = ({ document }) => {
     const getAttribute = () => menu.getAttribute('data-menu')
     const setAttribute = state => menu.setAttribute('data-menu', state)
 
-    initializeMenu(subscribe, getAttribute, setAttribute)
+    const navLinks = document.querySelectorAll('.nav-list-item')
+    const navLinksSubscribe = callback => navLinks.forEach(navLink => navLink.addEventListener('click', callback))
+
+    initializeMenu(subscribe, getAttribute, setAttribute, navLinksSubscribe)
 }
 
 export default initializeMenuAdapter

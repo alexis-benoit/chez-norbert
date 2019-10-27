@@ -9,6 +9,8 @@
 @import "./components/footer/mixins";
 @import "./components/spacing/functions";
 @import "./components/colors/variables";
+@import "./components/modal/mixins";
+@import "./components/alert/mixins";
 
 @include reset;
 
@@ -531,5 +533,41 @@ p {
 
     &:last-of-type {
         margin-bottom: 0;
+    }
+}
+
+/*
+==================================================
+    /Modal
+==================================================
+*/
+.modal {
+    @include modal;
+}
+
+.modal-title {
+    @include modal-title;
+    margin-bottom: get-spacing(125);
+    @include bold;
+}
+
+.modal-container {
+    @include modal-container;
+}
+
+/*
+==================================================
+    /Alert
+==================================================
+*/
+.alert-container {
+    @include alert-container;
+}
+
+.alert {
+    @include alert;
+
+    &-success {
+        @include success;
     }
 }

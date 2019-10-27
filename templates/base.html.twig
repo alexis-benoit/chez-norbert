@@ -16,6 +16,16 @@
         {% endblock %}
     </head>
     <body>
+        <div class="alert-container contained">
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
         <header class="header contained">
             <a href="{{ path('home.index') }}" class="header-brand">Chez Norbert</a>
 
@@ -38,7 +48,7 @@
                     </li>
 
                     <li class="nav-list-item nav-list-item-spaced">
-                        <a href="#" class="button-outline">Réserver</a>
+                        <a href="#" class="button-outline" data-modal-action="open" data-modal="#booking-modal">Réserver</a>
                     </li>
                 </ul>
             </nav>
@@ -71,6 +81,17 @@
                 </ul>
             </div>
         </footer>
+
+        <div id="booking-modal" class="modal-container">
+            <div class="modal">
+
+                <h3 class="modal-title">Réservez maintenant</h3>
+
+                <div class="modal-body">
+                    {{ render(controller('App\\Controller\\BookingController::index')) }}
+                </div>
+            </div>
+        </div>
 
         {% block javascripts %}
             {{ encore_entry_script_tags ('app') }}
