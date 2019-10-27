@@ -29,6 +29,11 @@
   box-sizing: border-box;
 }
 
+@mixin modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 @mixin modal-title {
   @include title-6;
 }

@@ -555,6 +555,10 @@ p {
     @include modal-container;
 }
 
+.modal-header {
+    @include modal-header;
+}
+
 /*
 ==================================================
     /Alert
