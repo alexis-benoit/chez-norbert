@@ -10,10 +10,18 @@
 }
 
 @mixin alert {
+  &-out {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  transition: transform .3s, opacity .3s;
+
   background: #fff;
   padding: get-contained-side-spacing('xs') / 2;
   box-shadow: 1px 1px 20px 0 rgba(0,0,0,.1);
   position: relative;
+  margin-bottom: get-contained-side-spacing('xs') / 4;
 
   &::after {
     content: " ";

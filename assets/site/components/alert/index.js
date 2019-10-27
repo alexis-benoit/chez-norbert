@@ -5,7 +5,15 @@ const initializeModalAdapter = ({ document, window }) => {
         return
 
     window.setTimeout(() => {
-        alert.remove()
+        const handleAlert = () => {
+            alert.removeEventListener('transitionend', handleAlert)
+            alert.remove()
+            initializeModalAdapter({ document, window })
+        }
+        alert.addEventListener('transitionend', handleAlert)
+
+        alert.classList.add ('alert-out')
+
     }, 3000)
 }
 
