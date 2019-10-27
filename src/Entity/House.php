@@ -208,4 +208,8 @@ class House
 
         return $this;
     }
+
+    public function getFirstImage () : ?Media {
+        return $this->images[0] ?? null;
+    }
 }

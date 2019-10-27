@@ -76,7 +76,7 @@
                 <article class="other-house">
 
                     {% if (house.images|length > 0) %}
-                        <img src="{{ vich_uploader_asset(house.images[0], 'imageFile') }}" alt="{{ house.images[0].alt }}" class="other-house-img">
+                        <img src="{{ vich_uploader_asset(house.firstImage, 'imageFile') }}" alt="{{ house.images[0].alt }}" class="other-house-img">
                     {% endif %}
                     <div class="other-house-body">
                             <span class="overline">Gîte suivant</span>
@@ -107,7 +107,7 @@
         <section class="other-houses-body">
             <article class="other-house">
 
-                <img src="{{ vich_uploader_asset(oppositeTypeHouse.images[0], 'imageFile') }}" class="other-house-img" alt="{{ oppositeTypeHouse.images[0].alt }}">
+                <img src="{{ vich_uploader_asset(oppositeTypeHouse.firstImage, 'imageFile') }}" class="other-house-img" alt="{{ oppositeTypeHouse.images[0].alt }}">
 
                 <div class="other-house-body">
                     <h3 class="other-house-title">{{ oppositeTypeHouse.name }}</h3>
