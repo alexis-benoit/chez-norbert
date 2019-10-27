@@ -46,10 +46,6 @@
                     <li class="nav-list-item">
                         <a href="{{ path('home.contact') }}" class="nav-link">Contact</a>
                     </li>
-
-                    <li class="nav-list-item nav-list-item-spaced">
-                        <a href="#" class="button-outline" data-modal-action="open" data-modal="#booking-modal">Réserver</a>
-                    </li>
                 </ul>
             </nav>
         </header>
@@ -67,9 +63,6 @@
             <div class="footer-nav">
                 <ul class="footer-nav-list">
                     <li class="footer-nav-item">
-                        <a href="{{ path('home.contact') }}" class="footer-link">Réserver</a>
-                    </li>
-                    <li class="footer-nav-item">
                         <a href="{{ path('home.index') }}#houses" class="footer-link">Nos gîtes</a>
                     </li>
                     <li class="footer-nav-item">
@@ -81,17 +74,6 @@
                 </ul>
             </div>
         </footer>
-
-        <div id="booking-modal" class="modal-container">
-            <div class="modal">
-
-                <h3 class="modal-title">Réservez maintenant</h3>
-
-                <div class="modal-body">
-                    {{ render(controller('App\\Controller\\BookingController::index')) }}
-                </div>
-            </div>
-        </div>
 
         {% block javascripts %}
             {{ encore_entry_script_tags ('app') }}

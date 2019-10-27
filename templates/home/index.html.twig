@@ -88,7 +88,7 @@
             <div class="discover-card">
                 <h2 class="title-1">Tant de choses à découvrir</h2>
                 <p>Entre le culture de l'esprit et la culture du bien-vivre. Du château du Haut-Koenigsbourg en passant par la Bibliothèque Humaniste de Sélestat sans oublier le musée Unterlinden de Colmar et les vignerons passionnés, vous tomberez à coup sûr amoureux de l'Alsace.</p>
-                <a href="#" class="button discover-button">Ouvrir la carte</a>
+                <button class="button discover-button" data-modal-action="open" data-modal="#map-modal">Ouvrir la carte</button>
             </div>
         </div>
 
@@ -172,5 +172,15 @@
             <a href="{{ path('home.contact') }}" class="button contact-us-button">Contactez-nous</a>
         </div>
     </section>
+
+    <div class="modal-container" id="map-modal">
+        <div class="modal">
+            <header class="modal-header">
+                <h3 class="modal-title">Autour de Chez Norbert</h3>
+                <span class="modal-title modal-close" data-modal-action="close" data-modal="#map-modal">&times;</span>
+            </header>
+            <div id="modal-map" data-map data-center="[48.2050849, 7.3633694]" data-zoom="100" style="height: 70vh"></div>
+        </div>
+    </div>
 
 {% endblock %}
