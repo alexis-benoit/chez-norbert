@@ -2,3 +2,11 @@ Title 1: Titre 1
 
 House: Gîte
 Guest room: Chambre d'hôte
+
+admin:
+  house:
+    updated: 'La chambre a été mise à jour.'
+    created: 'La chambre a été créée.'
+    deleted: 'La chambre a bien été suprimée.'
+  csrf:
+    invalid: 'Le jeton CSRF est invalide.'

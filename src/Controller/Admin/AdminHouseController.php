@@ -44,6 +44,8 @@ class AdminHouseController extends AbstractController
      */
     public function create(Request $request, SlugifyInterface $slugifier, EntityManagerInterface $manager, House $house = null)
     {
+        $creation = !$house;
+
         if (!$house) {
             $house = new House();
         }
@@ -57,10 +59,10 @@ class AdminHouseController extends AbstractController
             $slug = $slugifier->slugify($house->getName());
             $house->setSlug($slug);
 
-            dump($house);
-
             $manager->persist($house);
             $manager->flush();
+
+            $this->addFlash('success', $creation ? 'admin.house.created' : 'admin.house.updated');
             return $this->redirectToRoute('admin.house.index');
         }
 
@@ -85,14 +87,14 @@ class AdminHouseController extends AbstractController
         );
 
         if (!$isCsrfValid) {
-            $this->addFlash('danger', "Le jeton CSRF n'est pas valide.");
+            $this->addFlash('danger', "admin.csrf.invalid");
             return $this->redirectToRoute('admin.house.index');
         }
 
         $manager->remove($house);
         $manager->flush();
 
-        $this->addFlash('success', 'Le ' . $house->getType() . ' a été supprimé.');
+        $this->addFlash('success', 'admin.house.deleted');
         return $this->redirectToRoute('admin.house.index');
     }
 }
