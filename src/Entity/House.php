@@ -49,7 +49,7 @@ class House
      *     message = "house.constraints.description.notBlank"
      * )
      * @Assert\Length(
-     *     max = 255,
+     *     max = 800,
      *     maxMessage = "house.constraint.description.length.max"
      * )
      */
@@ -63,7 +63,7 @@ class House
     /**
      * @ORM\Column(type="smallint")
      * @Assert\Choice(
-     *     callback={"App\Entity\House", "getTypes"},
+     *     callback={"App\Entity\House", "getTypesNumbers"},
      *     message="house.constraint.type.choice"
      * )
      */
@@ -72,6 +72,10 @@ class House
     public static $houseTypes = [
         0 => 'House',
         1 => 'Guest room'
+    ];
+
+    private static $houseTypesNumbers = [
+        0, 1
     ];
 
     /**
@@ -173,6 +177,10 @@ class House
     public function getTypes (): array
     {
         return self::$houseTypes;
+    }
+
+    public function getTypesNumbers () : array {
+        return self::$houseTypesNumbers;
     }
 
     /**
