@@ -8,6 +8,7 @@ Use `.env.local` instead of `.env` to set environment variables in development m
 
 ```
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
+MAILER_URL=smtp://localhost:1025
 ```
 
 ## Initialize dependencies
@@ -29,6 +30,14 @@ php bin/console doctrine:migrations:migrate
 php bin/console doctrine:fixtures:load
 ```
 
+## Mail
+
+To work with mail you can install maildev 
+
+```shell script
+npm i -g maildev
+```
+
 ## Starting server
 
 ```shell
@@ -41,6 +50,9 @@ npm run dev-server
 
 # or starts webpack file watcher
 npm run watch
+
+# Starts maildev server
+maildev
 ```
 
 # Test
