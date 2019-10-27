@@ -1,0 +1,9 @@
+{% extends "mails/base.html.twig" %}
+
+{% block body %}
+    <h1>Contact</h1>
+    <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
+    <p>Email {{ contact.email }}</p>
+    <p>Téléphone {{ contact.tel }}</p>
+    <p>{{ contact.message }}</p>
+{% endblock %}

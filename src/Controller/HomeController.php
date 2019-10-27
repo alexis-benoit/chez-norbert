@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\HouseRepository;
+use App\Repository\WebSiteInformationRepository;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,10 +49,17 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             ]);
     }
+
     /**
      * @Route("/contact", name="home.contact")
+     *
+     * @param Request $request
+     * @param Swift_Mailer $mailer
+     *
+     * @param WebSiteInformationRepository $repository
+     * @return Response
      */
-    public function contact (Request $request)
+    public function contact (Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository)
     {
         $contact = new Contact ();
         $form = $this->createForm(ContactType::class, $contact);
@@ -57,8 +67,20 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($contact);
+            $message = (new Swift_Message())
+                ->setFrom($contact->getEmail())
+                ->setTo($repository->findOne()->getEmail())
+                ->setBody(
+                    $this->renderView('mails/contact.html.twig', [
+                        'contact' => $contact
+                    ]),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
             $this->addFlash('success', 'Le message a bien été envoyé');
+            return $this->redirectToRoute('home.contact');
         }
 
         return $this->render ('home/contact.html.twig', [
