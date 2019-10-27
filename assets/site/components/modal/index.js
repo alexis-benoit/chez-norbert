@@ -7,6 +7,13 @@ const initializeModalAdapter = ({ document }) => {
 
             modal.dataset.modalActive = 'true'
         }))
+
+    document.querySelectorAll('.modal-container')
+        .forEach(modalContainer => modalContainer.addEventListener('click', ({ target }) => {
+            if (modalContainer === target) {
+                modalContainer.dataset.modalActive = 'false'
+            }
+        }))
 }
 
 export default initializeModalAdapter
