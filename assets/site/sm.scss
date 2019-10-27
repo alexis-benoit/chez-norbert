@@ -2,6 +2,7 @@
 @import "./components/typography/mixins";
 @import "./components/button/mixins";
 @import "./components/footer/mixins";
+@import "./components/modal/mixins";
 
 /*
 ==================================================
@@ -211,4 +212,17 @@
 
 .other-house-body {
   @include title-fz-4;
+}
+
+/*
+==================================================
+    /Modal
+==================================================
+*/
+.modal {
+  @include modal-sm;
+}
+
+.modal-title {
+  @include modal-title-sm;
 }
