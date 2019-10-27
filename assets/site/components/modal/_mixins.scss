@@ -10,14 +10,19 @@
   opacity: 0;
   pointer-events: none;
   z-index: 10001;
-  background: rgba(0,0,0,.1);
+  background: rgba(0,0,0,.5);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity .3s;
 
   &[data-modal-active="true"] {
     opacity: 1;
     pointer-events: all;
+
+    & > .modal {
+      transform: translateY(0);
+    }
   }
 }
 
@@ -27,6 +32,8 @@
   margin: get-contained-side-spacing('xs') / 2;
   width: calc(100% - #{get-contained-side-spacing('xs')});
   box-sizing: border-box;
+  transition: transform .3s;
+  transform: translateY(-100%);
 }
 
 @mixin modal-header {
