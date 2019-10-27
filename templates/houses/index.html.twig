@@ -129,7 +129,7 @@
             </header>
 
             <div class="modal-body">
-                {{ render(controller('App\\Controller\\BookingController::index')) }}
+                {{ render(controller('App\\Controller\\BookingController::index', { id: house.id })) }}
             </div>
         </div>
     </div>

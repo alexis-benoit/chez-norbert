@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\House;
 use App\Form\BookingType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -13,11 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
     /**
-     * @Route("/booking", name="booking.index")
+     * @Route("/booking/{id}", name="booking.index")
      * @param Request $request
+     * @param House $house
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request, House $house)
     {
         $booking = new Booking();
         $bookingForm = $this->createForm(BookingType::class, $booking);
