@@ -244,6 +244,10 @@
   width: 10%;
 }
 
+.house-overline {
+  @include subtitle-1;
+}
+
 .other-house-body {
   width: calc(6 / 12 * 100%);
   box-sizing: border-box;
