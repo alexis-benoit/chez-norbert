@@ -99,14 +99,14 @@ class AdminMediaController extends AbstractController
         );
 
         if (!$isCsrfValid) {
-            $this->addFlash('danger', "Le jeton CSRF n'est pas valide.");
+            $this->addFlash('danger', "admin.csrf.invalid");
             return $this->redirectToRoute('admin.media.index');
         }
 
         $manager->remove($media);
         $manager->flush();
 
-        $this->addFlash('success', 'Le media a été supprimé.');
+        $this->addFlash('success', 'admin.media.deleted');
 
         return $this->redirectToRoute('admin.media.index');
     }

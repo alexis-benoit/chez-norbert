@@ -7,6 +7,10 @@ admin:
   house:
     updated: 'La chambre a été mise à jour.'
     created: 'La chambre a été créée.'
-    deleted: 'La chambre a bien été suprimée.'
+    deleted: 'La chambre a été supprimée.'
   csrf:
     invalid: 'Le jeton CSRF est invalide.'
+  media:
+    updated: 'Le média a été mise à jour.'
+    created: 'Le média a été créée.'
+    deleted: 'Le média a été supprimée.'
