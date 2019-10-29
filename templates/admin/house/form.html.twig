@@ -128,7 +128,7 @@
                     {% for media in house.medias %}
                         <div class="col-md-8 mb-4">
                             <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
-                            <a href="{{ path('admin.media.delete', { id: media.id }) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
+                            <a href="{{ path('api.admin.media.delete', { id: media.id }) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
                                 Supprimer
                             </a>
                         </div>

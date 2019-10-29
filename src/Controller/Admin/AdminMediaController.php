@@ -93,13 +93,7 @@ class AdminMediaController extends AbstractController
      * @return JsonResponse|RedirectResponse
      */
     public function delete (Media $media, EntityManagerInterface $manager, Request $request) {
-
-        if ($request->headers->get('Content-type') === 'application/json') {
-            $token = json_decode($request->getContent(), true)['_token'];
-        } else {
-            $token = $request->get('_token');
-        }
-
+        $token = $request->get('_token');
         $isCsrfValid = $this->isCsrfTokenValid(
             'delete' . $media->getId(),
             $token
@@ -108,13 +102,9 @@ class AdminMediaController extends AbstractController
         if (!$isCsrfValid) {
             $this->addFlash('danger', "admin.csrf.invalid");
 
-            if (in_array('application/json', $request->getAcceptableContentTypes())) {
-                return new JsonResponse([ 'error' => "Token CSRF invalide." ], 400);
-            } else {
-                return $this->redirect(
-                    $request->headers->get('referer') ?? '/'
-                );
-            }
+            return $this->redirect(
+                $request->headers->get('referer') ?? '/'
+            );
         }
 
         $manager->remove($media);
@@ -122,12 +112,8 @@ class AdminMediaController extends AbstractController
 
         $this->addFlash('success', 'admin.media.deleted');
 
-        if (in_array('application/json', $request->getAcceptableContentTypes())) {
-            return new JsonResponse([ 'success' => 1 ]);
-        } else {
-            return $this->redirect(
-                $request->headers->get('referer') ?? '/'
-            );
-        }
+        return $this->redirect(
+            $request->headers->get('referer') ?? '/'
+        );
     }
 }
