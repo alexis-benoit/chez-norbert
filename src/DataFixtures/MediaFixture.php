@@ -36,8 +36,8 @@ class MediaFixture extends Fixture implements DependentFixtureInterface
         foreach ($houses as $house) {
             for ($i = 0; $i < 3; $i ++) {
                 $response = $httpClient->request('GET', $faker->imageUrl());
-                $path = __DIR__ . "/../../public/images/medias/$i.jpg";
-                $publicPath = "$i.jpg";
+                $path = __DIR__ . "/../../public/images/medias/{$house->getId()}-$i.jpg";
+                $publicPath = "{$house->getId()}-$i.jpg";
                 file_put_contents($path, $response->getContent());
 
                 $media = new Media();
