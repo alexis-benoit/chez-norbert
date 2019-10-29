@@ -69,14 +69,10 @@ class Media
     private $alt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\House", mappedBy="images")
+     * @ORM\ManyToOne(targetEntity="App\Entity\House", inversedBy="medias")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $houses;
-
-    public function __construct()
-    {
-        $this->houses = new ArrayCollection();
-    }
+    private $house;
 
     public function getId(): ?int
     {
@@ -155,36 +151,20 @@ class Media
         return $this;
     }
 
-    /**
-     * @return Collection|House[]
-     */
-    public function getHouses(): Collection
-    {
-        return $this->houses;
-    }
-
-    public function addHouse(House $house): self
-    {
-        if (!$this->houses->contains($house)) {
-            $this->houses[] = $house;
-            $house->addImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHouse(House $house): self
-    {
-        if ($this->houses->contains($house)) {
-            $this->houses->removeElement($house);
-            $house->removeImage($this);
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->getFilename();
+    }
+
+    public function getHouse(): ?House
+    {
+        return $this->house;
+    }
+
+    public function setHouse(?House $house): self
+    {
+        $this->house = $house;
+
+        return $this;
     }
 }

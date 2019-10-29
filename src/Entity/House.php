@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -84,13 +85,20 @@ class House
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Media", inversedBy="houses")
+     * @ORM\OneToMany(targetEntity="App\Entity\Media", mappedBy="house", orphanRemoval=true, cascade={"persist"})
+     */
+    private $medias;
+
+    /**
+     * @Assert\All({
+     *   @Assert\Image(mimeTypes="image/jpeg")
+     * })
      */
     private $images;
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->medias = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,30 +194,66 @@ class House
     /**
      * @return Collection|Media[]
      */
-    public function getImages(): Collection
+    public function getMedias(): Collection
+    {
+        return $this->medias;
+    }
+
+    public function addMedia(Media $media): self
+    {
+        if (!$this->medias->contains($media)) {
+            $this->medias[] = $media;
+            $media->setHouse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedia(Media $media): self
+    {
+        if ($this->medias->contains($media)) {
+            $this->medias->removeElement($media);
+            // set the owning side to null (unless already changed)
+            if ($media->getHouse() === $this) {
+                $media->setHouse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFirstMedia () : ?Media {
+        return $this->medias[0] ?? null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
     {
         return $this->images;
     }
 
-    public function addImage(Media $image): self
+    /**
+     * @param mixed $images
+     * @return House
+     * @throws \Exception
+     */
+    public function setImages($images) : self
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
+        $this->images = $images;
+
+        foreach ($images as $image) {
+            $media = new Media();
+            $media
+                ->setName(' ')
+                ->setAlt(' ')
+                ->setImageFile($image)
+            ;
+
+            $this->addMedia($media);
         }
 
         return $this;
-    }
-
-    public function removeImage(Media $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-        }
-
-        return $this;
-    }
-
-    public function getFirstImage () : ?Media {
-        return $this->images[0] ?? null;
     }
 }

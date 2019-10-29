@@ -13,7 +13,7 @@
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
-                        {% for media in house.images %}
+                        {% for media in house.medias %}
                             <li class="glide__slide">
                                 <div class="carousel-img-wrapper">
                                     <picture>
@@ -21,7 +21,7 @@
                                         <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
                                         <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
                                         <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                                        <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="Portail d'entrée de Chez Norbert" class="carousel-img">
+                                        <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="carousel-img">
                                     </picture>
                                 </div>
                             </li>
@@ -75,9 +75,7 @@
             {% for house in anotherHouses %}
                 <article class="other-house">
 
-                    {% if (house.images|length > 0) %}
-                        <img src="{{ vich_uploader_asset(house.firstImage, 'imageFile') }}" alt="{{ house.images[0].alt }}" class="other-house-img">
-                    {% endif %}
+                    <img src="{{ vich_uploader_asset(house.firstMedia, 'imageFile') }}" alt="{{ house.firstMedia.alt }}" class="other-house-img">
                     <div class="other-house-body">
                             <span class="overline">Gîte suivant</span>
                             <h3 class="other-house-title">{{ house.name }}</h3>
@@ -107,7 +105,7 @@
         <section class="other-houses-body">
             <article class="other-house">
 
-                <img src="{{ vich_uploader_asset(oppositeTypeHouse.firstImage, 'imageFile') }}" class="other-house-img" alt="{{ oppositeTypeHouse.images[0].alt }}">
+                <img src="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') }}" class="other-house-img" alt="{{ oppositeTypeHouse.firstMedia.alt }}">
 
                 <div class="other-house-body">
                     <h3 class="other-house-title">{{ oppositeTypeHouse.name }}</h3>
