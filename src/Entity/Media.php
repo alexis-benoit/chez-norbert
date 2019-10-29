@@ -25,18 +25,6 @@ class Media
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(
-     *     message = "media.constraints.name.blank"
-     * )
-     * @Assert\Length(
-     *     max = 255,
-     *     maxMessage = "media.constraints.name.length.max"
-     * )
-     */
-    private $name;
-
-    /**
      * @Vich\UploadableField(mapping="media_images", fileNameProperty="filename")
      * @var File
      *
@@ -77,18 +65,6 @@ class Media
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getFilename(): ?string
