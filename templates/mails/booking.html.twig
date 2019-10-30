@@ -1,0 +1,11 @@
+{% extends "mails/base.html.twig" %}
+
+{% block body %}
+    <h1>Reservation</h1>
+    <h2>{{ booking.firstName }} {{ booking.lastName }}</h2>
+    <p>Email {{ booking.email }}</p>
+    <p>Téléphone {{ booking.phone }}</p>
+    <p>Pour {{ booking.personsCount }}</p>
+    <p>Dans le {{ house.getTypeName() }} {{ house.name }}</p>
+    <p>Du {{ booking.from.format('d-m-Y') }} au {{ booking.to.format('d-m-Y') }}</p>
+{% endblock %}

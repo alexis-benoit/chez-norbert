@@ -41,8 +41,7 @@ class MediaFixture extends Fixture implements DependentFixtureInterface
                 file_put_contents($path, $response->getContent());
 
                 $media = new Media();
-                $media->setName($faker->name())
-                    ->setAlt($faker->sentence())
+                $media->setAlt($faker->sentence())
                     ->setFilename($publicPath)
                     ->setUpdatedAt(new DateTimeImmutable());
 

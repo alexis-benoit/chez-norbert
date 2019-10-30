@@ -1,0 +1,50 @@
+{% extends "base_admin.html.twig" %}
+{% form_theme form 'form/admin.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .active {
+            background: lightblue;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4 mb-2">
+                <h1>
+                    {% if info.id is null %}
+                        Ajout des informations
+                    {% else %}
+                        Édition des informations
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+
+                {{ form_start(form) }}
+                    {{ form_row(form.siteName) }}
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.phoneNumber) }}
+                    {{ form_row(form.address) }}
+
+
+                    <button class="btn btn-{{ info.id is null ? 'success' : 'primary' }}">
+                        {% if info.id is null %}
+                            Créer
+                        {% else %}
+                            Mettre à jour
+                        {% endif %}
+                    </button>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
