@@ -39,10 +39,6 @@ class HouseType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,]
             )
-            ->add('images',  FileType::class, [
-                'required' => false,
-                'multiple' => true,
-            ])
         ;
     }
 

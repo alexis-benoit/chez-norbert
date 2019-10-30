@@ -31,7 +31,6 @@
                     {{ form_row(form.type) }}
                     {{ form_row(form.peopleNumber) }}
                     {{ form_row(form.description) }}
-                    {{ form_row(form.images) }}
 
                     <ul class="advantage" data-prototype="{{ form_widget(form.advantage.vars.prototype)|e('html_attr') }}">
                         {% for advantage in form.advantage %}
@@ -134,6 +133,29 @@
                         </div>
                     {% endfor %}
                 </div>
+
+                <div class="row">
+                    <h5 class="col-md-8 mt-4 mb-2">
+                       Ajouter un média
+                    </h5>
+                    <div class="col-md-8">
+                        {% with { form: mediaForm, creation: true } only %}
+                            {% include "admin/media/_form.html.twig" %}
+                        {% endwith %}
+
+{#                        {% with form = mediaForm only %}#}
+{#                            {% set form.action = path('api.admin.house.media.add', { id: house.id }) %}#}
+{#                            {% include "admin/media/_form.html.twig" %}#}
+{#                        {% endwith %}#}
+
+{#                        {{ form_start(mediaForm, { attr: { 'data-add-media': '' } }) }}#}
+{#                            {{ form_row(mediaForm.alt) }}#}
+{#                            {{ form_row(mediaForm.imageFile) }}#}
+
+{#                            <button class="btn btn-success">Ajouter</button>#}
+{#                        {{ form_end(mediaForm) }}#}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -143,34 +165,82 @@
     {{ parent() }}
     <script>
 
-        document.querySelectorAll('[data-delete]')
-            .forEach(a => a.addEventListener('click', e => {
-                e.preventDefault()
-                //
-                // const formData = new FormData()
-                // formData.append('_token', a.dataset.token)
+        const handleMediaDelete = e => {
+            e.preventDefault()
+            //
+            // const formData = new FormData()
+            // formData.append('_token', a.dataset.token)
 
-                fetch (a.href, {
-                    method: 'DELETE',
+            const a = e.target
+
+            fetch (a.href, {
+                method: 'DELETE',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    '_token':a.dataset.token
+                })
+            })
+                .then (response => response.json())
+                .then(data => {
+                    if (data.success === 1) {
+                        a.parentNode.parentNode.removeChild(a.parentNode)
+                    } else {
+                        console.log(data.error)
+                    }
+                })
+                .catch(error => console.log(error))
+
+        }
+
+        document.querySelectorAll('[data-add-media]')
+            .forEach(form => form.addEventListener('submit', e => {
+                e.preventDefault()
+
+                const formData = new FormData (form)
+
+                form.reset()
+
+                fetch (form.action, {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
                         'Accept': 'application/json',
-                        'Content-type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        '_token':a.dataset.token
-                    })
-                }).then (response => response.json())
-                    .then(data => {
-                        if (data.success === 1) {
-                            a.parentNode.parentNode.removeChild(a.parentNode)
-                        } else {
-                            console.log(data.error)
-                        }
-                    })
-                    .catch(error => console.log(error))
+                    method: form.method,
+                    body: formData
+                })
+                    .then (response => response.json())
+                    .then (data => {
+                        const div = document.createElement('div')
+                        div.setAttribute('class', 'col-md-8 mb-4')
 
+                        const img = document.createElement('img')
+                        img.src = data.media.filename
+                        img.setAttribute('class', 'img-fluid mb-2')
+
+                        div.appendChild(img)
+
+                        const link = document.createElement('a')
+                        link.href = data.url
+                        link.setAttribute('class', 'btn btn-danger')
+                        link.dataset.delete = ''
+                        link.dataset.token = data.token
+                        link.textContent = 'Supprimer'
+                        div.appendChild(link)
+
+                        div.addEventListener('click', handleMediaDelete)
+
+                        document.querySelector('[data-image-container]')
+                            .appendChild(div)
+                    })
+                    .catch (error => console.log(error))
             }))
+
+        document.querySelectorAll('[data-delete]')
+            .forEach(a => a.addEventListener('click', e => handleMediaDelete(e)))
 
         document.querySelectorAll('[data-select]')
             .forEach(selectWrapper => {

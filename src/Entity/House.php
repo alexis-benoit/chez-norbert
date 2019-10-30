@@ -89,13 +89,6 @@ class House
      */
     private $medias;
 
-    /**
-     * @Assert\All({
-     *   @Assert\Image(mimeTypes="image/jpeg")
-     * })
-     */
-    private $images;
-
     public function __construct()
     {
         $this->medias = new ArrayCollection();
@@ -224,36 +217,5 @@ class House
 
     public function getFirstMedia () : ?Media {
         return $this->medias[0] ?? null;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * @param mixed $images
-     * @return House
-     * @throws \Exception
-     */
-    public function setImages($images) : self
-    {
-        $this->images = $images;
-
-        foreach ($images as $image) {
-            $media = new Media();
-            $media
-                ->setName(' ')
-                ->setAlt(' ')
-                ->setImageFile($image)
-            ;
-
-            $this->addMedia($media);
-        }
-
-        return $this;
     }
 }
