@@ -108,11 +108,11 @@
                     <article class="card" data-link>
                         <div class="card-img-wrapper">
                             <picture>
-                                <source srcset="{{ vich_uploader_asset(house.firstImage, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                                <source srcset="{{ vich_uploader_asset(house.firstImage, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                                <source srcset="{{ vich_uploader_asset(house.firstImage, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                                <source srcset="{{ vich_uploader_asset(house.firstImage, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                                <img src="{{ vich_uploader_asset(house.firstImage, 'imageFile') }}" class="card-img" alt="{{ house.images[0].alt }}">
+                                <source srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                                <source srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                                <source srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                                <source srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                                <img src="{{ vich_uploader_asset(house.firstMedia, 'imageFile') }}" class="card-img" alt="{{ house.firstMedia.alt }}">
                             </picture>
                         </div>
                         <div class="card-body">
@@ -140,11 +140,11 @@
                     <article class="card" data-link>
                         <div class="card-img-wrapper">
                             <picture>
-                                <source srcset="{{ vich_uploader_asset(room.firstImage, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                                <source srcset="{{ vich_uploader_asset(room.firstImage, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                                <source srcset="{{ vich_uploader_asset(room.firstImage, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                                <source srcset="{{ vich_uploader_asset(room.firstImage, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                                <img src="{{ vich_uploader_asset(room.firstImage, 'imageFile') }}" class="card-img" alt="{{ room.images[0].alt }}">
+                                <source srcset="{{ vich_uploader_asset(room.firstMedia, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                                <source srcset="{{ vich_uploader_asset(room.firstMedia, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                                <source srcset="{{ vich_uploader_asset(room.firstMedia, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                                <source srcset="{{ vich_uploader_asset(room.firstMedia, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                                <img src="{{ vich_uploader_asset(room.firstMedia, 'imageFile') }}" class="card-img" alt="{{ room.firstMedia.alt }}">
                             </picture>
                         </div>
                         <div class="card-body">

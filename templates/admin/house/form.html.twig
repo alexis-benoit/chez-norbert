@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-8">
 
                 {{ form_start(form) }}
                     {{ form_row(form.name) }}
@@ -32,6 +32,7 @@
                     {{ form_row(form.peopleNumber) }}
                     {{ form_row(form.description) }}
                     {{ form_row(form.images) }}
+
                     <ul class="advantage" data-prototype="{{ form_widget(form.advantage.vars.prototype)|e('html_attr') }}">
                         {% for advantage in form.advantage %}
                             <li>{{ form_row(advantage) }}</li>
@@ -121,6 +122,19 @@
                     </button>
                 {{ form_end(form) }}
             </div>
+
+            <div class="col-4">
+                <div class="row d-flex">
+                    {% for media in house.medias %}
+                        <div class="col-md-8 mb-4">
+                            <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
+                            <a href="{{ path('api.admin.media.delete', { id: media.id }) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
+                                Supprimer
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -128,6 +142,36 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+
+        document.querySelectorAll('[data-delete]')
+            .forEach(a => a.addEventListener('click', e => {
+                e.preventDefault()
+                //
+                // const formData = new FormData()
+                // formData.append('_token', a.dataset.token)
+
+                fetch (a.href, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        '_token':a.dataset.token
+                    })
+                }).then (response => response.json())
+                    .then(data => {
+                        if (data.success === 1) {
+                            a.parentNode.parentNode.removeChild(a.parentNode)
+                        } else {
+                            console.log(data.error)
+                        }
+                    })
+                    .catch(error => console.log(error))
+
+            }))
+
         document.querySelectorAll('[data-select]')
             .forEach(selectWrapper => {
                 selectWrapper.addEventListener('click', () => {

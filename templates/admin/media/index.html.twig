@@ -17,7 +17,6 @@
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th>Nom de l'image</th>
                             <th>Image</th>
                             <th>Texte alternatif</th>
                             <th>Actions</th>
@@ -28,7 +27,6 @@
                         {% for media in medias %}
                             <tr>
                                 <td>{{ media.id }}</td>
-                                <td>{{ media.name }}</td>
                                 <td><img src="{{ vich_uploader_asset(media, 'imageFile') }}" style="width: 200px; height: 200px; object-fit: cover"></td>
                                 <td>{{ media.alt }}</td>
                                 <td class="d-flex">

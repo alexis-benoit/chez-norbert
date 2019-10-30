@@ -25,18 +25,6 @@ class Media
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(
-     *     message = "media.constraints.name.blank"
-     * )
-     * @Assert\Length(
-     *     max = 255,
-     *     maxMessage = "media.constraints.name.length.max"
-     * )
-     */
-    private $name;
-
-    /**
      * @Vich\UploadableField(mapping="media_images", fileNameProperty="filename")
      * @var File
      *
@@ -69,30 +57,14 @@ class Media
     private $alt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\House", mappedBy="images")
+     * @ORM\ManyToOne(targetEntity="App\Entity\House", inversedBy="medias")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $houses;
-
-    public function __construct()
-    {
-        $this->houses = new ArrayCollection();
-    }
+    private $house;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getFilename(): ?string
@@ -155,36 +127,20 @@ class Media
         return $this;
     }
 
-    /**
-     * @return Collection|House[]
-     */
-    public function getHouses(): Collection
-    {
-        return $this->houses;
-    }
-
-    public function addHouse(House $house): self
-    {
-        if (!$this->houses->contains($house)) {
-            $this->houses[] = $house;
-            $house->addImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHouse(House $house): self
-    {
-        if ($this->houses->contains($house)) {
-            $this->houses->removeElement($house);
-            $house->removeImage($this);
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->getFilename();
+    }
+
+    public function getHouse(): ?House
+    {
+        return $this->house;
+    }
+
+    public function setHouse(?House $house): self
+    {
+        $this->house = $house;
+
+        return $this;
     }
 }

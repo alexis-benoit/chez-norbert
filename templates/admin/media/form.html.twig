@@ -9,7 +9,7 @@
                     {% if creation == true %}
                         Ajout d'un média
                     {% else %}
-                        Édition de l'image "{{ media.name }}"
+                        Édition de l'image "{{ media.filename }}"
                     {% endif %}
                 </h1>
             </div>
@@ -24,7 +24,6 @@
             <div class="col-{{ creation == true ? '12' : '8' }}">
 
                 {{ form_start(form) }}
-                    {{ form_row(form.name) }}
                     {{ form_row(form.alt) }}
                     {{ form_row(form.imageFile) }}
 

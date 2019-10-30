@@ -16,7 +16,6 @@ class MediaType extends AbstractType
         $create = $options['create'];
 
         $builder
-            ->add('name', TextType::class)
             ->add('alt', TextType::class)
             ->add('imageFile', FileType::class, [
                 'required' => $create

@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,8 +39,8 @@ class HouseType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,]
             )
-            ->add('images', EntityType::class, [
-                'class' => Media::class,
+            ->add('images',  FileType::class, [
+                'required' => false,
                 'multiple' => true,
             ])
         ;

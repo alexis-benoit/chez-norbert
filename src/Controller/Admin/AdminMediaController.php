@@ -90,17 +90,21 @@ class AdminMediaController extends AbstractController
      * @param Media $media
      * @param EntityManagerInterface $manager
      * @param Request $request
-     * @return RedirectResponse
+     * @return JsonResponse|RedirectResponse
      */
     public function delete (Media $media, EntityManagerInterface $manager, Request $request) {
+        $token = $request->get('_token');
         $isCsrfValid = $this->isCsrfTokenValid(
             'delete' . $media->getId(),
-            $request->get('_token')
+            $token
         );
 
         if (!$isCsrfValid) {
             $this->addFlash('danger', "admin.csrf.invalid");
-            return $this->redirectToRoute('admin.media.index');
+
+            return $this->redirect(
+                $request->headers->get('referer') ?? '/'
+            );
         }
 
         $manager->remove($media);
@@ -108,6 +112,8 @@ class AdminMediaController extends AbstractController
 
         $this->addFlash('success', 'admin.media.deleted');
 
-        return $this->redirectToRoute('admin.media.index');
+        return $this->redirect(
+            $request->headers->get('referer') ?? '/'
+        );
     }
 }
