@@ -43,6 +43,9 @@
                             <a class="nav-link" href="{{ path('admin.user.index') }}">Utilisateurs</a>
                         </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin.info.update') }}">Informations</a>
+                    </li>
                 </ul>
                 Connecté en tant que {{ app.user.username }}<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </div>
