@@ -28,7 +28,7 @@ class BookingController extends AbstractController
     public function index(Request $request, House $house, Swift_Mailer $mailer, WebSiteInformationRepository $repository)
     {
         $booking = new Booking();
-        $bookingForm = $this->createForm(BookingType::class, $booking);
+        $bookingForm = $this->createForm(BookingType::class, $booking, ['action' => $this->generateUrl('booking.index', ['id' => $house->getId()])]);
 
         $bookingForm->handleRequest($request);
 
