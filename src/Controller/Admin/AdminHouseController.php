@@ -3,11 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\House;
+use App\Entity\Media;
 use App\Form\HouseType;
+use App\Form\MediaType;
 use App\Repository\HouseRepository;
 use Cocur\Slugify\SlugifyInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,7 +56,6 @@ class AdminHouseController extends AbstractController
         $form = $this->createForm(HouseType::class, $house, [
             'edit' => !!$house->getId(),
         ]);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $slug = $slugifier->slugify($house->getName());
@@ -68,7 +70,8 @@ class AdminHouseController extends AbstractController
 
         return $this->render('admin/house/form.html.twig', [
             'form' => $form->createView(),
-            'house' => $house
+            'house' => $house,
+            'mediaForm' => $this->createForm(MediaType::class, null, [ 'action' => $this->generateUrl('api.admin.house.media.add', [ 'id' => $house->getId() ]) ])->createView()
         ]);
     }
 

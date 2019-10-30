@@ -1,0 +1,15 @@
+
+{% form_theme form 'form/admin.html.twig' %}
+
+{{ form_start(form, { attr: { 'data-add-media': '' } }) }}
+    {{ form_row(form.alt) }}
+    {{ form_row(form.imageFile) }}
+
+    <button class="btn btn-{{ creation ? 'success' : 'primary' }}">
+        {% if creation == true %}
+            Créer
+        {% else %}
+            Mettre à jour
+        {% endif %}
+    </button>
+{{ form_end(form) }}

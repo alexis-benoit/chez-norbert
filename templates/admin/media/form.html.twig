@@ -22,19 +22,7 @@
             {% endif %}
 
             <div class="col-{{ creation == true ? '12' : '8' }}">
-
-                {{ form_start(form) }}
-                    {{ form_row(form.alt) }}
-                    {{ form_row(form.imageFile) }}
-
-                    <button class="btn btn-{{ creation ? 'success' : 'primary' }}">
-                        {% if creation == true %}
-                            Créer
-                        {% else %}
-                            Mettre à jour
-                        {% endif %}
-                    </button>
-                {{ form_end(form) }}
+                {% include "admin/media/_form.html.twig" %}
             </div>
         </div>
     </div>

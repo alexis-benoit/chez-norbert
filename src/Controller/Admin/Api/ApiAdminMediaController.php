@@ -3,13 +3,23 @@
 
 namespace App\Controller\Admin\Api;
 
+use App\Entity\House;
 use App\Entity\Media;
+use App\Form\MediaType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -41,5 +51,48 @@ class ApiAdminMediaController extends AbstractController
         $manager->flush();
 
         return new JsonResponse([ 'success' => 1 ]);
+    }
+
+    /**
+     * @Route("/api/admin/{id}/media/add", name="api.admin.house.media.add", methods={"POST"})
+     *
+     * @param Request $request
+     * @param House $house
+     * @param EntityManagerInterface $manager
+     * @param ValidatorInterface $validator
+     * @param CsrfTokenManagerInterface $tokenManager
+     * @param UploaderHelper $helper
+     * @return JsonResponse|Response
+     */
+    public function form (Request $request, House $house, EntityManagerInterface $manager, ValidatorInterface $validator, CsrfTokenManagerInterface $tokenManager, UploaderHelper $helper) {
+        $media = new Media();
+
+        $form = $this->createForm(MediaType::class, $media);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $media->setHouse($house);
+            $manager->persist($media);
+            $manager->flush();
+
+            return new JsonResponse([
+                'success' => 1,
+                'media' => [
+                    'id' => $media->getId(),
+                    'alt' => $media->getAlt(),
+                    'filename' => $helper->asset($media, 'imageFile')
+                ],
+                'token' => $tokenManager->getToken('delete'.$media->getId())->getValue(),
+                'url' => $this->generateUrl('api.admin.media.delete', [ 'id' => $media->getId() ])
+            ]);
+        }
+
+        $errors = [];
+
+        foreach ($validator->validate($media) as $error) {
+            $errors[] = $error->getMessage();
+        }
+
+        return new JsonResponse([ 'success' => 0, 'violations' => $errors], 400);
     }
 }

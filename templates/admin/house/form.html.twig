@@ -123,7 +123,7 @@
             </div>
 
             <div class="col-4">
-                <div class="row d-flex">
+                <div class="row d-flex" data-image-container>
                     {% for media in house.medias %}
                         <div class="col-md-8 mb-4">
                             <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
