@@ -33,9 +33,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin.media.index') }}">Médias</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ path('admin.house.index') }}">Gîtes / Chambres d'hôte</a>
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
