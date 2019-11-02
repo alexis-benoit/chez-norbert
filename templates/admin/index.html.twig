@@ -22,17 +22,6 @@
                 </div>
             </div>
 
-            <div class="col-6 my-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Voir les médias</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ media_count }} médias</h6>
-                        <p class="card-text">Modifier/ajouter les médias de l'application.</p>
-                        <a href="{{ path('admin.media.index') }}" class="card-link">Liste des médias</a>
-                    </div>
-                </div>
-            </div>
-
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="col-6 my-2">
                     <div class="card">
