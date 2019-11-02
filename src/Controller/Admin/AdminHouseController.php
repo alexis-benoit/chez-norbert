@@ -71,7 +71,7 @@ class AdminHouseController extends AbstractController
         return $this->render('admin/house/form.html.twig', [
             'form' => $form->createView(),
             'house' => $house,
-            'mediaForm' => $this->createForm(MediaType::class, null, [ 'action' => $this->generateUrl('api.admin.house.media.add', [ 'id' => $house->getId() ]) ])->createView()
+            'mediaForm' => $creation ? null : $this->createForm(MediaType::class, null, [ 'action' => $this->generateUrl('api.admin.house.media.add', [ 'id' => $house->getId() ]) ])->createView()
         ]);
     }
 

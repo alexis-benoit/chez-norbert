@@ -130,6 +130,7 @@
                 {{ form_end(form) }}
             </div>
 
+            {% if house.id is not null %}
             <div class="col-4">
                 <div class="row d-flex" data-image-container>
                     {% for media in house.medias %}
@@ -165,6 +166,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
