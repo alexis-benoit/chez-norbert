@@ -40,6 +40,12 @@ class HouseType extends AbstractType
                 'allow_delete' => true,]
             )
         ;
+
+        if (!$options['edit']) {
+            $builder->add('imageFiles', FileType::class, [
+                'multiple' => true,
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

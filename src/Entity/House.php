@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -88,6 +89,11 @@ class House
      * @ORM\OneToMany(targetEntity="App\Entity\Media", mappedBy="house", orphanRemoval=true, cascade={"persist"})
      */
     private $medias;
+
+    /**
+     * @var File[]
+     */
+    private $imageFiles;
 
     public function __construct()
     {
@@ -218,4 +224,34 @@ class House
     public function getFirstMedia () : ?Media {
         return $this->medias[0] ?? null;
     }
+
+    /**
+     * @return File[]
+     */
+    public function getImageFiles(): ?array
+    {
+        return $this->imageFiles;
+    }
+
+    /**
+     * @param File[] $imageFiles
+     * @return House
+     * @throws Exception
+     */
+    public function setImageFiles(array $imageFiles): self
+    {
+        $this->imageFiles = $imageFiles;
+
+        foreach ($imageFiles as $file) {
+            $media = (new Media())
+                ->setImageFile($file)
+                ->setAlt('');
+
+            $this->addMedia($media);
+        }
+
+        return $this;
+    }
+
+
 }
