@@ -1,6 +1,14 @@
 {% extends "base_admin.html.twig" %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
+{% block title %}
+    {% if user.id is null %}
+        Ajout d'un utilisateur
+    {% else %}
+        Édition de l'utilisateur "{{ user.email }}"
+    {% endif %}
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">

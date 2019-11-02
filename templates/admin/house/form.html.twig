@@ -1,6 +1,14 @@
 {% extends "base_admin.html.twig" %}
 {% form_theme form 'form/admin.html.twig' %}
 
+{% block title %}
+    {% if house.id is null %}
+        Ajout d'un gîte/chambre d'hôte
+    {% else %}
+        Édition {{ house.type == "Chambre d'hote" ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
+    {% endif %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <style>
