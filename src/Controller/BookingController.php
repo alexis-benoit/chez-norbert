@@ -32,24 +32,26 @@ class BookingController extends AbstractController
 
         $bookingForm->handleRequest($request);
 
-        if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
-            $message = (new Swift_Message())
-                ->setFrom($booking->getEmail())
-                ->setTo($repository->findOne()->getEmail())
-                ->setBody(
-                    $this->renderView('mails/booking.html.twig', [
-                        'booking' => $booking,
-                        'house' => $house
-                    ]),
-                    'text/html'
-                );
+        if ($bookingForm->isSubmitted()) {
 
-            $mailer->send($message);
+            if ($bookingForm->isValid()) {
 
-            $this->addFlash('success', 'La reservation a bien été envoyée');
-            return $this->redirect(
-                $request->headers->get('referer') ?? '/'
-            );
+                $message = (new Swift_Message())
+                    ->setFrom($booking->getEmail())
+                    ->setTo($repository->findOne()->getEmail())
+                    ->setBody(
+                        $this->renderView('mails/booking.html.twig', [
+                            'booking' => $booking,
+                            'house' => $house
+                        ]),
+                        'text/html'
+                    );
+
+                $mailer->send($message);
+
+                $this->addFlash('success', 'La reservation a bien été envoyée');
+            }
+            return $this->redirectToRoute('houses.get', [ 'slug' => $house->getSlug() ]);
         }
 
         return $this->render ('booking/index.html.twig', [

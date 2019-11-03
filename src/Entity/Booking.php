@@ -3,38 +3,77 @@
 
 namespace App\Entity;
 
-
+use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class Booking
 {
     /**
      * @var string|null
+     * @Assert\NotBlank(
+     *     message = "booking.constraints.firstName.notBlank"
+     * )
+     * @Assert\Length(
+     *     max = 60,
+     *     maxMessage = "booking.constraints.firstName.length.max"
+     * )
      */
     private $firstName;
 
     /**
      * @var string|null
+     * @Assert\NotBlank(
+     *     message = "booking.constraints.lastName.notBlank"
+     * )
+     * @Assert\Length(
+     *     max = 60,
+     *     maxMessage = "booking.constraints.lastName.length.max"
+     * )
      */
     private $lastName;
 
     /**
      * @var string|null
+     * @Assert\NotBlank(
+     *     message = "booking.constraints.email.notBlank"
+     * )
+     * @Assert\Email(
+     *     message = "booking.constraints.email.email"
+     * )
+     * @Assert\Length(
+     *     max = 200,
+     *     maxMessage = "booking.constraints.email.length.max"
+     * )
      */
     private $email;
 
     /**
      * @var string|null
+     * @Assert\NotBlank(
+     *  message = "booking.constraints.phone.notBlank"
+     * )
+     *
+     * @Assert\Length(
+     *  max = 14,
+     *  maxMessage = "booking.constraints.phone.length.max"
+     * )
      */
     private $phone;
 
     /**
      * @var DateTimeInterface
+     * @Assert\Date(
+     *     message = "booking.constraints.from.date"
+     * )
      */
     private $from;
 
     /**
      * @var DateTimeInterface
+     * @Assert\Date(
+     *     message = "booking.constraints.from.date"
+     * )
      */
     private $to;
 
@@ -167,6 +206,23 @@ class Booking
     {
         $this->personsCount = $personsCount;
         return $this;
+    }
+
+    /**
+     * @Assert\Callback
+     *
+     * @param ExecutionContextInterface $context
+     * @param $payload
+     */
+    public function validate (ExecutionContextInterface $context, $payload) {
+        $from = $context->getObject()->getFrom ();
+        $to = $context->getObject()->getTo ();
+
+        if ($from->getTimestamp() > $to->getTimestamp ()) {
+            $context->buildViolation('booking.constraints.to.beforeFrom')
+                ->atPath('to')
+                ->addViolation();
+        }
     }
 
 
