@@ -25,6 +25,7 @@ Encore
      */
     .addEntry('app', './assets/site/app.js')
     .addEntry('app-admin', './assets/admin/app.js')
+    .addEntry('house-form', './assets/admin/house-form.js')
     .addStyleEntry('app-style', './assets/site/app.scss')
     .addStyleEntry('sm', './assets/site/sm.scss')
     .addStyleEntry('md', './assets/site/md.scss')
