@@ -210,6 +210,18 @@
     {{ parent() }}
     <script>
 
+        const makeAlert = (type, message) => {
+            // data-alert-container
+            document.querySelector('[data-alert-container]').innerHTML += `
+                <div class="alert alert-${ type } mt-4" role="alert">
+                    ${ message }
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            `
+        }
+
         $('#imageModal').on('show.bs.modal', function (e) {
             const button = $(e.relatedTarget)
 
@@ -234,8 +246,14 @@
                 body
             })
                 .then (response => response.json ())
-                .then (data => console.log(data))
-                .catch(error => console.log(error))
+                .then (data => {
+                    $('#imageModal').modal ('hide')
+                    makeAlert('success', 'Le média a bien été modifié.')
+                })
+                .catch(error => {
+                    $('#imageModal').modal('hide')
+                    makeAlert('danger', error.violations.shift ())
+                })
 
             // /api/admin/house/media/
         })
