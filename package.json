@@ -22,9 +22,12 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
+    "bootstrap": "^4.3.1",
     "flatpickr": "^4.6.3",
+    "jquery": "^3.4.1",
     "leaflet": "^1.5.1",
     "material-icons": "^0.3.1",
+    "popper.js": "^1.16.0",
     "webfontloader": "^1.6.28"
   }
 }
