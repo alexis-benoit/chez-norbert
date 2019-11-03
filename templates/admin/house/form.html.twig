@@ -136,9 +136,20 @@
                     {% for media in house.medias %}
                         <div class="col-md-8 mb-4">
                             <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
-                            <a href="{{ path('api.admin.media.delete', { id: media.id }) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
-                                Supprimer
-                            </a>
+                            <div>
+                                <button
+                                    class="btn btn-primary"
+                                    data-toggle="modal"
+                                    data-alt="{{ media.alt }}"
+                                    data-image-url="{{ vich_uploader_asset(media, 'imageFile') }}"
+                                    data-target="#imageModal"
+                                    data-media-id="{{ media.id }}">
+                                    Modifier
+                                </button>
+                                <a href="{{ path('api.admin.media.delete', { id: media.id }) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
+                                    Supprimer
+                                </a>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -169,11 +180,65 @@
             {% endif %}
         </div>
     </div>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="media-update" method="post">
+                        <img src="#" class="img-fluid" data-image>
+                        <div class="form-group">
+                            <label for="alt">Texte alternatif</label>
+                            <input type="text" id="alt" class="form-control" data-alt name="media[alt]">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
+
+        $('#imageModal').on('show.bs.modal', function (e) {
+            const button = $(e.relatedTarget)
+
+            const modal = $(this)
+            modal.find('form').attr('data-media-id', button.data('mediaId'))
+            modal.find('[data-image]').attr('src', button.data('imageUrl'))
+            modal.find('[data-alt]').attr('value', button.data('alt'))
+        })
+
+        document.querySelector('#media-update').addEventListener('submit', (e) => {
+            e.preventDefault()
+            const mediaId = e.target.dataset.mediaId
+
+            const body = new FormData (e.target)
+
+            fetch (`/api/admin/house/media/${mediaId}`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json',
+                },
+                body
+            })
+                .then (response => response.json ())
+                .then (data => console.log(data))
+                .catch(error => console.log(error))
+
+            // /api/admin/house/media/
+        })
 
         const handleMediaDelete = e => {
             e.preventDefault()
@@ -197,7 +262,7 @@
                 .then (response => response.json())
                 .then(data => {
                     if (data.success === 1) {
-                        a.parentNode.parentNode.removeChild(a.parentNode)
+                        a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode)
                     } else {
                         console.log(data.error)
                     }
@@ -233,13 +298,26 @@
 
                         div.appendChild(img)
 
+                        const btnWrapper = document.createElement('div')
+
+                        const editButton = document.createElement('button')
+                        editButton.dataset = {
+                            alt: data.media.alt,
+                            imageUrl: data.media.filename
+                        }
+                        editButton.setAttribute('class', 'btn btn-primary mr-1')
+                        editButton.textContent = 'Modifier'
+                        btnWrapper.appendChild(editButton)
+
                         const link = document.createElement('a')
                         link.href = data.url
                         link.setAttribute('class', 'btn btn-danger')
                         link.dataset.delete = ''
                         link.dataset.token = data.token
                         link.textContent = 'Supprimer'
-                        div.appendChild(link)
+                        btnWrapper.appendChild(link)
+
+                        div.appendChild(btnWrapper)
 
                         div.addEventListener('click', handleMediaDelete)
 

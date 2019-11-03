@@ -6,6 +6,8 @@ namespace App\Controller\Admin\Api;
 use App\Entity\House;
 use App\Entity\Media;
 use App\Form\MediaType;
+use App\Repository\HouseRepository;
+use App\Repository\MediaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -51,6 +53,44 @@ class ApiAdminMediaController extends AbstractController
         $manager->flush();
 
         return new JsonResponse([ 'success' => 1 ]);
+    }
+
+    /**
+     * @Route("/api/admin/house/media/{id}", name="api.admin.house.media.edit", methods={"POST"})
+     *
+     * @param Media $media
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
+     */
+    public function edit (Media $media, Request $request, EntityManagerInterface $manager, ValidatorInterface $validator) {
+        $form = $this->createForm(MediaType::class, $media, [ 'csrf_protection' => false ]);
+        $form->handleRequest($request);
+
+        dump('hello', $form->isSubmitted());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            dump('in');
+            $manager->flush();
+
+            return new JsonResponse([
+                'success' => 1,
+                'media' => [
+                    'id' => $media->getId(),
+                    'alt' => $media->getAlt(),
+                ],
+            ]);
+        }
+
+        $errors = [];
+
+        foreach ($validator->validate($media) as $error) {
+            $errors[] = $error->getMessage();
+        }
+
+        return new JsonResponse([ 'success' => 0, 'violations' => $errors], 400);
     }
 
     /**
