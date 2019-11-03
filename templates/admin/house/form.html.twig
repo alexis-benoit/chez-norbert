@@ -19,6 +19,11 @@
 {% endblock %}
 
 {% block body %}
+
+    {% if house.id is not null %}
+        <div data-house-id="{{ house.id }}"></div>
+    {% endif %}
+    
     <div class="container">
         <div class="row">
             <div class="col-12 mt-4 mb-2">
@@ -134,7 +139,7 @@
             <div class="col-4">
                 <div class="row d-flex" data-image-container>
                     {% for media in house.medias %}
-                        <div class="col-md-8 mb-4">
+                        <div class="col-md-8 mb-4" data-media-element="{{ media.id }}">
                             <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
                             <div>
                                 <button
@@ -146,9 +151,9 @@
                                     data-media-id="{{ media.id }}">
                                     Modifier
                                 </button>
-                                <a href="{{ path('api.admin.media.delete', { id: media.id }) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ media.id) }}">
+                                <button type="button" class="btn btn-danger" data-delete="{{ media.id }}" data-token="{{ csrf_token('delete' ~ media.id) }}">
                                     Supprimer
-                                </a>
+                                </button>
                             </div>
                         </div>
                     {% endfor %}
@@ -208,165 +213,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-
-        const makeAlert = (type, message) => {
-            // data-alert-container
-            document.querySelector('[data-alert-container]').innerHTML += `
-                <div class="alert alert-${ type } mt-4" role="alert">
-                    ${ message }
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            `
-        }
-
-        $('#imageModal').on('show.bs.modal', function (e) {
-            const button = $(e.relatedTarget)
-
-            const modal = $(this)
-            modal.find('form').attr('data-media-id', button.data('mediaId'))
-            modal.find('[data-image]').attr('src', button.data('imageUrl'))
-            modal.find('[data-alt]').attr('value', button.data('alt'))
-        })
-
-        document.querySelector('#media-update').addEventListener('submit', (e) => {
-            e.preventDefault()
-            const mediaId = e.target.dataset.mediaId
-
-            const body = new FormData (e.target)
-
-            fetch (`/api/admin/house/media/${mediaId}`, {
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': 'application/json',
-                },
-                body
-            })
-                .then (response => response.json ())
-                .then (data => {
-                    $('#imageModal').modal ('hide')
-                    makeAlert('success', 'Le média a bien été modifié.')
-                })
-                .catch(error => {
-                    $('#imageModal').modal('hide')
-                    makeAlert('danger', error.violations.shift ())
-                })
-
-            // /api/admin/house/media/
-        })
-
-        const handleMediaDelete = e => {
-            e.preventDefault()
-            //
-            // const formData = new FormData()
-            // formData.append('_token', a.dataset.token)
-
-            const a = e.target
-
-            fetch (a.href, {
-                method: 'DELETE',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    '_token':a.dataset.token
-                })
-            })
-                .then (response => response.json())
-                .then(data => {
-                    if (data.success === 1) {
-                        a.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode)
-                    } else {
-                        console.log(data.error)
-                    }
-                })
-                .catch(error => console.log(error))
-
-        }
-
-        document.querySelectorAll('[data-add-media]')
-            .forEach(form => form.addEventListener('submit', e => {
-                e.preventDefault()
-
-                const formData = new FormData (form)
-
-                form.reset()
-
-                fetch (form.action, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json',
-                    },
-                    method: form.method,
-                    body: formData
-                })
-                    .then (response => response.json())
-                    .then (data => {
-                        const div = document.createElement('div')
-                        div.setAttribute('class', 'col-md-8 mb-4')
-
-                        const img = document.createElement('img')
-                        img.src = data.media.filename
-                        img.setAttribute('class', 'img-fluid mb-2')
-
-                        div.appendChild(img)
-
-                        const btnWrapper = document.createElement('div')
-
-                        const editButton = document.createElement('button')
-                        editButton.dataset = {
-                            alt: data.media.alt,
-                            imageUrl: data.media.filename
-                        }
-                        editButton.setAttribute('class', 'btn btn-primary mr-1')
-                        editButton.textContent = 'Modifier'
-                        btnWrapper.appendChild(editButton)
-
-                        const link = document.createElement('a')
-                        link.href = data.url
-                        link.setAttribute('class', 'btn btn-danger')
-                        link.dataset.delete = ''
-                        link.dataset.token = data.token
-                        link.textContent = 'Supprimer'
-                        btnWrapper.appendChild(link)
-
-                        div.appendChild(btnWrapper)
-
-                        div.addEventListener('click', handleMediaDelete)
-
-                        document.querySelector('[data-image-container]')
-                            .appendChild(div)
-                    })
-                    .catch (error => console.log(error))
-            }))
-
-        document.querySelectorAll('[data-delete]')
-            .forEach(a => a.addEventListener('click', e => handleMediaDelete(e)))
-
-        document.querySelectorAll('[data-select]')
-            .forEach(selectWrapper => {
-                selectWrapper.addEventListener('click', () => {
-                    const optionId = selectWrapper.dataset.option
-                    const option = document.querySelector(`option[value="${optionId}"]`)
-
-                    option.selected = !option.selected
-
-                    if (option.selected) selectWrapper.classList.add('active')
-                    else selectWrapper.classList.remove('active')
-                    //const select = document.querySelector(`select#${selectId}`)
-                    //const selected = Array.isArray(select.value) ? select.value : [ select.value ]
-
-                    //const isAlreadySelected = selected.find (v => v === optionId)
-
-                    //select.value = isAlreadySelected ? selected.filter (v => v !== select.value) : [ ...selected, optionId ]
-
-
-                })
-            })
-    </script>
 {% endblock %}

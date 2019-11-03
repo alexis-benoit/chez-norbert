@@ -120,9 +120,9 @@ class ApiAdminMediaController extends AbstractController
                 'media' => [
                     'id' => $media->getId(),
                     'alt' => $media->getAlt(),
-                    'filename' => $helper->asset($media, 'imageFile')
+                    'filename' => $helper->asset($media, 'imageFile'),
+                    'token' => $tokenManager->getToken('delete'.$media->getId())->getValue(),
                 ],
-                'token' => $tokenManager->getToken('delete'.$media->getId())->getValue(),
                 'url' => $this->generateUrl('api.admin.media.delete', [ 'id' => $media->getId() ])
             ]);
         }
