@@ -31,7 +31,9 @@
 {% block form_widget_simple %}
 
     {% set attr = attr|merge({ class: (attr.class|default('form-control'))|trim }) %}
-    {% set attr = attr|merge({ 'data-empty': value|length == 0 ? 'true' : 'false' }) %}
+    {% if attr['data-empty'] is not defined %}
+        {% set attr = attr|merge({ 'data-empty': value|length == 0 ? 'true' : 'false' }) %}
+    {% endif %}
 
     {{ parent() }}
 {% endblock form_widget_simple %}
@@ -51,3 +53,20 @@
     {% set attr = attr|merge({ 'data-empty': value|length == 0 ? 'true' : 'false' }) %}
     {{ parent() }}
 {% endblock %}
+
+
+{%- block date_widget -%}
+    {%- if widget == 'single_text' -%}
+        {% set attr = attr|merge({ 'data-empty': 'false' }) %}
+        {{ block('form_widget_simple') }}
+    {%- else -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{- date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            })|raw -}}
+            {{ dump('hello 2') }}
+        </div>
+    {%- endif -%}
+{%- endblock date_widget -%}

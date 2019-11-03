@@ -17,9 +17,11 @@ const initializeTextFieldAdapter = ({ document }) => {
             textField.setAttribute('data-empty', newAttributeValue)
             textField.setAttribute('data-touched', 'true')
         }
+        const getType = () => textField.type
+
         const getTextLength = () => textField.value.length
 
-        initializeTextField(subscribe, setAttribute, getTextLength)
+        initializeTextField(subscribe, setAttribute, getTextLength, getType)
     })
 }
 

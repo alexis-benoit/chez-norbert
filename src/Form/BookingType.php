@@ -20,8 +20,16 @@ class BookingType extends AbstractType
             ->add('lastName', TextType::class)
             ->add('email', EmailType::class)
             ->add('phone', TextType::class)
-            ->add('from', DateType::class)
-            ->add('to', DateType::class)
+            ->add('from', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'placeholder' => ''
+            ])
+            ->add('to', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'placeholder' => ''
+            ])
             ->add('personsCount', IntegerType::class)
         ;
     }
