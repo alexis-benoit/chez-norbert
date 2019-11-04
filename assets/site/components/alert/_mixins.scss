@@ -40,6 +40,12 @@
   }
 }
 
+@mixin danger {
+  &::after {
+    background: red;
+  }
+}
+
 @mixin alert-container-lg {
   width: 50%;
   margin-left: auto;

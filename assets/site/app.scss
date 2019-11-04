@@ -574,4 +574,31 @@ p {
     &-success {
         @include success;
     }
+
+    &-danger {
+        @include danger;
+    }
 }
+
+/*
+==================================================
+    /Login
+==================================================
+*/
+.login {
+    background: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+    margin: 0 get-contained-side-spacing('xs');
+    padding: get-spacing(100);
+    @include body-fz-1;
+
+    & label {
+        @include body-1;
+    }
+}
+
+.login-title {
+    @include title-5;
+    margin-bottom: get-spacing(100);
+}
+
