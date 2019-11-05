@@ -45,6 +45,10 @@
                     {{ form_row(form.peopleNumber) }}
                     {{ form_row(form.description) }}
 
+                    {% if house.id is null %}
+                        {{ form_row(form.imageFiles) }}
+                    {% endif %}
+
                     <div class="form-group">
                         {{ form_label(form.advantage) }}
                         <ul class="advantage" style="list-style: none; margin: 0; padding: 0" data-prototype="{{ form_widget(form.advantage.vars.prototype)|e('html_attr') }}"
@@ -67,7 +71,9 @@
                             Mettre à jour
                         {% endif %}
                     </button>
-                {{ form_end(form) }}
+
+                    {{ form_row(form._token) }}
+                {{ form_end(form, { render_rest: false }) }}
             </div>
 
             {% if house.id is not null %}
