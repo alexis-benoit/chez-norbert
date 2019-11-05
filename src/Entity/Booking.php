@@ -55,8 +55,13 @@ class Booking
      * )
      *
      * @Assert\Length(
-     *  max = 14,
+     *  max = 20,
      *  maxMessage = "booking.constraints.phone.length.max"
+     * )
+     * @Assert\Regex(
+     *     pattern= "/^(\+[0-9]{3,4})([0-9]{8,13})$/",
+     *     message="booking.constraints.regex",
+     *     normalizer="App\Helper\PhoneNumberNormalizer::normalize"
      * )
      */
     private $phone;
@@ -79,6 +84,16 @@ class Booking
 
     /**
      * @var int
+     * @Assert\NotBlank(
+     *     message = "booking.constraints.personsCount.notBlank"
+     * )
+     * @Assert\Length(
+     *     maxMessage = "booking.constraints.personsCount.length.max",
+     *     max = 5
+     * )
+     * @Assert\Positive(
+     *     message = "booking.constraints.personCount.positive"
+     * )
      */
     private $personsCount;
 
@@ -224,6 +239,4 @@ class Booking
                 ->addViolation();
         }
     }
-
-
 }
