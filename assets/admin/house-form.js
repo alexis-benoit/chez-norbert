@@ -44,19 +44,22 @@ document.querySelector('.add-another-collection-widget').addEventListener('click
 })
 
 // gestion des ajouts de media
-document.querySelector('[data-add-media]').addEventListener('submit', e => {
-    e.preventDefault()
+const addMediaButton = document.querySelector('[data-add-media]')
 
-    createMediaApi(new FormData(e.target), document.querySelector('[data-house-id]').dataset.houseId)
-        .then (data => {
-            pushAlert(createAlert('success', 'Le média a bien été ajouté'))
+if (addMediaButton) {
+    addMediaButton.addEventListener('submit', e => {
+        e.preventDefault()
 
-            const container = document.querySelector('[data-image-container]')
-            const div = document.createElement('div')
-            div.setAttribute('class', 'col-md-8 mb-4')
-            div.dataset.mediaElement = data.id
+        createMediaApi(new FormData(e.target), document.querySelector('[data-house-id]').dataset.houseId)
+            .then (data => {
+                pushAlert(createAlert('success', 'Le média a bien été ajouté'))
 
-            div.innerHTML = `
+                const container = document.querySelector('[data-image-container]')
+                const div = document.createElement('div')
+                div.setAttribute('class', 'col-md-8 mb-4')
+                div.dataset.mediaElement = data.id
+
+                div.innerHTML = `
                 <img src="${data.filename}" alt="${data.alt}" class="img-fluid mb-2">
                 <div>
                     <button class="btn btn-primary" data-toggle="modal" data-alt="${data.alt}" data-image-url="${data.filename}" data-target="#imageModal" data-media-id="${data.id}">Modifier</button>
@@ -64,12 +67,13 @@ document.querySelector('[data-add-media]').addEventListener('submit', e => {
                 </div>
             `
 
-            div.querySelector('[data-delete]').addEventListener('click', handleMediaDelete)
+                div.querySelector('[data-delete]').addEventListener('click', handleMediaDelete)
 
-            container.appendChild(div)
-        })
-        .catch (error => pushAlert(createAlert('danger', error.message)))
-})
+                container.appendChild(div)
+            })
+            .catch (error => pushAlert(createAlert('danger', error.message)))
+    })
+}
 
 // gere le formulaire de modification d'un média
 document.querySelector('#media-update').addEventListener('submit', e => {
