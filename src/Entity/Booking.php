@@ -60,7 +60,7 @@ class Booking
      * )
      * @Assert\Regex(
      *     pattern= "/^(\+[0-9]{3,4})([0-9]{8,13})$/",
-     *     message="booking.constraints.regex",
+     *     message="booking.constraints.tel.regex",
      *     normalizer="App\Helper\PhoneNumberNormalizer::normalize"
      * )
      */
