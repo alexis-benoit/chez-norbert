@@ -52,8 +52,13 @@ class Contact
      * )
      * 
      * @Assert\Length(
-     *  max = 14,
+     *  max = 20,
      *  maxMessage = "contact.constrains.tel.length.max"
+     * )
+     * @Assert\Regex(
+     *     pattern= "/^(\+[0-9]{3,4})([0-9]{8,13})$/",
+     *     message="contact.constraints.tel.regex",
+     *     normalizer="App\Helper\PhoneNumberNormalizer::normalize"
      * )
      */
     private $tel;
