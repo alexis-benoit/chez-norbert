@@ -28,3 +28,31 @@ services:
     App\Listener\MediaCacheSubscriber:
         tags:
             - { name: doctrine.event_subscriber }
+
+    App\EventSubscriber\DoctrineExtensionSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }
+
+#    Gedmo\Translatable\TranslatableListener:
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+#            - [ setDefaultLocale, [ "fr_FR" ] ]
+#            - [ setTranslationFallback, [ false ] ]
+#            -
+#    Gedmo\Translatable\Entity\Repository\TranslatableListener:
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#
+#    Gedmo\Loggable\LoggableListener:
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+#
+#    Gedmo\Blameable\BlameableListener:
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ "@annotation_reader" ] ]
