@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Contact;
 use App\Form\ContactType;
+use \ReCaptcha\ReCaptcha;
 
 class HomeController extends AbstractController
 {
@@ -66,7 +67,7 @@ class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $message = (new Swift_Message())
                 ->setFrom($contact->getEmail())
                 ->setTo($repository->findOne()->getEmail())
@@ -83,8 +84,32 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home.contact');
         }
 
+        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
+
+            $this->addFlash(
+                'error',
+                'Captcha Require'
+            );
+        }
+
+
         return $this->render ('home/contact.html.twig', [
             'form' => $form->createView()
         ]);
     }
+
+    # get success response from recaptcha and return it to controller
+    function captchaverify($recaptcha_v){
+        $recaptcha = new \ReCaptcha\ReCaptcha('6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
+        $resp = $recaptcha->verify($recaptcha_v);
+
+        if ($resp->isSuccess()) {
+            // Verified!
+            return true;
+        } else {
+            $errors = $resp->getErrorCodes();
+            return false;
+        }
+    }
+
 }
