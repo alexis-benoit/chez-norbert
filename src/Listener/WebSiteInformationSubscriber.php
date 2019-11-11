@@ -4,6 +4,9 @@
 namespace App\Listener;
 
 use App\Controller\Admin\AdminController;
+use App\Controller\Admin\AdminHouseController;
+use App\Controller\Admin\AdminUserController;
+use App\Controller\Admin\Api\ApiAdminMediaController;
 use App\Entity\WebSiteInformation;
 use App\Repository\WebSiteInformationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +38,8 @@ class WebSiteInformationSubscriber implements EventSubscriberInterface
             $controller = $controller[0];
         }
 
-        if ($controller instanceof AdminController) {
+        //TODO: Trouber une autre methode que de lister les classes non autorisée ?
+        if ($controller instanceof AdminController || $controller instanceof AdminHouseController || $controller instanceof AdminUserController || $controller instanceof ApiAdminMediaController) {
             if ($this->repo->getCount() == 0){
                 //TODO: Faire une redirection plutot que de lever une exception ?
                 throw new AccessDeniedHttpException('Web Site Informations needs to be completed');
