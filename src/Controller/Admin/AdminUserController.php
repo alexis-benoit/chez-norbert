@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 /**
  * @IsGranted("ROLE_ADMIN")
  */
-class AdminUserController extends AbstractController
+class AdminUserController extends AbstractController implements AdminControllerInterface
 {
     /**
      * @Route("/admin/user", name="admin.user.index")

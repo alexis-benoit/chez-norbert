@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * @IsGranted("ROLE_USER")
  */
-class AdminController extends AbstractController
+class AdminController extends AbstractController implements AdminControllerInterface
 {
     /**
      * @Route("/admin", name="admin.index")

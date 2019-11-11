@@ -3,6 +3,7 @@
 
 namespace App\Controller\Admin\Api;
 
+use App\Controller\Admin\AdminControllerInterface;
 use App\Entity\House;
 use App\Entity\Media;
 use App\Form\MediaType;
@@ -26,7 +27,7 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 /**
  * @IsGranted("ROLE_USER")
  */
-class ApiAdminMediaController extends AbstractController
+class ApiAdminMediaController extends AbstractController implements AdminControllerInterface
 {
     /**
      * @Route("/api/admin/media/{id}", name="api.admin.media.delete", methods="DELETE")

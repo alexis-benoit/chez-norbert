@@ -4,6 +4,7 @@
 namespace App\Listener;
 
 use App\Controller\Admin\AdminController;
+use App\Controller\Admin\AdminControllerInterface;
 use App\Controller\Admin\AdminHouseController;
 use App\Controller\Admin\AdminUserController;
 use App\Controller\Admin\Api\ApiAdminMediaController;
@@ -39,7 +40,8 @@ class WebSiteInformationSubscriber implements EventSubscriberInterface
         }
 
         //TODO: Trouber une autre methode que de lister les classes non autorisée ?
-        if ($controller instanceof AdminController || $controller instanceof AdminHouseController || $controller instanceof AdminUserController || $controller instanceof ApiAdminMediaController) {
+        //if ($controller instanceof AdminController || $controller instanceof AdminHouseController || $controller instanceof AdminUserController || $controller instanceof ApiAdminMediaController) {
+        if ($controller instanceof AdminControllerInterface) {
             if ($this->repo->getCount() == 0){
                 //TODO: Faire une redirection plutot que de lever une exception ?
                 throw new AccessDeniedHttpException('Web Site Informations needs to be completed');
