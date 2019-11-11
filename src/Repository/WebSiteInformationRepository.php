@@ -19,7 +19,7 @@ class WebSiteInformationRepository extends ServiceEntityRepository
         parent::__construct($registry, WebSiteInformation::class);
     }
 
-    public function findOne(): WebSiteInformation
+    public function findOne(): ?WebSiteInformation
     {
         return $this->createQueryBuilder('w')
             ->setMaxResults(1)
