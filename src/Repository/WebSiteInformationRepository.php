@@ -28,6 +28,14 @@ class WebSiteInformationRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getCount()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return WebSiteInformation[] Returns an array of WebSiteInformation objects
     //  */
