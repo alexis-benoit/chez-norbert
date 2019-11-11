@@ -9,6 +9,10 @@ Use `.env.local` instead of `.env` to set environment variables in development m
 ```dotenv
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
 MAILER_URL=smtp://localhost:1025
+
+#Keys for dev env
+GOOGLE_RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+GOOGLE_RECAPTCHA_SECRET=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 ```
 
 ## Initialize dependencies
