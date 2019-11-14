@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * @IsGranted("ROLE_USER")
  */
-class AdminWebSiteInformationController extends AbstractController implements AdminControllerInterface
+class AdminWebSiteInformationController extends AbstractController
 {
     /**
      * @Route("/admin/info/create", name="admin.info.create")

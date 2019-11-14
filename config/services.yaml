@@ -29,3 +29,7 @@ services:
     App\Listener\MediaCacheSubscriber:
         tags:
             - { name: doctrine.event_subscriber }
+
+    App\Listener\WebSiteInformationExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

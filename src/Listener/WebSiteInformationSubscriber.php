@@ -44,7 +44,8 @@ class WebSiteInformationSubscriber implements EventSubscriberInterface
         if ($controller instanceof AdminControllerInterface) {
             if ($this->repo->getCount() == 0){
                 //TODO: Faire une redirection plutot que de lever une exception ?
-                throw new AccessDeniedHttpException('Web Site Informations needs to be completed');
+//                throw new AccessDeniedHttpException('Web Site Informations needs to be completed');
+                throw new EmptyWebSiteInformationException();
             }
         }
     }
