@@ -41,7 +41,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ dump(choices) }}
                     <div class="row">
                         {% for group_label, choice in choices %}
                             <div class="col-md-4" data-select="{{ form.vars.id }}" data-option="{{ choice.data.id }}">
