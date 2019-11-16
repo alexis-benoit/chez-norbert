@@ -69,11 +69,9 @@ class ApiAdminMediaController extends AbstractController implements AdminControl
         $form = $this->createForm(MediaType::class, $media, [ 'csrf_protection' => false ]);
         $form->handleRequest($request);
 
-        dump('hello', $form->isSubmitted());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            dump('in');
             $manager->flush();
 
             return new JsonResponse([
