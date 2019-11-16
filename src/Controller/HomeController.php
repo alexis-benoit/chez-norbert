@@ -100,7 +100,7 @@ class HomeController extends AbstractController
 
     # get success response from recaptcha and return it to controller
     function captchaverify($recaptcha_v){
-        $recaptcha = new \ReCaptcha\ReCaptcha('6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
+        $recaptcha = new \ReCaptcha\ReCaptcha($_ENV['GOOGLE_RECAPTCHA_SECRET']);
         $resp = $recaptcha->verify($recaptcha_v);
 
         if ($resp->isSuccess()) {
