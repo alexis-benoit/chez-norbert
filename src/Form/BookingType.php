@@ -40,13 +40,7 @@ class BookingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Booking::class,
-            'csrf_protection' => false
+            'data_class' => Booking::class
         ]);
-    }
-
-    public function getBlockPrefix()
-    {
-        return '';
     }
 }
