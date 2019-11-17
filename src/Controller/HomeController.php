@@ -58,10 +58,13 @@ class HomeController extends AbstractController
      * @param Swift_Mailer $mailer
      *
      * @param WebSiteInformationRepository $repository
+     * @param WebSiteInformationRepository $informationRepository
      * @return Response
      */
-    public function contact (Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository)
+    public function contact (Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
     {
+        $information = $informationRepository->findOne();
+
         $contact = new Contact ();
         $form = $this->createForm(ContactType::class, $contact);
 
@@ -87,14 +90,15 @@ class HomeController extends AbstractController
         if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
 
             $this->addFlash(
-                'error',
+                'danger',
                 'Captcha Require'
             );
         }
 
 
         return $this->render ('home/contact.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'information' => $information
         ]);
     }
 

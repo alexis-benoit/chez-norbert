@@ -16,7 +16,8 @@ class WebSiteInformationFixture extends Fixture
             ->setLastName('Nom')
             ->setEmail('norbert@test.fr')
             ->setAddress('Bergheim')
-            ->setPhoneNumber('06 06 06 06 06');
+            ->setPhoneNumber('06 06 06 06 06')
+            ->setFacebookLink('https://facebook.com');
 
         $manager->persist($site);
         $manager->flush();

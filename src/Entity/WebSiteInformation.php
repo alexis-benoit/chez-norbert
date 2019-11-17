@@ -46,6 +46,11 @@ class WebSiteInformation
      */
     private $address;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $facebookLink;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +124,18 @@ class WebSiteInformation
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getFacebookLink(): ?string
+    {
+        return $this->facebookLink;
+    }
+
+    public function setFacebookLink(string $facebookLink): self
+    {
+        $this->facebookLink = $facebookLink;
 
         return $this;
     }
