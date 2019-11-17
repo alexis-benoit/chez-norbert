@@ -8,6 +8,7 @@ import card from './components/card'
 import carousel from './components/carousel'
 import modal from './components/modal'
 import alert from './components/alert'
+import lazyLoad from './components/lazy-load'
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () =>
@@ -16,5 +17,5 @@ if ('serviceWorker' in navigator) {
 
 initializeModules(
     { document, settings, window },
-    [ typography, header, textFields, map, card, carousel, modal, alert ]
+    [ typography, header, textFields, map, card, carousel, modal, alert, lazyLoad ]
 )
