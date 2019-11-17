@@ -17,4 +17,20 @@ workbox.routing.registerRoute(
     })
 )
 
+workbox.routing.registerRoute(
+    /^((?!https:\/\/[a-z]\.tile\.openstreetmap\.org))(.*)/,
+    new workbox.strategies.CacheFirst({
+        cacheName: 'app-pages',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200],
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 60 * 60 * 24 * 20,
+                maxEntries: 30,
+            }),
+        ],
+    })
+)
+
 workbox.precaching.precacheAndRoute([])
