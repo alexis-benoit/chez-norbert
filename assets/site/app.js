@@ -9,6 +9,11 @@ import carousel from './components/carousel'
 import modal from './components/modal'
 import alert from './components/alert'
 
+if ('serviceWorker' in navigator && process.env.APP_ENV === 'prod') {
+    window.addEventListener('load', () =>
+        navigator.serviceWorker.register('/sw.js'))
+}
+
 initializeModules(
     { document, settings, window },
     [ typography, header, textFields, map, card, carousel, modal, alert ]
