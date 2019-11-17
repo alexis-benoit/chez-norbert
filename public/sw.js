@@ -104,6 +104,6 @@ self.__precacheManifest = [
   {
     "url": "build/xl.17646785.css",
     "revision": "a37fac6ad797f961dca0f1a5b6b8df18"
-  },
+  }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
