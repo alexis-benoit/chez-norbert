@@ -46,7 +46,7 @@ Encore
     .copyFiles({
         from: './assets/site/images',
         to: 'images/[path][name].[ext]',
-        pattern: /\.(jpeg|jpg|svg)$/
+        pattern: /\.(jpeg|jpg|svg|png)$/
     })
     /*
      * FEATURE CONFIG

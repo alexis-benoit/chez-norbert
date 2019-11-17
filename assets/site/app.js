@@ -9,7 +9,7 @@ import carousel from './components/carousel'
 import modal from './components/modal'
 import alert from './components/alert'
 
-if ('serviceWorker' in navigator && process.env.APP_ENV === 'prod') {
+if ('serviceWorker' in navigator) {
     window.addEventListener('load', () =>
         navigator.serviceWorker.register('/sw.js'))
 }
