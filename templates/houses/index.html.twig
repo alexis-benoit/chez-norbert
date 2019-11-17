@@ -76,7 +76,7 @@
             {% for house in anotherHouses %}
                 <article class="other-house">
 
-                    <img src="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" alt="{{ house.firstMedia.alt }}" class="other-house-img">
+                    <img src="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" alt="{{ house.firstMedia.alt }}" class="other-house-img">
                     <div class="other-house-body">
                             <span class="overline">Gîte suivant</span>
                             <h3 class="other-house-title">{{ house.name }}</h3>
@@ -106,7 +106,7 @@
         <section class="other-houses-body">
             <article class="other-house">
 
-                <img src="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" class="other-house-img" alt="{{ oppositeTypeHouse.firstMedia.alt }}">
+                <img src="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" class="other-house-img" alt="{{ oppositeTypeHouse.firstMedia.alt }}">
 
                 <div class="other-house-body">
                     <h3 class="other-house-title">{{ oppositeTypeHouse.name }}</h3>
