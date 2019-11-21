@@ -6,7 +6,6 @@ const initializeLazyLoad = ({ document }) => {
             if (parent.tagName.toLowerCase() === 'picture') {
                 parent.querySelectorAll('source')
                     .forEach(source => {
-                        console.log(source)
                         source.setAttribute('srcset', source.dataset.srcset)
                     })
             }
