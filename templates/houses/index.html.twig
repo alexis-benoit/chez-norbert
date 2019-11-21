@@ -18,11 +18,11 @@
                             <li class="glide__slide">
                                 <div class="carousel-img-wrapper">
                                     <picture>
-                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-                                        <source srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-                                        <img src="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" alt="{{ media.alt }}" class="carousel-img">
+                                        <source data-srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                                        <source data-srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                                        <source data-srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                                        <source data-srcset="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                                        <img data-src="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" alt="{{ media.alt }}" class="carousel-img">
                                     </picture>
                                 </div>
                             </li>
@@ -76,7 +76,14 @@
             {% for house in anotherHouses %}
                 <article class="other-house">
 
-                    <img src="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" alt="{{ house.firstMedia.alt }}" class="other-house-img">
+
+                    <picture>
+                        <source data-srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                        <source data-srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                        <source data-srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                        <source data-srcset="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                        <img data-src="{{ vich_uploader_asset(house.firstMedia, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}"  alt="{{ house.firstMedia.alt }}" class="other-house-img">
+                    </picture>
                     <div class="other-house-body">
                             <span class="overline">Gîte suivant</span>
                             <h3 class="other-house-title">{{ house.name }}</h3>
@@ -106,7 +113,13 @@
         <section class="other-houses-body">
             <article class="other-house">
 
-                <img src="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" class="other-house-img" alt="{{ oppositeTypeHouse.firstMedia.alt }}">
+                <picture>
+                    <source data-srcset="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
+                    <source data-srcset="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
+                    <source data-srcset="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
+                    <source data-srcset="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
+                    <img data-src="{{ vich_uploader_asset(oppositeTypeHouse.firstMedia, 'imageFile') | imagine_filter('xl_max_down_scale_filter') }}" class="other-house-img" alt="{{ oppositeTypeHouse.firstMedia.alt }}">
+                </picture>
 
                 <div class="other-house-body">
                     <h3 class="other-house-title">{{ oppositeTypeHouse.name }}</h3>
