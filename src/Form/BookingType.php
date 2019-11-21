@@ -40,7 +40,8 @@ class BookingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Booking::class
+            'data_class' => Booking::class,
+            'translation_domain' => 'forms',
         ]);
     }
 }
