@@ -10,6 +10,8 @@ use App\Form\MediaType;
 use App\Repository\HouseRepository;
 use App\Repository\MediaRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Imagine\Filter\ImagineAware;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -103,7 +105,7 @@ class ApiAdminMediaController extends AbstractController implements AdminControl
      * @param UploaderHelper $helper
      * @return JsonResponse|Response
      */
-    public function form (Request $request, House $house, EntityManagerInterface $manager, ValidatorInterface $validator, CsrfTokenManagerInterface $tokenManager, UploaderHelper $helper) {
+    public function form (Request $request, House $house,EntityManagerInterface $manager, CacheManager $cacheManager, ValidatorInterface $validator, CsrfTokenManagerInterface $tokenManager, UploaderHelper $helper) {
         $media = new Media();
 
         $form = $this->createForm(MediaType::class, $media);
@@ -119,7 +121,7 @@ class ApiAdminMediaController extends AbstractController implements AdminControl
                 'media' => [
                     'id' => $media->getId(),
                     'alt' => $media->getAlt(),
-                    'filename' => $helper->asset($media, 'imageFile'),
+                    'filename' => $cacheManager->generateUrl($helper->asset($media, 'imageFile'), 'xs_max_down_scale_filter'),
                     'token' => $tokenManager->getToken('delete'.$media->getId())->getValue(),
                 ],
                 'url' => $this->generateUrl('api.admin.media.delete', [ 'id' => $media->getId() ])

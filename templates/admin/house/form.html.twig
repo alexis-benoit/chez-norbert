@@ -81,7 +81,7 @@
                 <div class="row d-flex" data-image-container>
                     {% for media in house.medias %}
                         <div class="col-md-8 mb-4" data-media-element="{{ media.id }}">
-                            <img src="{{ vich_uploader_asset(media, 'imageFile') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
+                            <img src="{{ vich_uploader_asset(media, 'imageFile') | imagine_filter('xs_max_down_scale_filter') }}" alt="{{ media.alt }}" class="img-fluid mb-2">
                             <div>
                                 <button
                                     class="btn btn-primary"
