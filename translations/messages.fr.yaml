@@ -18,3 +18,6 @@ admin:
     updated: "L'utilisateur a été mise à jour."
     created: "L'utilisateur a été créé."
     deleted: "L'utilisateur a été supprimé."
+  info:
+    created: "Les informations du site ont été créé."
+    updated: "Les informations du site ont été mise à jour."
