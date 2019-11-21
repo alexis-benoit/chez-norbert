@@ -23,16 +23,20 @@ class HomeController extends AbstractController
      * }, name="home.index")
      *
      * @param HouseRepository $repository
+     * @param WebSiteInformationRepository $informationRepository
      * @return Response
      */
-    public function index(HouseRepository $repository)
+    public function index(HouseRepository $repository, WebSiteInformationRepository $informationRepository)
     {
         $rooms = $repository->findAllByType(1);
         $houses = $repository->findAllByType(0);
 
+        $information = $informationRepository->findOne();
+
         return $this->render('home/index.html.twig', [
             'rooms' => $rooms,
-            'houses' => $houses
+            'houses' => $houses,
+            'information' => $information
         ]);
     }
 
