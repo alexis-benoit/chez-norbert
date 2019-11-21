@@ -50,9 +50,14 @@ if (addMediaButton) {
     addMediaButton.addEventListener('submit', e => {
         e.preventDefault()
 
+        const spinnerContainer = document.querySelector ('.spinner-container')
+
+        if (spinnerContainer)
+            spinnerContainer.style.display = null
+
         createMediaApi(new FormData(e.target), document.querySelector('[data-house-id]').dataset.houseId)
             .then (data => {
-                pushAlert(createAlert('success', 'Le média a bien été ajouté'))
+                pushAlert(createAlert('success', 'Le média a bien été ajouté.'))
 
                 const container = document.querySelector('[data-image-container]')
                 const div = document.createElement('div')
@@ -72,6 +77,10 @@ if (addMediaButton) {
                 container.appendChild(div)
             })
             .catch (error => pushAlert(createAlert('danger', error.message)))
+            .finally(() => {
+                if (spinnerContainer)
+                    spinnerContainer.style.display = 'none'
+            })
     })
 }
 
