@@ -72,8 +72,8 @@ class House
     private $type;
 
     public static $houseTypes = [
-        0 => 'House',
-        1 => 'Guest room'
+        0 => "Gîte",
+        1 => "Chambre d'hôte"
     ];
 
     private static $houseTypesNumbers = [
