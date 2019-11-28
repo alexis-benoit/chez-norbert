@@ -10,11 +10,6 @@ import modal from './components/modal'
 import alert from './components/alert'
 import lazyLoad from './components/lazy-load'
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () =>
-        navigator.serviceWorker.register('/sw.js'))
-}
-
 initializeModules(
     { document, settings, window },
     [ typography, header, textFields, map, card, carousel, modal, alert, lazyLoad ]
