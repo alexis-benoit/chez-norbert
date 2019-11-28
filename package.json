@@ -17,7 +17,7 @@
     "dev-server": "encore dev-server",
     "dev": "encore dev",
     "watch": "encore dev --watch",
-    "build": "encore production --progress && workbox injectManifest workbox-config.js",
+    "build": "encore production --progress",
     "test": "jest"
   },
   "dependencies": {
