@@ -68,7 +68,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('admin.login.email.notFound');
+            throw new CustomUserMessageAuthenticationException('Identifiants invalides.');
         }
 
         return $user;

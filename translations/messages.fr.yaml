@@ -21,6 +21,3 @@ admin:
   info:
     created: "Les informations du site ont été créé."
     updated: "Les informations du site ont été mise à jour."
-  login:
-    email:
-      notFound: 'Identifiants invalides.'
