@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\HouseRepository;
 use App\Repository\WebSiteInformationRepository;
 use App\Services\CaptchaVerifier;
+use App\Services\CaptchaVerifierInterface;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,7 +60,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/contact", name="home.contact")
      *
-     * @param CaptchaVerifier $verifier
+     * @param CaptchaVerifierInterface $verifier
      * @param Request $request
      * @param Swift_Mailer $mailer
      *
@@ -67,7 +68,7 @@ class HomeController extends AbstractController
      * @param WebSiteInformationRepository $informationRepository
      * @return Response
      */
-    public function contact (CaptchaVerifier $verifier, Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
+    public function contact (CaptchaVerifierInterface $verifier, Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
     {
         $information = $informationRepository->findOne();
 
