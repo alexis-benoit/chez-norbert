@@ -77,8 +77,6 @@ class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
-        dump ($verifier->verify($request->get('g-recaptcha-response')));
-
         if ($form->isSubmitted() && $form->isValid() && $verifier->verify($request->get('g-recaptcha-response'))) {
             $message = (new Swift_Message())
                 ->setFrom($contact->getEmail())
