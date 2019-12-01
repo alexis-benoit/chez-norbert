@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\HouseRepository;
 use App\Repository\WebSiteInformationRepository;
+use App\Services\CaptchaVerifier;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,6 +59,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/contact", name="home.contact")
      *
+     * @param CaptchaVerifier $verifier
      * @param Request $request
      * @param Swift_Mailer $mailer
      *
@@ -65,7 +67,7 @@ class HomeController extends AbstractController
      * @param WebSiteInformationRepository $informationRepository
      * @return Response
      */
-    public function contact (Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
+    public function contact (CaptchaVerifier $verifier, Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
     {
         $information = $informationRepository->findOne();
 
@@ -74,7 +76,9 @@ class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+        dump ($verifier->verify($request->get('g-recaptcha-response')));
+
+        if ($form->isSubmitted() && $form->isValid() && $verifier->verify($request->get('g-recaptcha-response'))) {
             $message = (new Swift_Message())
                 ->setFrom($contact->getEmail())
                 ->setTo($repository->findOne()->getEmail())
@@ -91,11 +95,10 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home.contact');
         }
 
-        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
-
+        if($form->isSubmitted() &&  $form->isValid() && !$verifier->verify($request->get('g-recaptcha-response'))){
             $this->addFlash(
                 'danger',
-                'Captcha Require'
+                'Captcha obligatoire'
             );
         }
 
@@ -105,19 +108,4 @@ class HomeController extends AbstractController
             'information' => $information
         ]);
     }
-
-    # get success response from recaptcha and return it to controller
-    function captchaverify($recaptcha_v){
-        $recaptcha = new \ReCaptcha\ReCaptcha($_ENV['GOOGLE_RECAPTCHA_SECRET']);
-        $resp = $recaptcha->verify($recaptcha_v);
-
-        if ($resp->isSuccess()) {
-            // Verified!
-            return true;
-        } else {
-            $errors = $resp->getErrorCodes();
-            return false;
-        }
-    }
-
 }
