@@ -27,6 +27,8 @@
             </div>
         </div>
 
+        <div class="g-recaptcha" data-sitekey={{ google_recaptcha_site_key }}></div>
+
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}"
         >

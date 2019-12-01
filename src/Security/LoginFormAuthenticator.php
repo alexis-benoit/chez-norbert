@@ -3,6 +3,8 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Services\CaptchaVerifierInterface;
+use App\Services\InvalidCaptchaException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,13 +29,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     private $urlGenerator;
     private $csrfTokenManager;
     private $passwordEncoder;
+    private $captchaVerifier;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder, CaptchaVerifierInterface $captchaVerifier)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->captchaVerifier = $captchaVerifier;
     }
 
     public function supports(Request $request)
@@ -48,6 +52,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             'email' => $request->request->get('email'),
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
+            'g-recaptcha' => $request->request->get('g-recaptcha-response')
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
@@ -59,6 +64,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        if (!$this->captchaVerifier->verify($credentials['g-recaptcha'])) {
+            throw new InvalidCaptchaException();
+        }
+
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();

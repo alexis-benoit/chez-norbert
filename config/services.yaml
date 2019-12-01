@@ -34,4 +34,8 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
+    App\Listener\InvalidCaptchaExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
     App\Services\CatpchaVerifierInterface: '@App\Services\CaptchaVerifier'
