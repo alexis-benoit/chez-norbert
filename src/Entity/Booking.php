@@ -233,10 +233,12 @@ class Booking
         $from = $context->getObject()->getFrom ();
         $to = $context->getObject()->getTo ();
 
-        if (!$from || !$to || !method_exists($from, 'getTimestamp') || !method_exists($to, 'getTimestamp')) {
+        if ($from === null || $to === null) {
             $context->buildViolation('booking.constraints.to.beforeFrom')
                 ->atPath('to')
                 ->addViolation();
+
+            return;
         }
 
         if ($from->getTimestamp() > $to->getTimestamp ()) {
