@@ -11,15 +11,21 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class InvalidCaptchaExceptionListener
 {
+    /**
+     * @var FlashBagInterface
+     */
+    private $bag;
+
     public function __construct(FlashBagInterface $bag)
     {
-        $bag->add('danger', 'Captcha obligatoire.');
+        $this->bag = $bag;
     }
 
     public function onKernelException (ExceptionEvent $event) {
         $exception = $event->getException();
 
         if ($exception instanceof InvalidCaptchaException) {
+            $this->bag->add('danger', 'Captcha obligatoire.');
             $response = new RedirectResponse('/login');
             $event->setResponse($response);
         }
