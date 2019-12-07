@@ -98,6 +98,15 @@ class Booking
     private $personsCount;
 
     /**
+     * @var string|null
+     * @Assert\Length(
+     *     maxMessage = "booking.constraints.message.length.max",
+     *     max = 400
+     * )
+     */
+    private $message;
+
+    /**
      * @return string|null
      */
     public function getFirstName(): ?string
@@ -246,5 +255,23 @@ class Booking
                 ->atPath('to')
                 ->addViolation();
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     * @return Booking
+     */
+    public function setMessage(?string $message): Booking
+    {
+        $this->message = $message;
+        return $this;
     }
 }

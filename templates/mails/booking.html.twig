@@ -8,4 +8,5 @@
     <p>Pour {{ booking.personsCount }}</p>
     <p>Dans le {{ house.getTypeName() }} {{ house.name }}</p>
     <p>Du {{ booking.from.format('d-m-Y') }} au {{ booking.to.format('d-m-Y') }}</p>
+    <p>{{ booking.message }}</p>
 {% endblock %}

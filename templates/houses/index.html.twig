@@ -157,9 +157,10 @@
                     {{ form_row(form.to) }}
 
                     {{ form_row(form.personsCount) }}
-                    <div class="g-recaptcha" data-sitekey={{ google_recaptcha_site_key }}></div>
+                    {{ form_row(form.message) }}
                 </div>
 
+                <div class="g-recaptcha" data-sitekey={{ google_recaptcha_site_key }}></div>
                 <button class="button">Envoyer votre demande</button>
                 {{ form_end(form) }}
             </div>
