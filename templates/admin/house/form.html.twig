@@ -5,7 +5,7 @@
     {% if house.id is null %}
         Ajout d'un gîte/chambre d'hôte
     {% else %}
-        Édition {{ house.type == "Chambre d'hote" ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
+        Édition {{ house.type == 1 ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
     {% endif %}
 {% endblock %}
 
@@ -20,6 +20,8 @@
 
 {% block body %}
 
+    {{ dump(house) }}
+
     {% if house.id is not null %}
         <div data-house-id="{{ house.id }}"></div>
     {% endif %}
@@ -31,7 +33,7 @@
                     {% if house.id is null %}
                         Ajout d'un gîte/chambre d'hôte
                     {% else %}
-                        Édition {{ house.type == "Chambre d'hote" ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
+                        Édition {{ house.type == 1 ? "de la chambre d'hôte" : 'du gîte'  }} "{{ house.name }}"
                     {% endif %}
                 </h1>
             </div>
