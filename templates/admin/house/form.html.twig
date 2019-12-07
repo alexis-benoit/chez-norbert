@@ -20,8 +20,6 @@
 
 {% block body %}
 
-    {{ dump(house) }}
-
     {% if house.id is not null %}
         <div data-house-id="{{ house.id }}"></div>
     {% endif %}
