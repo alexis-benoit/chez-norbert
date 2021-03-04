@@ -1,4 +1,6 @@
 {
+    "name": "Chez Norbert",
+    "description": "Chez Norbert website",
     "type": "project",
     "license": "proprietary",
     "require": {
