@@ -59,6 +59,11 @@ npm run watch
 maildev
 ```
 
+## Create the first user
+
+When you start with an empty database, you must create the first user to access the dashboard.
+To do so, you can go to `/register`.
+
 # Test
 
 ````shell script
