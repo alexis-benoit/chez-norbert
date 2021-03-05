@@ -139,4 +139,15 @@ class WebSiteInformation
 
         return $this;
     }
+
+    public static function getDefaultWebsiteInformation(): WebSiteInformation {
+        return (new WebSiteInformation())
+            ->setAddress('Unknown')
+            ->setEmail('Unknown')
+            ->setFacebookLink('Unknown')
+            ->setFirstName('Unknown')
+            ->setLastName('Unknown')
+            ->setPhoneNumber('Unknown')
+            ->setSiteName('Chez Norbert');
+    }
 }
