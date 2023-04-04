@@ -53,7 +53,7 @@
                 </p>
 
                 <div>
-                    <button data-modal-action="open" data-modal="#booking-modal" class="button details-button">Réservez maintenant</button>
+                    <a href="https://chez-norbert.amenitiz.io/fr/booking/room" target="_blank" class="button details-button">Réservez maintenant</button>
                 </div>
             </section>
         </div>
@@ -130,41 +130,6 @@
                 </div>
             </article>
         </section>
-    </div>
-
-
-    <div id="booking-modal" class="modal-container" data-modal-active="{{ form.vars.valid == false ? 'true' : 'null' }}">
-        <div class="modal">
-            <header class="modal-header">
-                <h3 class="modal-title">Réservez maintenant</h3>
-                <span class="modal-title modal-close" data-modal-action="close" data-modal="#booking-modal">&times;</span>
-            </header>
-
-            <div class="modal-body">
-
-                {#{{ render(controller('App\\Controller\\BookingController::index', { id: house.id })) }}#}
-                {{ form_start(form) }}
-                {#    {{ form_row(form) }}#}
-
-                <div class="booking-form">
-                    {{ form_row(form.firstName) }}
-                    {{ form_row(form.lastName) }}
-
-                    {{ form_row(form.email) }}
-                    {{ form_row(form.phone) }}
-
-                    {{ form_row(form.from) }}
-                    {{ form_row(form.to) }}
-
-                    {{ form_row(form.personsCount) }}
-                    {{ form_row(form.message) }}
-                </div>
-
-                <div class="g-recaptcha" data-sitekey={{ google_recaptcha_site_key }}></div>
-                <button class="button">Envoyer votre demande</button>
-                {{ form_end(form) }}
-            </div>
-        </div>
     </div>
 
 {% endblock %}
