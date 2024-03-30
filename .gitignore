@@ -40,3 +40,8 @@ yarn-error.log
 
 /public/images
 /public/sw.js
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
