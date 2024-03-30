@@ -6,11 +6,11 @@ use App\Entity\House;
 use App\Repository\MediaRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 
 class HouseFixture extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(PersistenceObjectManager $manager)
     {
         $slugifier = new Slugify();
 

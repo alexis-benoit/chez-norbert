@@ -13,6 +13,7 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 
 class MediaFixture extends Fixture implements DependentFixtureInterface
 {
@@ -26,7 +27,7 @@ class MediaFixture extends Fixture implements DependentFixtureInterface
         $this->repository = $repository;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(PersistenceObjectManager $manager)
     {
         $houses = $this->repository->findAll();
 

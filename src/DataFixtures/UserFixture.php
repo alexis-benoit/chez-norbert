@@ -6,6 +6,7 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 
 class UserFixture extends Fixture
 {
@@ -20,7 +21,7 @@ class UserFixture extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(PersistenceObjectManager $manager)
     {
         // create 2 users! Fist will be an ADMIN_USER
         $admin = $this->createUser('admin@norbert.com', 'test', [ 'ROLE_ADMIN' ]);
