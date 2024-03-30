@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WebSiteInformationRepository")
  */
+#[ORM\Entity(repositoryClass: "App\Repository\WebSiteInformationRepository")]
 class WebSiteInformation
 {
     /**
@@ -14,41 +15,51 @@ class WebSiteInformation
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue()]
+    #[ORM\Column(type: "integer")]
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $siteName;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $siteName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $phoneNumber;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $address;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $address;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: "string", length: 255)]
     private $facebookLink;
 
     public function getId(): ?int

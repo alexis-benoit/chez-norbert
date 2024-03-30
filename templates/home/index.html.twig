@@ -46,13 +46,7 @@
 
 {% block body %}
     <section class="landing">
-        <picture>
-            <source data-srcset="{{ asset('build/images/cour.jpg') | imagine_filter('xs_max_down_scale_filter') }}" media="(max-width: 600px)">
-            <source data-srcset="{{ asset('build/images/cour.jpg') | imagine_filter('sm_max_down_scale_filter') }}" media="(max-width: 900px)">
-            <source data-srcset="{{ asset('build/images/cour.jpg') | imagine_filter('md_max_down_scale_filter') }}" media="(max-width: 1200px)">
-            <source data-srcset="{{ asset('build/images/cour.jpg') | imagine_filter('lg_max_down_scale_filter') }}" media="(max-width: 1500px)">
-            <img data-src="{{ asset('build/images/cour.jpg') | imagine_filter('xl_max_down_scale_filter') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
-        </picture>
+        <img src="{{ asset('build/images/cour.jpg') }}" alt="Portail d'entrée de Chez Norbert" class="landing-img">
 
         <div class="contained">
             <div class="landing-container">

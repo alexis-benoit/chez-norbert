@@ -4,7 +4,7 @@ version: '3.4'
 services:
 
   db:
-    image: mysql:5.7
+    image: biarms/mysql:5.7
     container_name: cn-mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always

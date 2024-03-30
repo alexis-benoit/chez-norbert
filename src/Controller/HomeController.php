@@ -59,6 +59,7 @@ class HomeController extends AbstractController
      * @param WebSiteInformationRepository $informationRepository
      * @return Response
      */
+    #[Route("/contact", name: "home.contact")]
     public function contact (CaptchaVerifierInterface $verifier, Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
     {
         $information = $informationRepository->findOne();

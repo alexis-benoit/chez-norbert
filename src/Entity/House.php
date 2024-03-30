@@ -16,14 +16,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  *  fields={"name", "slug"}
  * )
  */
+#[ORM\Entity(repositoryClass: "App\Repository\HouseRepository")]
+#[UniqueEntity(fields: [ "name", "slug" ])]
 class House
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?string $id;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -35,7 +36,8 @@ class House
      *     maxMessage = "house.constraint.name.length.max"
      * )
      */
-    private $name;
+    #[ORM\Column(type: "string", length: 255, unique: true)]
+    private string $name;
 
     /**
      * @ORM\Column(type="smallint")
@@ -43,7 +45,8 @@ class House
      *     message = "house.constraints.peopleNumber.positive"
      * )
      */
-    private $peopleNumber;
+    #[ORM\Column(type: "smallint")]
+    private int $peopleNumber;
 
     /**
      * @ORM\Column(type="string", length=2000)
@@ -55,11 +58,13 @@ class House
      *     maxMessage = "house.constraint.description.length.max"
      * )
      */
-    private $description;
+    #[ORM\Column(type: "string", length: 2000)]
+    private string $description;
 
     /**
      * @ORM\Column(type="json")
      */
+    #[ORM\Column(type: "json")]
     private $advantage = [];
 
     /**
@@ -69,6 +74,7 @@ class House
      *     message="house.constraint.type.choice"
      * )
      */
+    #[ORM\Column(type: "smallint")]
     private $type;
 
     public static $houseTypes = [
@@ -83,11 +89,13 @@ class House
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: "string", length: 255)]
     private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Media", mappedBy="house", orphanRemoval=true, cascade={"persist"})
      */
+    #[ORM\OneToMany(targetEntity: "App\Entity\Media", mappedBy: "house", orphanRemoval: true, cascade: ["persist"])]
     private $medias;
 
     /**

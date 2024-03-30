@@ -13,18 +13,22 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
-
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
-    .addEntry('app', './assets/app.js')
-
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
-
+    .addEntry('app', './assets/site/app.js')
+    .addEntry('app-admin', './assets/admin/app.js')
+    .addEntry('house-form', './assets/admin/house-form.js')
+    .addStyleEntry('app-style', './assets/site/app.scss')
+    .addStyleEntry('sm', './assets/site/sm.scss')
+    .addStyleEntry('md', './assets/site/md.scss')
+    .addStyleEntry('lg', './assets/site/lg.scss')
+    .addStyleEntry('xl', './assets/site/xl.scss')
+    .addStyleEntry('hover', './assets/site/hover.scss')
+    .addStyleEntry('app-admin-style', './assets/admin/app.scss')
+    .copyFiles({
+        from: './assets/site/images',
+        to: 'images/[path][name].[ext]',
+        pattern: /\.(jpeg|jpg|svg|png)$/
+    })
+    .enableSassLoader()
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
