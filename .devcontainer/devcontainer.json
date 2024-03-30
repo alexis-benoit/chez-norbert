@@ -3,7 +3,7 @@
 {
 	"name": "PHP",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/php:dev-7.4",
+	"image": "mcr.microsoft.com/devcontainers/php:8.0",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
