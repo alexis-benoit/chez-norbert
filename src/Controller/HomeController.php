@@ -18,16 +18,7 @@ use \ReCaptcha\ReCaptcha;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @Route({
-     *  "fr": "/",
-     *  "en": "/"
-     * }, name="home.index")
-     *
-     * @param HouseRepository $repository
-     * @param WebSiteInformationRepository $informationRepository
-     * @return Response
-     */
+    #[Route("/", name: "home.index")]
     public function index(HouseRepository $repository, WebSiteInformationRepository $informationRepository)
     {
         $rooms = $repository->findAllByType(1);

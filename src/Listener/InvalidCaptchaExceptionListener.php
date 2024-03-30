@@ -22,7 +22,7 @@ class InvalidCaptchaExceptionListener
     }
 
     public function onKernelException (ExceptionEvent $event) {
-        $exception = $event->getException();
+        $exception = $event->getThrowable();
 
         if ($exception instanceof InvalidCaptchaException) {
             $this->bag->add('danger', 'Captcha obligatoire.');
