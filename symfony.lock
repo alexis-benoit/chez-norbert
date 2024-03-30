@@ -482,15 +482,14 @@
         "version": "v4.3.4"
     },
     "symfony/twig-bundle": {
-        "version": "5.0",
+        "version": "6.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "5.0",
-            "ref": "1766a292f47e3bf94bcfc192c2aa090588f9f46d"
+            "version": "6.4",
+            "ref": "cab5fd2a13a45c266d45a7d9337e28dee6272877"
         },
         "files": [
-            "config/packages/test/twig.yaml",
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
