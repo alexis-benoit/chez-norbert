@@ -1,92 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <script src="https://www.google.com/recaptcha/api.js?hl={{ app.request.locale }}" async defer></script>
-        <meta name="description" content="{% block description %}{% endblock %}">
-
-        <link rel="manifest" href="{{ asset('manifest.json') }}">
-        <meta name="theme-color" content="#f6ab81">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="apple-touch-icon" href="{{ asset('build/images/icon-192x192.png') }}">
-        <link rel="icon" href="{{ asset('build/images/icon-192x192.png') }}" type="image/png">
-        <meta name="msapplication-starturl" content="/">
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app-style') }}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
 
-            <link rel="stylesheet" href="{{ asset('build/sm.css') }}" media="screen and (min-width: 600px)">
-            <link rel="stylesheet" href="{{ asset('build/md.css') }}" media="screen and (min-width: 900px)">
-            <link rel="stylesheet" href="{{ asset('build/lg.css') }}" media="screen and (min-width: 1200px)">
-            <link rel="stylesheet" href="{{ asset('build/xl.css') }}" media="screen and (min-width: 1500px)">
-            <link rel="stylesheet" href="{{ asset('build/hover.css') }}" media="screen and (hover: hover)">
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
     <body>
-        <div class="alert-container contained">
-            {% for type, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ type }}">
-                        {{ message|trans }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        </div>
-
-        <header class="header contained">
-            <a href="{{ path('home.index') }}" class="header-brand">Chez Norbert</a>
-
-            <button class="header-hamburger" type="button" title="menu" data-hamburger>
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <nav class="header-nav" data-menu="false">
-                <ul class="nav-list contained">
-                    <li class="nav-list-item">
-                        <a href="{{ path('home.index') }}#houses" class="nav-link">Nos gîtes</a>
-                    </li>
-                    <li class="nav-list-item">
-                        <a href="{{ path('home.index') }}#guest-houses" class="nav-link">Nos chambres d'hôtes</a>
-                    </li>
-                    <li class="nav-list-item">
-                        <a href="{{ path('home.contact') }}" class="nav-link">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
         {% block body %}{% endblock %}
-
-        <footer class="footer contained">
-            <div class="footer-brand-container">
-                <a href="{{ path('home.index') }}" title="Chez Norbert" class="footer-brand">
-                    <img src="{{ asset('build/images/chez-norbert-logo.svg') }}" alt="Logo Chez Norbert">
-                </a>
-                <p class="footer-slogan">Un lieu paisible au coeur du vignoble, une maison de charme alsacienne.</p>
-            </div>
-
-            <div class="footer-nav">
-                <ul class="footer-nav-list">
-                    <li class="footer-nav-item">
-                        <a href="{{ path('home.index') }}#houses" class="footer-link">Nos gîtes</a>
-                    </li>
-                    <li class="footer-nav-item">
-                        <a href="{{ path('home.index') }}#guest-houses" class="footer-link">Nos chambres d'hôtes</a>
-                    </li>
-                    <li class="footer-nav-item">
-                        <a href="{{ path('home.contact') }}" class="footer-link">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags ('app') }}
-        {% endblock %}
     </body>
 </html>
