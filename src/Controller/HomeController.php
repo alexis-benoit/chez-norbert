@@ -6,8 +6,6 @@ use App\Repository\HouseRepository;
 use App\Repository\WebSiteInformationRepository;
 use App\Services\CaptchaVerifier;
 use App\Services\CaptchaVerifierInterface;
-use Swift_Mailer;
-use Swift_Message;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use \ReCaptcha\ReCaptcha;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class HomeController extends AbstractController
 {
@@ -60,7 +60,7 @@ class HomeController extends AbstractController
      * @return Response
      */
     #[Route("/contact", name: "home.contact")]
-    public function contact (CaptchaVerifierInterface $verifier, Request $request, Swift_Mailer $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
+    public function contact (CaptchaVerifierInterface $verifier, Request $request, MailerInterface $mailer, WebSiteInformationRepository $repository, WebSiteInformationRepository $informationRepository)
     {
         $information = $informationRepository->findOne();
 
@@ -70,10 +70,10 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $verifier->verify($request->get('g-recaptcha-response'))) {
-            $message = (new Swift_Message())
-                ->setFrom($contact->getEmail())
-                ->setTo($repository->findOne()->getEmail())
-                ->setBody(
+            $message = (new Email())
+                ->from($contact->getEmail())
+                ->to($repository->findOne()->getEmail())
+                ->html(
                     $this->renderView('mails/contact.html.twig', [
                         'contact' => $contact
                     ]),
