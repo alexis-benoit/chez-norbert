@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Exception;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HouseRepository")
@@ -18,13 +23,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: "App\Repository\HouseRepository")]
 #[UniqueEntity(fields: [ "name", "slug" ])]
+#[Uploadable]
 class House
 {
     
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?string $id;
+    #[ORM\Column(type: "integer")]
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -37,6 +43,8 @@ class House
      * )
      */
     #[ORM\Column(type: "string", length: 255, unique: true)]
+    #[Assert\NotBlank(message: "house.constraints.name.notBlank")]
+    #[Assert\Length(max: 255, maxMessage: "house.constraint.name.length.max")]
     private string $name;
 
     /**
@@ -46,6 +54,7 @@ class House
      * )
      */
     #[ORM\Column(type: "smallint")]
+    #[Assert\Positive(message: "house.constraints.peopleNumber.positive")]
     private int $peopleNumber;
 
     /**
@@ -59,6 +68,8 @@ class House
      * )
      */
     #[ORM\Column(type: "string", length: 2000)]
+    #[Assert\NotBlank(message: "house.constraints.description.notBlank")]
+    #[Assert\Length(max: 800, maxMessage: "house.constraint.description.length.max")]
     private string $description;
 
     /**
@@ -75,6 +86,10 @@ class House
      * )
      */
     #[ORM\Column(type: "smallint")]
+    #[Assert\Choice(
+        callback: 'getTypesNumbers',
+        message: "house.constraint.type.choice"
+    )]
     private $type;
 
     public static $houseTypes = [
@@ -98,10 +113,10 @@ class House
     #[ORM\OneToMany(targetEntity: "App\Entity\Media", mappedBy: "house", orphanRemoval: true, cascade: ["persist"])]
     private $medias;
 
-    /**
-     * @var File[]
-     */
+    #[UploadableField("media_images", "imageFilesName")]
     private $imageFiles;
+
+    public ?string $imageFilesName = null;
 
     public function __construct()
     {
@@ -233,10 +248,7 @@ class House
         return $this->medias[0] ?? null;
     }
 
-    /**
-     * @return File[]
-     */
-    public function getImageFiles(): ?array
+    public function getImageFiles()
     {
         return $this->imageFiles;
     }
@@ -246,7 +258,7 @@ class House
      * @return House
      * @throws Exception
      */
-    public function setImageFiles(array $imageFiles): self
+    public function setImageFiles(iterable $imageFiles): self
     {
         $this->imageFiles = $imageFiles;
 
@@ -260,6 +272,4 @@ class House
 
         return $this;
     }
-
-
 }

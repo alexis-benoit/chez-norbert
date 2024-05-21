@@ -12,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
+#[ORM\Entity(repositoryClass:"App\Repository\UserRepository")]
+#[UniqueEntity(fields: ["email"], message: "There is already an account with this email")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
@@ -19,7 +21,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id()]
+    #[ORM\GeneratedValue()]
+    #[ORM\Column(type: "integer")]
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -34,18 +39,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *     maxMessage = "user.constraint.email.length.max"
      * )
      */
-    private $email;
+    #[ORM\Column(type: "string", length: 180, unique: true)]
+    #[Assert\NotBlank()]
+    #[Assert\Email(message: "user.constraint.email.email")]
+    #[Assert\Length(
+        min: 5, max: 
+        180, 
+        minMessage: "user.constraint.email.length.min",
+        maxMessage: "user.constraint.email.length.max"
+    )]
+    private ?string $email = null;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    #[ORM\Column(type: "json")]
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    #[ORM\Column(type: "string")]
+    private ?string $password = null;
 
     /**
      * @return int|null
@@ -61,6 +77,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+
+    /**
+     * To make the templates work.
+     */
+    public function getUsername(): ?string {
+        return $this->getEmail();
     }
 
     /**

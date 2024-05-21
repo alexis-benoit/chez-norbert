@@ -15,11 +15,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
  * @IsGranted("ROLE_USER")
  */
+#[IsGranted("ROLE_USER")]
 class AdminHouseController extends AbstractController implements AdminControllerInterface
 {
     /**
@@ -27,6 +28,7 @@ class AdminHouseController extends AbstractController implements AdminController
      * @param HouseRepository $repository
      * @return Response
      */
+    #[Route("/admin/house", name: "admin.house.index")]
     public function index (HouseRepository $repository) {
         $houses = $repository->findAll();
 
@@ -45,6 +47,8 @@ class AdminHouseController extends AbstractController implements AdminController
      * @param House|null $house
      * @return Response
      */
+    #[Route("/admin/house/create", name: "admin.house.create")]
+    #[Route("/admin/house/{id}", name: "admin.house.update", methods: ["GET", "POST"])]
     public function create(Request $request, SlugifyInterface $slugifier, EntityManagerInterface $manager, House $house = null)
     {
         $creation = !$house;
@@ -83,6 +87,7 @@ class AdminHouseController extends AbstractController implements AdminController
      * @param Request $request
      * @return RedirectResponse
      */
+    #[Route("/admin/house/{id}", name: "admin.house.delete", methods: [ "DELETE" ])]
     public function delete (House $house, EntityManagerInterface $manager, Request $request) {
         $isCsrfValid = $this->isCsrfTokenValid(
             'delete' . $house->getId(),

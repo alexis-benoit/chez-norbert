@@ -8,11 +8,12 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
  * @IsGranted("ROLE_USER")
  */
+#[IsGranted("ROLE_USER")]
 class AdminController extends AbstractController implements AdminControllerInterface
 {
     /**
@@ -22,6 +23,7 @@ class AdminController extends AbstractController implements AdminControllerInter
      * @param UserRepository $userRep
      * @return Response
      */
+    #[Route("/admin", name: "admin.index")]
     public function index (HouseRepository $houseRep, MediaRepository $mediaRep, UserRepository $userRep) {
         $houses = $houseRep->getCount();
         $medias = $mediaRep->getCount();

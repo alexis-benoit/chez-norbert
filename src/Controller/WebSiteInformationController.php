@@ -20,6 +20,7 @@ class WebSiteInformationController extends AbstractController
      * @param SerializerInterface $serializer
      * @return Response
      */
+    #[Route("/information", name: "information")]
     public function getInformation(Request $request, WebSiteInformationRepository $repository, EntityManagerInterface $manager, SerializerInterface $serializer)
     {
         $Object = $repository->findOne();

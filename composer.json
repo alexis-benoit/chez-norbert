@@ -10,14 +10,14 @@
         "cocur/slugify": "^4.0",
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^2.0",
+        "doctrine/dbal": "^3.1",
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.1",
-        "doctrine/dbal": "^3.1",
         "gedmo/doctrine-extensions": "^3.0",
         "google/recaptcha": "^1.2",
         "laminas/laminas-zendframework-bridge": "^1.6",
-        "liip/imagine-bundle": "^2.2",
+        "liip/imagine-bundle": "^2.12",
         "phpdocumentor/reflection-docblock": "^5.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "6.4.*",
@@ -44,7 +44,7 @@
         "symfony/web-link": "6.4.*",
         "symfony/webpack-encore-bundle": "^1.6",
         "symfony/yaml": "6.4.*",
-        "vich/uploader-bundle": "^1.10"
+        "vich/uploader-bundle": "^2.3"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^6.0",

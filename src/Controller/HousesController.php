@@ -9,11 +9,11 @@ use App\Repository\HouseRepository;
 use App\Repository\WebSiteInformationRepository;
 use App\Services\CaptchaVerifier;
 use App\Services\CaptchaVerifierInterface;
-use Swift_Mailer;
-use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HousesController extends AbstractController
@@ -29,7 +29,8 @@ class HousesController extends AbstractController
      * @param WebSiteInformationRepository $informationRepository
      * @return Response
      */
-    public function index(House $house, HouseRepository $repository, Swift_Mailer $mailer,Request $request, CaptchaVerifierInterface $verifier, WebSiteInformationRepository $informationRepository)
+    #[Route("/houses/{slug}", name: "houses.get")]
+    public function index(House $house, HouseRepository $repository, MailerInterface $mailer,Request $request, CaptchaVerifierInterface $verifier, WebSiteInformationRepository $informationRepository)
     {
         //$anotherHouse = $repository->findAnotherHouse($house);
         $anotherHouses = $repository->findAnotherHouses($house);
@@ -42,10 +43,10 @@ class HousesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $verifier->verify($request->get('g-recaptcha-response'))) {
-            $message = (new Swift_Message())
-                ->setFrom($booking->getEmail())
-                ->setTo($informationRepository->findOne()->getEmail())
-                ->setBody(
+            $message = (new Email())
+                ->from($booking->getEmail())
+                ->to($informationRepository->findOne()->getEmail())
+                ->html(
                     $this->renderView('mails/booking.html.twig', [
                         'booking' => $booking,
                         'house' => $house

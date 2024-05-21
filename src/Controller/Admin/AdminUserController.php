@@ -11,13 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
  * @IsGranted("ROLE_ADMIN")
  */
+#[IsGranted("ROLE_ADMIN")]
 class AdminUserController extends AbstractController implements AdminControllerInterface
 {
     /**
@@ -25,6 +27,7 @@ class AdminUserController extends AbstractController implements AdminControllerI
      * @param UserRepository $repository
      * @return Response
      */
+    #[Route("/admin/user", name: "admin.user.index")]
     public function index (UserRepository $repository) {
         $users = $repository->findAll();
 
@@ -38,13 +41,15 @@ class AdminUserController extends AbstractController implements AdminControllerI
      * @Route("/admin/user/{id}", name="admin.user.update", methods="GET|POST")
      *
      * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param UserPasswordHasherInterface $passwordEncoder
      * @param UserRepository $repository
      * @param EntityManagerInterface $manager
      * @param User|null $user
      * @return Response
      */
-    public function create(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository, EntityManagerInterface $manager, User $user = null)
+    #[Route("/admin/user/create", name: "admin.user.create")]
+    #[Route("/admin/user/{id}", name: "admin.user.update", methods: [ "GET", "POST" ])]
+    public function create(Request $request, UserPasswordHasherInterface $passwordEncoder, UserRepository $repository, EntityManagerInterface $manager, User $user = null)
     {
         $creation = !$user;
 
@@ -59,7 +64,7 @@ class AdminUserController extends AbstractController implements AdminControllerI
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $form->get('plainPassword')->getData();
-            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+            $encodedPassword = $passwordEncoder->hashPassword($user, $plainPassword);
 
             $user
                 ->setPassword($encodedPassword);
@@ -84,6 +89,7 @@ class AdminUserController extends AbstractController implements AdminControllerI
      * @param Request $request
      * @return RedirectResponse
      */
+    #[Route("/admin/user/{id}", name: "admin.user.delete", methods: ["DELETE"])]
     public function delete (User $user, EntityManagerInterface $manager, Request $request) {
         $isCsrfValid = $this->isCsrfTokenValid(
             'delete' . $user->getId(),

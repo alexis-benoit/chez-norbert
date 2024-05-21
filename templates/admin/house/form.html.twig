@@ -45,10 +45,27 @@
                     {{ form_row(form.peopleNumber) }}
                     {{ form_row(form.description) }}
 
+                    <div class="form-group">
+                        {{ form_label(form.medias) }}
+
+                    <ul class="medias" style="list-style: none; margin: 0; padding: 0" data-prototype="{{ form_widget(form.medias.vars.prototype)|e('html_attr') }}"
+                            data-widget-tags="{{ '<li></li>'|e }}"
+                            data-widget-counter="{{ form.medias|length }}">
+                            {% for media in form.medias %}
+                                <li>{{ form_row(media) }}</li>
+                            {% endfor %}
+                        </ul>
+
+                        <button type="button"
+                                class="add-another-collection-widget btn btn-success"
+                                data-list-selector=".medias">Ajouter une image</button>
+                    </div>
+
+                    {#
                     {% if house.id is null %}
                         {{ form_row(form.imageFiles) }}
                     {% endif %}
-
+#}
                     <div class="form-group">
                         {{ form_label(form.advantage) }}
                         <ul class="advantage" style="list-style: none; margin: 0; padding: 0" data-prototype="{{ form_widget(form.advantage.vars.prototype)|e('html_attr') }}"

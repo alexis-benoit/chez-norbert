@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use \DateTime;
+use DateTimeInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
  * @Vich\Uploadable
  */
+#[ORM\Entity(repositoryClass:"App\Repository\MediaRepository")]
+#[Vich\Uploadable]
 class Media
 {
     /**
@@ -22,7 +25,10 @@ class Media
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id()]
+    #[ORM\GeneratedValue()]
+    #[ORM\Column(type: "integer")]
+    private ?int $id = null;
 
     /**
      * @Vich\UploadableField(mapping="media_images", fileNameProperty="filename")
@@ -32,17 +38,21 @@ class Media
      *     maxSize = "4M"
      * )
      */
-    private $imageFile;
+    #[Vich\UploadableField(mapping: "media_images", fileNameProperty: "filename")]
+    #[Assert\Image(maxSize: "4M")]
+    private ?File $imageFile = null;
 
     /**
      * @ORM\Column(type="string", length=400)
      */
-    private $filename;
+    #[ORM\Column(type: "string", length: 400, nullable: true)]
+    private ?string $filename = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updatedAt;
+    #[ORM\Column(type: "datetime")]
+    private ?DateTimeInterface $updatedAt = null;
 
     /**
      * @ORM\Column(type="string", length=600)
@@ -54,13 +64,18 @@ class Media
      *     maxMessage = "media.constraints.alt.length.max"
      * )
      */
-    private $alt;
+    #[ORM\Column(type: "string", length: 600)]
+    #[Assert\NotBlank(message: "media.constraints.alt.blank")]
+    #[Assert\Length(max: 255, maxMessage: "media.constraints.alt.length.max")]
+    private ?string $alt = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\House", inversedBy="medias")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $house;
+    #[ORM\ManyToOne(targetEntity: "App\Entity\House", inversedBy: "medias")]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?House $house = null;
 
     public function getId(): ?int
     {

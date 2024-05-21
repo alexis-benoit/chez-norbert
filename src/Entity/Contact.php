@@ -16,7 +16,9 @@ class Contact
      *  maxMessage = "contact.constraints.lastName.length.max"
      * )
      */
-    private $lastName;
+    #[Assert\NotBlank(message: "contact.constraints.lastName.notBlank")]
+    #[Assert\Length(max: 80, maxMessage: "contact.constraints.lastName.length.max")]
+    private ?string $lastName = null;
 
     /**
      * @Assert\NotBlank(
@@ -28,7 +30,9 @@ class Contact
      *  maxMessage = "contact.constrains.firstName.length.max"
      * )
      */
-    private $firstName;
+    #[Assert\NotBlank(message: "contact.constraints.firstName.notBlank")]
+    #[Assert\Length(max: 80, maxMessage: "contact.constrains.firstName.length.max")]
+    private ?string $firstName = null;
 
     /**
      * @Assert\NotBlank(
@@ -44,7 +48,10 @@ class Contact
      *  maxMessage = "contact.constrains.email.length.max"
      * )
      */
-    private $email;
+    #[Assert\NotBlank(message: "contact.constrains.email.notBlank")]
+    #[Assert\Email(message: "contact.constrains.email.email")]
+    #[Assert\Length(max: 200, maxMessage: "contact.constrains.email.length.max")]
+    private ?string $email = null;
 
     /**
      * @Assert\NotBlank(
@@ -61,7 +68,14 @@ class Contact
      *     normalizer="App\Helper\PhoneNumberNormalizer::normalize"
      * )
      */
-    private $tel;
+    #[Assert\NotBlank(message: "contact.constrains.tel.notBlank")]
+    #[Assert\Length(max: 20, maxMessage: "contact.constrains.tel.length.max")]
+    #[Assert\Regex(
+        pattern: "/^(\+[0-9]{3,4})([0-9]{8,13})$/",
+        message: "contact.constraints.tel.regex",
+        normalizer: "App\Helper\PhoneNumberNormalizer::normalize"
+    )]
+    private ?string $tel = null;
 
     /**
      * @Assert\NotBlank(
@@ -73,7 +87,9 @@ class Contact
      *  maxMessage = "contract.constrains.message.length.max"
      * )
      */
-    private $message;
+    #[Assert\NotBlank(message: "contact.constrains.message.notBlank")]
+    #[Assert\Length(max: 400, maxMessage: "contract.constrains.message.length.max")]
+    private ?string $message = null;
 
     public function getEmail()
     {

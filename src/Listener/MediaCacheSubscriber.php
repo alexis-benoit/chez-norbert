@@ -6,11 +6,11 @@ namespace App\Listener;
 
 use App\Entity\Media;
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 class MediaCacheSubscriber implements EventSubscriber
 {
@@ -44,7 +44,7 @@ class MediaCacheSubscriber implements EventSubscriber
     }
 
     public function preRemove (LifecycleEventArgs $args) {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if (!$entity instanceof Media) {
             return;
@@ -54,7 +54,7 @@ class MediaCacheSubscriber implements EventSubscriber
     }
 
     public function preUpdate (PreUpdateEventArgs $args) {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if (!$entity instanceof Media) {
             return;

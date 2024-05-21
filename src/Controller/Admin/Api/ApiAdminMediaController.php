@@ -17,10 +17,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -29,6 +29,7 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 /**
  * @IsGranted("ROLE_USER")
  */
+#[IsGranted("ROLE_USER")]
 class ApiAdminMediaController extends AbstractController implements AdminControllerInterface
 {
     /**
@@ -39,6 +40,7 @@ class ApiAdminMediaController extends AbstractController implements AdminControl
      * @param EntityManagerInterface $manager
      * @return JsonResponse
      */
+    #[Route("/admin/admin/media/{id}", name: "api.admin.media.delete", methods: ["DELETE"])]
     public function delete (Request $request, Media $media, EntityManagerInterface $manager) {
         $data = json_decode($request->getContent(), true);
 
@@ -67,6 +69,7 @@ class ApiAdminMediaController extends AbstractController implements AdminControl
      * @param ValidatorInterface $validator
      * @return JsonResponse
      */
+    #[Route("/api/admin/house/media/{id}", name: "api.admin.house.media.edit", methods: [ "POST" ])]
     public function edit (Media $media, Request $request, EntityManagerInterface $manager, ValidatorInterface $validator) {
         $form = $this->createForm(MediaType::class, $media, [ 'csrf_protection' => false ]);
         $form->handleRequest($request);
@@ -105,6 +108,7 @@ class ApiAdminMediaController extends AbstractController implements AdminControl
      * @param UploaderHelper $helper
      * @return JsonResponse|Response
      */
+    #[Route("/api/admin/{id}/media/add", name: "api.admin.house.media.add", methods: ["POST"])]
     public function form (Request $request, House $house,EntityManagerInterface $manager, CacheManager $cacheManager, ValidatorInterface $validator, CsrfTokenManagerInterface $tokenManager, UploaderHelper $helper) {
         $media = new Media();
 

@@ -19,7 +19,9 @@ class Booking
      *     maxMessage = "booking.constraints.firstName.length.max"
      * )
      */
-    private $firstName;
+    #[Assert\NotBlank(message: "booking.constraints.firstName.notBlank")]
+    #[Assert\Length(max: 60, maxMessage: "booking.constraints.firstName.length.max")]
+    private ?string $firstName = null;
 
     /**
      * @var string|null
@@ -31,7 +33,9 @@ class Booking
      *     maxMessage = "booking.constraints.lastName.length.max"
      * )
      */
-    private $lastName;
+    #[Assert\NotBlank(message: "booking.constraints.lastName.notBlank")]
+    #[Assert\Length(max: 60, maxMessage: "booking.constraints.lastName.length.max")]
+    private ?string $lastName = null;
 
     /**
      * @var string|null
@@ -46,7 +50,10 @@ class Booking
      *     maxMessage = "booking.constraints.email.length.max"
      * )
      */
-    private $email;
+    #[Assert\NotBlank(message: "booking.constraints.email.notBlank")]
+    #[Assert\Email(message: "booking.constraints.email.email")]
+    #[Assert\Length(max: 200, message: "booking.constraints.email.length.max")]
+    private ?string $email = null;
 
     /**
      * @var string|null
@@ -64,7 +71,14 @@ class Booking
      *     normalizer="App\Helper\PhoneNumberNormalizer::normalize"
      * )
      */
-    private $phone;
+    #[Assert\NotBlank(message: "booking.constraints.phone.notBlank")]
+    #[Assert\Length(max: 20, message: "booking.constraints.phone.length.max")]
+    #[Assert\Regex(
+        pattern: "/^(\+[0-9]{3,4})([0-9]{8,13})$/",
+        message: "booking.constraints.tel.regex",
+        normalizer: "App\Helper\PhoneNumberNormalizer::normalize"
+    )]
+    private ?string $phone = null;
 
     /**
      * @var DateTimeInterface
@@ -72,7 +86,8 @@ class Booking
      *     message = "booking.constraints.from.date"
      * )
      */
-    private $from;
+    #[Assert\Date(message: "booking.constraints.from.date")]
+    private ?DateTimeInterface $from = null;
 
     /**
      * @var DateTimeInterface
@@ -80,7 +95,8 @@ class Booking
      *     message = "booking.constraints.from.date"
      * )
      */
-    private $to;
+    #[Assert\Date(message: "booking.constraints.from.date")]
+    private ?DateTimeInterface $to = null;
 
     /**
      * @var int
@@ -95,7 +111,10 @@ class Booking
      *     message = "booking.constraints.personCount.positive"
      * )
      */
-    private $personsCount;
+    #[Assert\NotBlank(message: "booking.constraints.personsCount.notBlank")]
+    #[Assert\Length(maxMessage: "booking.constraints.personsCount.length.max", max: 5)]
+    #[Assert\Positive(message: "booking.constraints.personCount.positive")]
+    private ?int $personsCount = null;
 
     /**
      * @var string|null
@@ -104,7 +123,8 @@ class Booking
      *     max = 400
      * )
      */
-    private $message;
+    #[Assert\Length(maxMessage: "booking.constraints.message.length.max", max: 400)]
+    private ?string $message = null;
 
     /**
      * @return string|null

@@ -15,7 +15,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class HouseType extends AbstractType
 {
@@ -41,10 +44,43 @@ class HouseType extends AbstractType
             )
         ;
 
+        $builder->add("medias", CollectionType::class, [
+            "entry_type" => MediaType::class,
+            "entry_options" => [ "label" => false ],
+            "allow_add" => true,
+            "allow_delete" => true,
+            "by_reference" => false,
+            "prototype" => true
+        ]);
+
+
+        $builder->addEventListener(
+            FormEvents::PRE_SUBMIT,
+            function (FormEvent $event) {
+                $data = $event->getData();
+                $form = $event->getForm();
+
+                if (isset($data['medias'])) {
+                    foreach ($data['medias'] as $key => $image) {
+                        $form->get('medias')->add('mediaFile', FileType::class, [
+                            'required' => false,
+                        ]);
+                    }
+                }
+            }
+        );
         if (!$options['edit']) {
-            $builder->add('imageFiles', FileType::class, [
-                'multiple' => true,
-            ]);
+            // $builder->add('imageFiles', VichFileType::class, [
+            //     // 'multiple' => true,
+            //     // "allow_extra_fields" => true
+            // ]);
+
+            // $builder->add("imageFiles", CollectionType::class, [
+            //     "entry_type" => VichFileType::class,
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            // ]);
+
         }
     }
 
