@@ -1,9 +1,9 @@
 {% extends "mails/base.html.twig" %}
 
 {% block body %}
-    <h1>Nouveau message depuis le formulaire de contact de <a href="https://chez-norbert.fr/contact">chez-norbert.fr/contact</a></h1>
-    <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
+    <h3>Nouveau message depuis le formulaire de contact de <a href="https://chez-norbert.fr/contact">chez-norbert.fr/contact</a></h3>
+    <h4>{{ contact.firstName }} {{ contact.lastName }}</h4>
     <p>Email {{ contact.email }}</p>
     <p>Téléphone {{ contact.tel }}</p>
-    <p>{{ contact.message }}</p>
+    <p>Message : {{ contact.message }}</p>
 {% endblock %}

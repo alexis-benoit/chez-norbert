@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use \ReCaptcha\ReCaptcha;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -80,7 +81,7 @@ class HomeController extends AbstractController
                     $this->renderView('mails/contact.html.twig', [
                         'contact' => $contact
                     ]),
-                    'text/html'
+                    "text/html;charset=utf-8"
                 );
 
             $mailer->send($message);
