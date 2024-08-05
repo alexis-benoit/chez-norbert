@@ -73,16 +73,16 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() && $verifier->verify($request->get('g-recaptcha-response'))) {
             $contactEmail = $repository->findOne()->getEmail();
 
-            $message = (new Email())
+            $message = (new TemplatedEmail())
                 ->from($contactEmail)
                 ->to($contactEmail)
+                ->subject("Formulaire de contact {$contact->getFirstName()} {$contact->getLastName()}")
                 ->replyTo($contact->getEmail())
-                ->html(
-                    $this->renderView('mails/contact.html.twig', [
-                        'contact' => $contact
-                    ]),
-                    "text/html;charset=utf-8"
-                );
+                ->htmlTemplate('mails/contact.html.twig')
+                ->context([
+                    'contact' => $contact
+                ])
+                ->locale("fr");
 
             $mailer->send($message);
 
