@@ -70,9 +70,12 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $verifier->verify($request->get('g-recaptcha-response'))) {
+            $contactEmail = $repository->findOne()->getEmail();
+
             $message = (new Email())
-                ->from($contact->getEmail())
-                ->to($repository->findOne()->getEmail())
+                ->from($contactEmail)
+                ->to($contactEmail)
+                ->replyTo($contact->getEmail())
                 ->html(
                     $this->renderView('mails/contact.html.twig', [
                         'contact' => $contact
